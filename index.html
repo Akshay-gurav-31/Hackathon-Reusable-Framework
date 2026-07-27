@@ -12,10 +12,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary: #7c3aed;
-      --primary-hover: #6d28d9;
-      --accent: #06b6d4;
-      --accent-hover: #0891b2;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --accent: #0ea5e9;
+      --accent-hover: #0284c7;
       --bg: #f8fafc;
       --surface: #ffffff;
       --surface-alt: #f1f5f9;
@@ -29,21 +29,21 @@
       --radius-lg: 24px;
       --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
       --shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
-      --shadow-hover: 0 20px 40px -10px rgba(124, 58, 237, 0.15);
-      --glow-gradient: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(6, 182, 212, 0.1));
+      --shadow-hover: 0 20px 40px -10px rgba(79, 70, 229, 0.18);
+      --glow-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.12), rgba(14, 165, 233, 0.1));
     }
 
     body.dark {
-      --bg: #090d16;
-      --surface: #111726;
-      --surface-alt: #1a2235;
-      --border: #232e44;
+      --bg: #0b0f19;
+      --surface: #131b2e;
+      --surface-alt: #1c273e;
+      --border: #26334d;
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --text-light: #64748b;
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
       --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-      --shadow-hover: 0 20px 40px -10px rgba(124, 58, 237, 0.25);
+      --shadow-hover: 0 20px 40px -10px rgba(79, 70, 229, 0.3);
     }
 
     html { scroll-behavior: smooth; }
@@ -84,6 +84,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      gap: 20px;
     }
 
     .brand {
@@ -92,34 +93,27 @@
       gap: 12px;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 19px;
+      font-size: 17px;
       color: var(--text);
       text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .brand-icon {
       width: 36px; height: 36px;
       border-radius: 10px;
       background: var(--glow-gradient);
-      border: 1px solid rgba(124, 58, 237, 0.2);
+      border: 1px solid rgba(79, 70, 229, 0.2);
       display: flex; align-items: center; justify-content: center;
-    }
-    .brand-badge {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(6, 182, 212, 0.12));
-      color: var(--primary);
-      border: 1px solid rgba(124, 58, 237, 0.2);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      flex-shrink: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 22px;
       list-style: none;
+      white-space: nowrap;
     }
     .nav-links a {
       color: var(--text-muted);
@@ -136,14 +130,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 11px 22px;
-      border-radius: var(--radius-sm);
+      gap: 8px;
+      height: 42px;
+      padding: 0 20px;
+      border-radius: 10px;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       border: none;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: inherit;
     }
@@ -169,7 +166,7 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
-    .btn-lg { padding: 15px 30px; font-size: 16px; border-radius: var(--radius); }
+    .btn-lg { height: auto; padding: 15px 30px; font-size: 16px; border-radius: var(--radius); }
 
     /* ---- HERO ---- */
     .hero {
@@ -509,12 +506,12 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         </div>
         <span id="brand-name">Science Hackathon</span>
-        <span class="brand-badge" id="brand-disorder">Rare Disorder</span>
       </a>
       <ul class="nav-links">
         <li><a href="#problem" id="nav-problem">Problem</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#winners" id="nav-winners">Winners</a></li>
         <li><a href="#judges">Judges</a></li>
         <li><a href="#rules" id="nav-rules">Rules</a></li>
         <li><a href="#schedule" id="nav-schedule">Schedule</a></li>
@@ -619,6 +616,17 @@
     </div>
   </section>
 
+  <!-- WINNERS & LEADERBOARD SECTION -->
+  <section id="winners">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>🏆 Winners Showcase &amp; Leaderboard</h2>
+        <p id="winners-subhead">Celebrating top-scoring projects and open-source contributions.</p>
+      </div>
+      <div class="grid3" id="winners-grid"></div>
+    </div>
+  </section>
+
   <!-- JUDGES SECTION -->
   <section id="judges">
     <div class="wrap">
@@ -668,24 +676,19 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Project Submission</h2>
-        <p>Submit your project before the deadline to be evaluated by the judges.</p>
+        <p>Submit your project details and repository links before the submission deadline.</p>
       </div>
-      <div class="grid2">
-        <div class="card" style="text-align:center;">
+      <div style="max-width: 680px; margin: 0 auto;">
+        <div class="card" style="text-align:center; padding: 40px 32px;" id="google-form-card">
           <div class="card-icon" style="margin: 0 auto 20px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <h3>Submit via GitHub Issue</h3>
-          <p style="margin-bottom:24px;">Open a structured GitHub Issue template with project abstract, code repository, and demo video link.</p>
-          <a href="#" id="github-sub-btn" target="_blank" class="btn btn-primary">Open GitHub Submission</a>
-        </div>
-        <div class="card" style="text-align:center;" id="google-form-card">
-          <div class="card-icon" style="margin: 0 auto 20px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          </div>
-          <h3>Google Form Submission</h3>
-          <p style="margin-bottom:24px;">Prefer not to use GitHub? Submit your entry using our simple web form alternative.</p>
-          <a href="#" id="google-sub-btn" target="_blank" class="btn btn-ghost">Open Google Form</a>
+          <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">Submit Project Entry</h3>
+          <p style="margin-bottom:28px; color:var(--text-muted); font-size:15px; line-height:1.6;">Click below to submit your project details, code repository link, video demo, and team details via our submission form.</p>
+          <a href="#" id="google-sub-btn" target="_blank" class="btn btn-primary btn-lg">
+            Open Submission Form
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -755,12 +758,22 @@
         document.getElementById('page-title').textContent = c.hackathon.name || 'Science Hackathon';
         document.getElementById('brand-name').textContent = c.hackathon.name || 'Science Hackathon';
         document.getElementById('hero-title').textContent = c.hackathon.name || 'Science Hackathon';
-        if (c.hackathon.disorder) document.getElementById('brand-disorder').textContent = c.hackathon.disorder;
+        const brandDisorderEl = document.getElementById('brand-disorder');
+        if (brandDisorderEl && c.hackathon.disorder) brandDisorderEl.textContent = c.hackathon.disorder;
         if (c.hackathon.tagline) {
           document.getElementById('hero-tagline-badge').textContent = c.hackathon.tagline;
         }
         if (c.hackathon.description) {
           document.getElementById('hero-desc').textContent = c.hackathon.description;
+        }
+
+        const logoUrl = c.hackathon.logo || (c.community && c.community.logo);
+        if (logoUrl) {
+          const brandIconEl = document.querySelector('.brand-icon');
+          if (brandIconEl) {
+            brandIconEl.innerHTML = `<img src="${logoUrl}" alt="Logo" style="width:100%; height:100%; object-fit:contain; border-radius:6px;" />`;
+            brandIconEl.style.background = 'transparent';
+          }
         }
       }
 
@@ -839,6 +852,42 @@
             <p>${p.description || ''}</p>
           </div>
         `).join('');
+      }
+
+      // Winners & Leaderboard
+      if (c.winners) {
+        const grid = document.getElementById('winners-grid');
+        if (grid) {
+          if (c.winners.announced && c.winners.list && c.winners.list.length > 0) {
+            grid.innerHTML = c.winners.list.map(w => `
+              <div class="card" style="border: 2px solid var(--primary); background:var(--surface);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <span class="prize-badge" style="font-size:12px; font-weight:800;">🏆 ${w.place}</span>
+                  <span style="font-size:15px; font-weight:800; color:var(--primary);">${w.prize || ''}</span>
+                </div>
+                <h3 style="font-size:20px; font-weight:700; margin-bottom:6px;">${w.project}</h3>
+                <div style="font-size:13px; font-weight:700; color:var(--accent); margin-bottom:10px;">By ${w.team}</div>
+                <div style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Track: ${w.track}</div>
+                <div style="display:flex; gap:10px;">
+                  ${w.repo_url ? `<a href="${w.repo_url}" target="_blank" class="btn btn-ghost btn-sm" style="font-size:12px;">GitHub Code</a>` : ''}
+                  ${w.demo_url ? `<a href="${w.demo_url}" target="_blank" class="btn btn-primary btn-sm" style="font-size:12px;">Live Demo</a>` : ''}
+                </div>
+              </div>
+            `).join('');
+          } else {
+            const resultsDate = (c.dates && c.dates.results_announced) ? c.dates.results_announced : 'soon';
+            grid.innerHTML = `
+              <div style="grid-column: 1 / -1; text-align:center; padding: 40px 20px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius-lg);">
+                <div style="font-size:36px; margin-bottom:10px;">⌛</div>
+                <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Evaluation in Progress</h3>
+                <p style="color:var(--text-muted); font-size:15px;">Winning projects and final scores will be published here on <strong>${resultsDate}</strong>.</p>
+              </div>
+            `;
+          }
+        }
+      } else {
+        const sec = document.getElementById('winners');
+        if (sec) sec.style.display = 'none';
       }
 
       // Judges
@@ -939,6 +988,12 @@
 
       // Feature Toggles (Hide disabled sections dynamically)
       if (c.features) {
+        if (c.features.show_winners === false && c.features.show_leaderboard === false) {
+          const s = document.getElementById('winners');
+          if (s) s.style.display = 'none';
+          const n = document.getElementById('nav-winners');
+          if (n && n.parentElement) n.parentElement.style.display = 'none';
+        }
         if (c.features.show_problem_statement === false) {
           const s = document.getElementById('problem');
           if (s) s.style.display = 'none';

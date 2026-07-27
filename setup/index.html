@@ -628,6 +628,32 @@
       </div>
     </div>
 
+    <!-- 4B. WINNERS & LEADERBOARD -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('winners')">
+        <div class="section-title-row">
+          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+          <h3>Winners Showcase &amp; Leaderboard</h3>
+        </div>
+        <span class="section-arrow open" id="arrow-winners">▼</span>
+      </div>
+      <div class="section-body open" id="body-winners">
+        <p class="section-intro">Publish winning projects and leaderboard standings after judging completes.</p>
+        <div class="flag-item" style="margin-bottom:16px;">
+          <div>
+            <div class="flag-label">Publish Winners &amp; Leaderboard</div>
+            <div class="flag-desc">Turn ON when winners are decided to display cards</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="winners-announced" checked onchange="update()">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="card-list" id="winners-list"></div>
+        <button class="btn btn-add btn-sm" onclick="addWinner()">+ Add Winner Project</button>
+      </div>
+    </div>
+
     <!-- 5. JUDGES -->
     <div class="section">
       <div class="section-header" onclick="toggleSection('judges')">
@@ -978,6 +1004,7 @@
 // ============================================================
 let tracks   = [];
 let prizes   = [];
+let winners  = [];
 let judges   = [];
 let mentors  = [];
 let sponsors = [];
@@ -994,6 +1021,8 @@ window.onload = () => {
   addPrize('1st Place', '$1,000', 'Grand prize winner');
   addPrize('2nd Place', '$500', '');
   addPrize('3rd Place', '$250', '');
+  addWinner('1st Place (Grand Winner)', 'Team LeucineOps', 'Open Leucine Benchmarking Engine', 'Leucine Estimation & Accuracy', '$1,000', 'https://github.com', 'https://example.com');
+  addWinner('2nd Place (Runner-up)', 'MapleTrack Squad', 'Connected Scale WebBluetooth Driver', 'Hardware & Smart Scale Integrations', '$500', 'https://github.com', '');
   addJudge('Dr. Jane Smith', 'Researcher', 'Example University', '', '');
   addMentor('John Doe', 'Machine Learning & AI', '', '');
   addSponsor('Example Foundation', '', 'https://example.org', 'Gold');
@@ -1488,6 +1517,23 @@ function buildYAML() {
   }
   push('');
 
+  // WINNERS
+  push('winners:');
+  push(`  announced: ${chk('winners-announced')}`);
+  if (winners.length > 0) {
+    push('  list:');
+    winners.forEach(w => {
+      push(`    - place: ${q(w.place)}`);
+      push(`      team: ${q(w.team)}`);
+      push(`      project: ${q(w.project)}`);
+      if (w.track)    push(`      track: ${q(w.track)}`);
+      if (w.prize)    push(`      prize: ${q(w.prize)}`);
+      if (w.repo_url) push(`      repo_url: ${q(w.repo_url)}`);
+      if (w.demo_url) push(`      demo_url: ${q(w.demo_url)}`);
+    });
+  }
+  push('');
+
   // JUDGES
   push('judges:');
   if (judges.length === 0) {
@@ -1599,6 +1645,7 @@ function buildYAML() {
   push('features:');
   push(`  show_problem_statement: ${chk('feat-problem')}`);
   push(`  show_rules: ${chk('feat-rules')}`);
+  push(`  show_winners: true`);
   push(`  show_mentors: ${chk('feat-mentors')}`);
   push(`  show_sponsors: ${chk('feat-sponsors')}`);
   push(`  show_leaderboard: ${chk('feat-leaderboard')}`);
