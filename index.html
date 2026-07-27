@@ -606,6 +606,12 @@
       if (c.registration && c.registration.form_url) {
         document.getElementById('nav-reg-btn').href = c.registration.form_url;
         document.getElementById('hero-reg-btn').href = c.registration.form_url;
+      }
+
+      // Submission links
+      if (c.submission && c.submission.form_url) {
+        document.getElementById('google-sub-btn').href = c.submission.form_url;
+      } else if (c.registration && c.registration.form_url) {
         document.getElementById('google-sub-btn').href = c.registration.form_url;
       }
 

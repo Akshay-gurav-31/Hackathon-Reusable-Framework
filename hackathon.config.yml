@@ -116,6 +116,9 @@ registration:
     team_name_required: true
   max_participants: 200
 
+submission:
+  form_url: "https://forms.gle/sample-pku-submission"
+
 faq:
   enabled: true
   items:
