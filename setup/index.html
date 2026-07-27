@@ -77,15 +77,13 @@
 
     /* ---- MAIN LAYOUT ---- */
     .layout {
-      display: grid;
-      grid-template-columns: 520px 1fr;
-      height: calc(100vh - 60px);
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 30px 20px 100px;
     }
 
     .form-panel {
-      overflow-y: auto;
-      border-right: 1px solid var(--border);
-      padding: 0 0 120px 0;
+      width: 100%;
     }
     .form-panel::-webkit-scrollbar { width: 4px; }
     .form-panel::-webkit-scrollbar-track { background: transparent; }
@@ -456,6 +454,14 @@
     <button class="btn btn-ghost btn-sm" onclick="resetAll()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.95"/></svg>
       Reset
+    </button>
+    <button class="btn btn-ghost btn-sm" onclick="copyYAML()" title="Copy to clipboard">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy YAML
+    </button>
+    <button class="btn btn-primary btn-sm" onclick="downloadYAML()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Config
     </button>
   </div>
 </header>
@@ -888,28 +894,29 @@
       </div>
     </div>
 
-  </div><!-- end form-panel -->
-
-  <!-- ======================== RIGHT PREVIEW PANEL ======================== -->
-  <div class="preview-panel">
-    <div class="preview-header">
-      <div class="preview-title">
-        <div class="live-dot"></div>
-        hackathon.config.yml &mdash; Live Preview
-      </div>
-      <div class="preview-actions">
-        <button class="btn btn-ghost btn-sm" onclick="copyYAML()" title="Copy to clipboard">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy YAML
-        </button>
-        <button class="btn btn-primary btn-sm" onclick="downloadYAML()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Config
-        </button>
+    <!-- 13. GENERATE & DOWNLOAD CARD -->
+    <div class="section" style="border: 2px solid var(--accent); background: #ffffff; margin-top: 30px;">
+      <div style="padding: 30px 24px; text-align: center;">
+        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Ready to Save Your Configuration?</h3>
+        <p style="color: var(--text2); margin-bottom: 24px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+          Download your generated <code>hackathon.config.yml</code> file or copy it to your clipboard. Replace this file in your GitHub repository to update your live website.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-ghost btn-sm" onclick="copyYAML()" style="padding: 12px 24px; font-size: 14px; font-weight: 600;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy YAML
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="downloadYAML()" style="padding: 12px 28px; font-size: 14px; font-weight: 700;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download hackathon.config.yml
+          </button>
+        </div>
       </div>
     </div>
-    <div class="yaml-output" id="yamlOutput"></div>
-  </div>
+
+  </div><!-- end form-panel -->
+
+  <div class="yaml-output" id="yamlOutput" style="display:none"></div>
 
 </div><!-- end layout -->
 
