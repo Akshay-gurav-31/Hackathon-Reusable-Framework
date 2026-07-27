@@ -620,7 +620,7 @@
         <a href="#" id="foot-discord" target="_blank">Discord Community</a>
         <a href="#" id="foot-github" target="_blank">GitHub Org</a>
       </div>
-      <p>&copy; 2026 Open Science Hackathon Framework. Built for Rare Disorder Communities.</p>
+      <p id="foot-copy">&copy; 2026 Open Science Hackathon Framework. Built for Rare Disorder Communities.</p>
     </div>
   </footer>
 
@@ -770,11 +770,35 @@
         `).join('');
       }
 
+      // Feature Toggles (Hide disabled sections dynamically)
+      if (c.features) {
+        if (c.features.show_schedule === false) {
+          const s = document.getElementById('schedule');
+          if (s) s.style.display = 'none';
+          const n = document.getElementById('nav-schedule');
+          if (n && n.parentElement) n.parentElement.style.display = 'none';
+        }
+        if (c.features.show_faq === false) {
+          const s = document.getElementById('faq');
+          if (s) s.style.display = 'none';
+          const n = document.getElementById('nav-faq');
+          if (n && n.parentElement) n.parentElement.style.display = 'none';
+        }
+        if (c.features.show_sponsors === false) {
+          const s = document.getElementById('sponsors');
+          if (s) s.style.display = 'none';
+        }
+      }
+
       // Footer & Contact
       if (c.contact) {
         if (c.contact.email) document.getElementById('foot-email').href = 'mailto:' + c.contact.email;
         if (c.contact.discord) document.getElementById('foot-discord').href = c.contact.discord;
         if (c.contact.github_org) document.getElementById('foot-github').href = c.contact.github_org;
+      }
+
+      if (c.hackathon && c.hackathon.name) {
+        document.getElementById('foot-copy').innerHTML = `&copy; 2026 ${c.hackathon.name}. Powered by Reusable Hackathon Framework.`;
       }
     }
 
