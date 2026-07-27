@@ -38,6 +38,12 @@ prizes:
     - place: "2nd Place (Runner-up)"
       amount: "$500"
       description: "Exceptional contribution to core infrastructure."
+    - place: "3rd Place"
+      amount: "$250"
+      description: "Strong overall project with notable community impact."
+    - place: "4th Place"
+      amount: "$150"
+      description: "Solid contribution with clear potential for future development."
     - place: "Community Merit Awards (×5)"
       amount: "$100 each"
       description: "Targeted fixes for specific MSUD pain points."
@@ -58,6 +64,16 @@ judges:
     organization: "MSUD Community"
     photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80"
     linkedin: "https://linkedin.com"
+  - name: "Dr. Elena Ruiz"
+    title: "Metabolic Genetics & MSUD Nutrition Advisor"
+    organization: "MSUD Bridge Medical Board"
+    photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&auto=format&fit=crop&q=80"
+    linkedin: "https://linkedin.com"
+  - name: "Sam Patel"
+    title: "Bluetooth Low Energy & Web Bluetooth Advisor"
+    organization: "Team MapleTrack"
+    photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=300&auto=format&fit=crop&q=80"
+    linkedin: "https://github.com"
 
 mentors:
   enabled: true
@@ -100,7 +116,7 @@ schedule:
       type: "deadline"
       date: "2026-10-30"
       time: "23:59"
-      description: "All GitHub Issue submissions must be finalized."
+      description: "All submissions must be finalized via the submission form."
     - title: "Winners Announcement Live Stream"
       type: "closing"
       date: "2026-11-05"
@@ -130,6 +146,12 @@ faq:
       answer: "No, participation is completely free for everyone."
     - question: "Can I participate solo or do I need a team?"
       answer: "Both are allowed! You can build individually or form a team of up to 4 members."
+    - question: "How do I submit my project?"
+      answer: "All projects must be submitted through the official submission form linked on the hackathon page before the deadline."
+    - question: "Will there be mentorship support during the hackathon?"
+      answer: "Yes, experienced mentors in metabolic nutrition and hardware integration will be available throughout the event to guide participants."
+    - question: "What happens if I miss the submission deadline?"
+      answer: "Late submissions will not be considered for judging or prizes, so please ensure your project is submitted before the deadline."
 
 contact:
   email: "hackathon@msudbridge.org"
@@ -150,6 +172,6 @@ features:
   show_leaderboard: true
   show_faq: true
   show_schedule: true
-  github_issues_submissions: true
+  github_issues_submissions: false
   google_form_backup: true
   discord_widget: false
