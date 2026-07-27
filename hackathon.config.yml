@@ -161,7 +161,7 @@ contact:
   github_org: "https://github.com/MSUDBridge/msud-bridge"
 
 branding:
-  primary_color: "#0ea5e9"
+  primary_color: "#dc2626"
   accent_color: "#f97316"
   dark_mode: false
   logo_url: ""
