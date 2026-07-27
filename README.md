@@ -33,4 +33,4 @@ Secret protection rules and pre-commit hook setups are documented in [SECURITY.m
 
 ## 📄 License
 
-Distributed under the MIT License. See [SOW.md](SOW.md) for full project scope and architectural details.
+Distributed under the MIT License. See [SETUP.md](SETUP.md) for full project setup and guidelines.
