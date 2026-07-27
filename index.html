@@ -799,8 +799,9 @@
       }
 
       // GitHub Issues Submission link
-      if (c.contact && c.contact.github_org) {
-        document.getElementById('github-sub-btn').href = c.contact.github_org + '/issues/new?template=project-submission.md';
+      const ghSubBtn = document.getElementById('github-sub-btn');
+      if (ghSubBtn && c.contact && c.contact.github_org) {
+        ghSubBtn.href = c.contact.github_org + '/issues/new?template=project-submission.md';
       }
 
       // Problem Statement
