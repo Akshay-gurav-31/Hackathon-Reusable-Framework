@@ -4,30 +4,30 @@
 # ============================================================
 
 hackathon:
-  name: "PKU Commons Science Hackathon 2026"
-  tagline: "Building Open Science & Dietary Tools for Rare Communities"
+  name: "MSUD Bridge Science Hackathon 2026"
+  tagline: "Building Open Science & Metabolic Tools for the MSUD Community"
   description: |
-    A virtual science hackathon for the PKU community. We bring together developers, researchers, dietitians, and families to improve open phe-estimation tools, living food databases, and Bluetooth scale integrations.
-  disorder: "Phenylketonuria (PKU)"
+    A virtual science hackathon for the Maple Syrup Urine Disease (MSUD) community. We bring together developers, researchers, dietitians, and families to improve open leucine-estimation tools, living low-protein food databases, and connected kitchen scale integrations.
+  disorder: "Maple Syrup Urine Disease (MSUD)"
   community:
-    name: "PKU Commons"
-    url: "https://pku.community"
+    name: "MSUD Bridge"
+    url: "https://msudbridge.org"
 
 dates:
-  registration_open: "2026-07-01"
-  registration_close: "2026-08-01"
-  hackathon_start: "2026-08-15"
-  hackathon_end: "2026-08-30"
-  submission_deadline: "2026-08-30T23:59"
-  results_announced: "2026-09-05"
+  registration_open: "2026-09-01"
+  registration_close: "2026-10-01"
+  hackathon_start: "2026-10-15"
+  hackathon_end: "2026-10-30"
+  submission_deadline: "2026-10-30T23:59"
+  results_announced: "2026-11-05"
 
 tracks:
-  - name: "Dietary Estimation & Accuracy"
-    description: "Improve the accuracy of phe-estimator models and algorithms scored against public benchmarks."
+  - name: "Leucine Estimation & Accuracy"
+    description: "Improve the accuracy of leucine-estimator models and algorithms scored against public benchmarks."
   - name: "Living Low-Protein Food Database"
-    description: "Expand cited, schema'd food lists and clinician-verified nutritional data."
-  - name: "Hardware & Bluetooth Scale Integrations"
-    description: "Connect smart kitchen scales directly to mobile devices and web apps for real-time tracking."
+    description: "Expand cited, schema'd food lists and clinician-verified nutritional data for MSUD diets."
+  - name: "Hardware & Smart Scale Integrations"
+    description: "Connect smart kitchen scales directly to mobile devices and web apps for real-time protein tracking."
 
 prizes:
   mode: "overall"
@@ -40,47 +40,47 @@ prizes:
       description: "Exceptional contribution to core infrastructure."
     - place: "Community Merit Awards (×5)"
       amount: "$100 each"
-      description: "Targeted fixes for specific rare disorder pain points."
+      description: "Targeted fixes for specific MSUD pain points."
 
 judges:
-  - name: "Nina"
-    title: "PKU Parent & Infrastructure Lead"
-    organization: "PKU Commons / Phebe"
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop&q=80"
+  - name: "Maria"
+    title: "MSUD Parent & Infrastructure Lead"
+    organization: "MSUD Bridge / MapleTrack"
+    photo: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&auto=format&fit=crop&q=80"
     linkedin: "https://linkedin.com"
-  - name: "Zach"
+  - name: "David"
     title: "Core Software Engineer"
-    organization: "Team Phebe"
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80"
+    organization: "Team MapleTrack"
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80"
     linkedin: "https://linkedin.com"
-  - name: "Ryan"
-    title: "Chef & Lived Experience Advisor"
-    organization: "PKU Community"
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80"
+  - name: "Priya"
+    title: "Dietitian & Lived Experience Advisor"
+    organization: "MSUD Community"
+    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80"
     linkedin: "https://linkedin.com"
 
 mentors:
   enabled: true
   list:
-    - name: "Dr. Sarah Jenkins"
-      expertise: "Metabolic Genetics & PKU Nutrition"
+    - name: "Dr. Elena Ruiz"
+      expertise: "Metabolic Genetics & MSUD Nutrition"
       photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&auto=format&fit=crop&q=80"
       contact: "https://linkedin.com"
-    - name: "Alex Chen"
+    - name: "Sam Patel"
       expertise: "Bluetooth Low Energy & Web Bluetooth"
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&auto=format&fit=crop&q=80"
+      photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=300&auto=format&fit=crop&q=80"
       contact: "https://github.com"
 
 sponsors:
   enabled: true
   list:
-    - name: "Phebe Health"
+    - name: "MapleTrack Health"
       tier: "Platinum"
-      url: "https://pku.community"
+      url: "https://msudbridge.org"
       logo: ""
-    - name: "National PKU Alliance"
+    - name: "National MSUD Alliance"
       tier: "Gold"
-      url: "https://npkua.org"
+      url: "https://nmsudalliance.org"
       logo: ""
 
 schedule:
@@ -88,27 +88,27 @@ schedule:
   events:
     - title: "Virtual Kickoff & Table Stream"
       type: "opening"
-      date: "2026-08-15"
+      date: "2026-10-15"
       time: "09:00"
       description: "Welcome address, hackathon rules, and problem area walkthrough."
     - title: "Benchmark & Skill Workshop"
       type: "workshop"
-      date: "2026-08-16"
+      date: "2026-10-16"
       time: "14:00"
       description: "How to run the accuracy benchmark locally and test your model."
     - title: "Project Submission Deadline"
       type: "deadline"
-      date: "2026-08-30"
+      date: "2026-10-30"
       time: "23:59"
       description: "All GitHub Issue submissions must be finalized."
     - title: "Winners Announcement Live Stream"
       type: "closing"
-      date: "2026-09-05"
+      date: "2026-11-05"
       time: "17:00"
       description: "Judges present awards and demo winning projects."
 
 registration:
-  form_url: "https://forms.gle/sample-pku-registration"
+  form_url: "https://forms.gle/sample-msud-registration"
   team:
     min_size: 1
     max_size: 4
@@ -117,30 +117,30 @@ registration:
   max_participants: 200
 
 submission:
-  form_url: "https://forms.gle/sample-pku-submission"
+  form_url: "https://forms.gle/sample-msud-submission"
 
 faq:
   enabled: true
   items:
     - question: "Who can participate in this hackathon?"
-      answer: "Anyone! Developers, researchers, dietitians, PKU patients, and family members are all welcome to join and build."
+      answer: "Anyone! Developers, researchers, dietitians, MSUD patients, and family members are all welcome to join and build."
     - question: "How are projects judged?"
-      answer: "Projects are evaluated on public benchmark accuracy scores, code quality, open source sustainability, and real-world impact for PKU families."
+      answer: "Projects are evaluated on public benchmark accuracy scores, code quality, open source sustainability, and real-world impact for MSUD families."
     - question: "Is there any entry fee?"
       answer: "No, participation is completely free for everyone."
     - question: "Can I participate solo or do I need a team?"
       answer: "Both are allowed! You can build individually or form a team of up to 4 members."
 
 contact:
-  email: "hackathon@pku.community"
-  discord: "https://discord.gg/pku-commons"
-  twitter: "@PKUCommons"
-  website: "https://pku.community"
-  github_org: "https://github.com/Cureledger/pku-commons"
+  email: "hackathon@msudbridge.org"
+  discord: "https://discord.gg/msud-bridge"
+  twitter: "@MSUDBridge"
+  website: "https://msudbridge.org"
+  github_org: "https://github.com/MSUDBridge/msud-bridge"
 
 branding:
-  primary_color: "#7c3aed"
-  accent_color: "#06b6d4"
+  primary_color: "#0ea5e9"
+  accent_color: "#f97316"
   dark_mode: false
   logo_url: ""
 
