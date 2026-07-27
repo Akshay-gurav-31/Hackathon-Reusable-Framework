@@ -1,37 +1,19 @@
-# Security Policy & Credential Hygiene
+# Security Guidelines
 
-Security is a core requirement for this framework. Accidental credential leaks (e.g. OpenAI or Anthropic API keys pushed to public GitHub repositories) expose organizers to financial risk and compromised infrastructure.
-
-This framework enforces zero-trust credential hygiene by design.
+This is a **static hackathon website framework** — it has no backend, no database, and no API keys. Security risks are minimal by design.
 
 ---
 
-## Preventative Measures
+## Best Practices for Organizers
 
-### 1. `.env` Secret Protection
-- **No secrets in git:** All API keys, passwords, and private tokens must stay in local `.env` files.
-- `.env` files are strictly listed in `.gitignore` and must **NEVER** be committed.
-- A template file [`.env.example`](.env.example) is provided with placeholder names.
+1. **Do not commit personal data** — Never store participant emails, names, or any personal information directly in this repository. All participant data is collected via Google Forms and stays in your private Google Sheets.
 
-### 2. Pre-Commit Credential Scanning (`gitleaks`)
-This repository includes a pre-configured `.pre-commit-config.yaml` using **gitleaks**.
+2. **Keep Google Form links public, not edit links** — Only share the **Responder link** of your Google Form (the one participants fill out). Never share the **Edit link** publicly.
 
-To activate local scanning before every commit:
-```bash
-pip install pre-commit
-pre-commit install
-```
-If you accidentally stage a string matching an API key, `gitleaks` will automatically abort the commit.
+3. **Repository visibility** — This repository is public so your hackathon website can be hosted on GitHub Pages for free. Do not add any private or sensitive content to this repo.
 
 ---
 
-## What to do if a Secret is Exposed
+## Reporting Issues
 
-If an API key or credential was committed in past git history:
-1. **Immediately Revoke / Rotate the Secret:**
-   - Log into the provider dashboard (e.g. OpenAI, Anthropic, AWS) and delete/revoke the exposed key immediately.
-2. **Purge Git History:**
-   - Use `git-filter-repo` or BFG Repo-Cleaner to strip the secret from all historic commits.
-   - Do not simply delete the line in a new commit; git history preserves deleted lines.
-3. **Notify Repository Admin:**
-   - Report any credential leaks to the repository maintainers.
+If you find a security concern with this framework, please open a GitHub Issue or contact the repository maintainer.
