@@ -247,31 +247,78 @@
     /* ---- COUNTDOWN & DATES STRIP ---- */
     .dates-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
+      margin-bottom: 70px;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .dates-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 550px) {
+      .dates-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+    .date-box {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 24px 20px;
+      text-align: center;
       box-shadow: var(--shadow);
-      margin-bottom: 70px;
       position: relative;
       overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .dates-strip::before {
+    .date-box::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
+      top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.8;
+      transition: opacity 0.3s;
     }
-    .date-box {
-      text-align: center;
-      padding: 12px;
-      border-right: 1px solid var(--border);
+    .date-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(124, 58, 237, 0.3);
     }
-    .date-box:last-child { border-right: none; }
-    .date-label { font-size: 12px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
-    .date-value { font-size: 17px; font-weight: 800; color: var(--text); margin-top: 6px; }
+    .date-box:hover::before {
+      opacity: 1;
+    }
+    .date-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .date-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .date-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
 
     /* ---- SECTIONS ---- */
     section { padding: 80px 0; border-bottom: 1px solid var(--border); }
@@ -500,18 +547,30 @@
       <!-- DATES STRIP -->
       <div class="dates-strip" id="dates-strip">
         <div class="date-box">
+          <div class="date-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          </div>
           <div class="date-label">Registration</div>
           <div class="date-value" id="date-val-reg">Open Now</div>
         </div>
         <div class="date-box">
+          <div class="date-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
           <div class="date-label">Hackathon Starts</div>
           <div class="date-value" id="date-val-start">TBD</div>
         </div>
         <div class="date-box">
+          <div class="date-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
           <div class="date-label">Submissions Due</div>
           <div class="date-value" id="date-val-sub">TBD</div>
         </div>
         <div class="date-box">
+          <div class="date-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
           <div class="date-label">Results</div>
           <div class="date-value" id="date-val-results">TBD</div>
         </div>
