@@ -13,6 +13,25 @@ hackathon:
     name: "MSUD Bridge"
     url: "https://msudbridge.org"
 
+problem_statement:
+  title: "The MSUD Dietary & Accuracy Challenge"
+  description: |
+    People living with Maple Syrup Urine Disease (MSUD) must strictly restrict leucine intake to prevent neurological complications and metabolic crises. Current tools for tracking low-protein foods are fragmented, lack clinician validation, or require expensive proprietary hardware.
+  objectives:
+    - "Build open-source leucine estimation algorithms benchmarked against validated clinical datasets."
+    - "Create living, schema-structured low-protein food databases with verified nutritional data."
+    - "Develop Web Bluetooth scale drivers to automate real-time protein weighing for MSUD families."
+
+rules:
+  - title: "Open Source Licensing"
+    description: "All project code submitted must be released under an OSI-approved open source license (MIT, Apache 2.0, or GPL)."
+  - title: "Original Work"
+    description: "Teams may use open libraries, but all core hackathon code and submission progress must be created during the event."
+  - title: "Team & Solo Structure"
+    description: "Participate solo or in teams of up to 4 members. Every team member must register individually."
+  - title: "Community Code of Conduct"
+    description: "Maintain a respectful, collaborative, and inclusive environment for dietitians, patients, and developers alike."
+
 dates:
   registration_open: "2026-09-01"
   registration_close: "2026-10-01"
@@ -161,12 +180,14 @@ contact:
   github_org: "https://github.com/MSUDBridge/msud-bridge"
 
 branding:
-  primary_color: "#dc2626"
+  primary_color: "#0ea5e9"
   accent_color: "#f97316"
   dark_mode: false
   logo_url: ""
 
 features:
+  show_problem_statement: true
+  show_rules: true
   show_mentors: true
   show_sponsors: true
   show_leaderboard: true

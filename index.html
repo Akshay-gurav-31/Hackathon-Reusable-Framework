@@ -512,9 +512,11 @@
         <span class="brand-badge" id="brand-disorder">Rare Disorder</span>
       </a>
       <ul class="nav-links">
+        <li><a href="#problem" id="nav-problem">Problem</a></li>
         <li><a href="#tracks">Tracks</a></li>
         <li><a href="#prizes">Prizes</a></li>
         <li><a href="#judges">Judges</a></li>
+        <li><a href="#rules" id="nav-rules">Rules</a></li>
         <li><a href="#schedule" id="nav-schedule">Schedule</a></li>
         <li><a href="#faq" id="nav-faq">FAQ</a></li>
       </ul>
@@ -577,6 +579,24 @@
     </div>
   </header>
 
+  <!-- PROBLEM STATEMENT SECTION -->
+  <section id="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Problem Statement</h2>
+        <p id="problem-subhead">Understanding the core challenge and scientific impact area of this event.</p>
+      </div>
+      <div class="card" style="padding: 36px;">
+        <h3 id="problem-title" style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; margin-bottom:14px; color:var(--text);"></h3>
+        <p id="problem-desc" style="font-size:16px; color:var(--text-muted); line-height:1.75; margin-bottom:24px;"></p>
+        <div id="problem-objectives-wrap" style="display:none; background:var(--surface-alt); border-radius:var(--radius); padding:24px;">
+          <h4 style="font-size:15px; font-weight:700; margin-bottom:14px; color:var(--primary); text-transform:uppercase; letter-spacing:0.05em;">Key Objectives &amp; Challenges:</h4>
+          <ul id="problem-objectives-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px;"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TRACKS SECTION -->
   <section id="tracks">
     <div class="wrap">
@@ -629,6 +649,17 @@
         <p>Key dates, live workshops, and submission milestones.</p>
       </div>
       <div class="timeline" id="schedule-timeline"></div>
+    </div>
+  </section>
+
+  <!-- RULES & GUIDELINES SECTION -->
+  <section id="rules">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Rules &amp; Guidelines</h2>
+        <p>Important guidelines to ensure fair participation, open collaboration, and community impact.</p>
+      </div>
+      <div class="grid2" id="rules-grid"></div>
     </div>
   </section>
 
@@ -759,6 +790,31 @@
         document.getElementById('github-sub-btn').href = c.contact.github_org + '/issues/new?template=project-submission.md';
       }
 
+      // Problem Statement
+      if (c.problem_statement) {
+        const titleEl = document.getElementById('problem-title');
+        const descEl  = document.getElementById('problem-desc');
+        if (titleEl) titleEl.textContent = c.problem_statement.title || 'The Core Challenge';
+        if (descEl)  descEl.textContent  = c.problem_statement.description || '';
+
+        if (c.problem_statement.objectives && c.problem_statement.objectives.length > 0) {
+          const wrap = document.getElementById('problem-objectives-wrap');
+          const list = document.getElementById('problem-objectives-list');
+          if (wrap && list) {
+            wrap.style.display = 'block';
+            list.innerHTML = c.problem_statement.objectives.map(obj => `
+              <li style="display:flex; gap:10px; align-items:flex-start; color:var(--text); font-size:15px; line-height:1.6;">
+                <span style="color:var(--primary); font-weight:800;">✓</span>
+                <span>${obj}</span>
+              </li>
+            `).join('');
+          }
+        }
+      } else {
+        const sec = document.getElementById('problem');
+        if (sec) sec.style.display = 'none';
+      }
+
       // Tracks
       if (c.tracks && c.tracks.length > 0) {
         const grid = document.getElementById('tracks-grid');
@@ -835,6 +891,27 @@
         `).join('');
       }
 
+      // Rules & Guidelines
+      if (c.rules && c.rules.length > 0) {
+        const grid = document.getElementById('rules-grid');
+        if (grid) {
+          grid.innerHTML = c.rules.map((r, i) => `
+            <div class="card" style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="width:36px; height:36px; border-radius:10px; background:rgba(124,58,237,0.08); color:var(--primary); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                ${i + 1}
+              </div>
+              <div>
+                <h4 style="font-size:17px; font-weight:700; margin-bottom:6px; color:var(--text);">${r.title}</h4>
+                <p style="font-size:14px; color:var(--text-muted); line-height:1.6;">${r.description || ''}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+      } else {
+        const sec = document.getElementById('rules');
+        if (sec) sec.style.display = 'none';
+      }
+
       // FAQ
       if (c.faq && c.faq.items && c.faq.items.length > 0) {
         const faqList = document.getElementById('faq-list');
@@ -862,6 +939,18 @@
 
       // Feature Toggles (Hide disabled sections dynamically)
       if (c.features) {
+        if (c.features.show_problem_statement === false) {
+          const s = document.getElementById('problem');
+          if (s) s.style.display = 'none';
+          const n = document.getElementById('nav-problem');
+          if (n && n.parentElement) n.parentElement.style.display = 'none';
+        }
+        if (c.features.show_rules === false) {
+          const s = document.getElementById('rules');
+          if (s) s.style.display = 'none';
+          const n = document.getElementById('nav-rules');
+          if (n && n.parentElement) n.parentElement.style.display = 'none';
+        }
         if (c.features.show_mentors === false || (c.mentors && c.mentors.enabled === false)) {
           const s = document.getElementById('mentors');
           if (s) s.style.display = 'none';

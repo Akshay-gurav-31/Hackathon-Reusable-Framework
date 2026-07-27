@@ -514,6 +514,32 @@
       </div>
     </div>
 
+    <!-- 1B. PROBLEM STATEMENT -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('problem')">
+        <div class="section-title-row">
+          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <h3>Problem Statement</h3>
+        </div>
+        <span class="section-arrow open" id="arrow-problem">▼</span>
+      </div>
+      <div class="section-body open" id="body-problem">
+        <p class="section-intro">Define the core scientific or community challenge your hackathon aims to solve.</p>
+        <div class="field">
+          <label>Challenge Title</label>
+          <input type="text" id="prob-title" placeholder="The MSUD Dietary & Accuracy Challenge" oninput="update()">
+        </div>
+        <div class="field">
+          <label>Detailed Description / Problem Overview</label>
+          <textarea id="prob-desc" rows="3" placeholder="Explain the pain point or gap in current tools..." oninput="update()"></textarea>
+        </div>
+        <div class="field">
+          <label>Key Objectives &amp; Challenges <span class="hint">(one per line)</span></label>
+          <textarea id="prob-objectives" rows="3" placeholder="Build open-source leucine estimation algorithms...&#10;Create living low-protein food databases..." oninput="update()"></textarea>
+        </div>
+      </div>
+    </div>
+
     <!-- 2. DATES -->
     <div class="section">
       <div class="section-header" onclick="toggleSection('dates')">
@@ -683,6 +709,22 @@
         <p class="section-intro">Key events, workshops, deadlines, and milestones shown on the schedule page.</p>
         <div class="card-list" id="schedule-list"></div>
         <button class="btn btn-add btn-sm" onclick="addScheduleItem()">+ Add Schedule Item</button>
+      </div>
+    </div>
+
+    <!-- 8B. RULES & GUIDELINES -->
+    <div class="section">
+      <div class="section-header" onclick="toggleSection('rules')">
+        <div class="section-title-row">
+          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+          <h3>Rules &amp; Guidelines</h3>
+        </div>
+        <span class="section-arrow open" id="arrow-rules">▼</span>
+      </div>
+      <div class="section-body open" id="body-rules">
+        <p class="section-intro">Participation rules, open-source licensing guidelines, and code of conduct.</p>
+        <div class="card-list" id="rules-list"></div>
+        <button class="btn btn-add btn-sm" onclick="addRule()">+ Add Rule</button>
       </div>
     </div>
 
@@ -859,7 +901,15 @@
         <p class="section-intro">Toggle which pages and features are active on your hackathon site.</p>
         <div class="flags-grid">
           <div class="flag-item">
-            <div><div class="flag-label">Mentors Page</div><div class="flag-desc">Show a /mentors page</div></div>
+            <div><div class="flag-label">Problem Statement</div><div class="flag-desc">Show problem challenge section</div></div>
+            <label class="toggle"><input type="checkbox" id="feat-problem" checked onchange="update()"><span class="toggle-track"></span></label>
+          </div>
+          <div class="flag-item">
+            <div><div class="flag-label">Rules &amp; Guidelines</div><div class="flag-desc">Show rules &amp; conduct section</div></div>
+            <label class="toggle"><input type="checkbox" id="feat-rules" checked onchange="update()"><span class="toggle-track"></span></label>
+          </div>
+          <div class="flag-item">
+            <div><div class="flag-label">Mentors Page</div><div class="flag-desc">Show a /mentors section</div></div>
             <label class="toggle"><input type="checkbox" id="feat-mentors" checked onchange="update()"><span class="toggle-track"></span></label>
           </div>
           <div class="flag-item">
@@ -932,6 +982,7 @@ let judges   = [];
 let mentors  = [];
 let sponsors = [];
 let schedule = [];
+let rules    = [];
 let faqs     = [];
 
 // ============================================================
@@ -948,6 +999,8 @@ window.onload = () => {
   addSponsor('Example Foundation', '', 'https://example.org', 'Gold');
   addScheduleItem('', '09:00', 'Opening Ceremony', 'Welcome and introduction', 'keynote');
   addScheduleItem('', '10:00', 'Hacking Begins', 'Teams start working on their projects', 'milestone');
+  addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
+  addRule('Original Work', 'Projects must be built during the hackathon timeline.');
   addFaq('Who can participate?', 'Anyone passionate about rare disorders and science, regardless of background.');
   addFaq('Is there a registration fee?', 'No, participation is completely free.');
   update();
@@ -1256,6 +1309,39 @@ function renderSchedule() {
     </div>`).join('');
 }
 
+// --- RULES ---
+function addRule(title = '', description = '') {
+  rules.push({ title, description });
+  renderRules();
+  update();
+}
+function removeRule(i) {
+  rules.splice(i, 1);
+  renderRules();
+  update();
+}
+function renderRules() {
+  const el = document.getElementById('rules-list');
+  if (!el) return;
+  el.innerHTML = rules.map((r, i) => `
+    <div class="dyn-card">
+      <div class="dyn-card-header">
+        <span class="dyn-card-num">Rule ${i + 1}</span>
+        <button class="btn btn-danger btn-sm" onclick="removeRule(${i})">✕ Remove</button>
+      </div>
+      <div class="field">
+        <label>Rule Title</label>
+        <input type="text" value="${esc(r.title)}" placeholder="Open Source Licensing"
+          oninput="rules[${i}].title=this.value;update()">
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>Rule Description</label>
+        <textarea rows="2" placeholder="Explain the rule..."
+          oninput="rules[${i}].description=this.value;update()">${esc(r.description)}</textarea>
+      </div>
+    </div>`).join('');
+}
+
 // --- FAQ ---
 function addFaq(q = '', a = '') {
   faqs.push({ q, a });
@@ -1336,6 +1422,31 @@ function buildYAML() {
     if (v('event-community-url')) push(`    url: ${q(v('event-community-url'))}`);
   }
   push('');
+
+  // PROBLEM STATEMENT
+  if (v('prob-title') || v('prob-desc') || v('prob-objectives')) {
+    push('problem_statement:');
+    if (v('prob-title')) push(`  title: ${q(v('prob-title'))}`);
+    if (v('prob-desc')) {
+      push('  description: |');
+      v('prob-desc').split('\n').forEach(line => push(`    ${line}`));
+    }
+    if (v('prob-objectives')) {
+      push('  objectives:');
+      v('prob-objectives').split('\n').filter(Boolean).forEach(obj => push(`    - ${q(obj)}`));
+    }
+    push('');
+  }
+
+  // RULES
+  if (rules.length > 0) {
+    push('rules:');
+    rules.forEach(r => {
+      push(`  - title: ${q(r.title || 'Untitled Rule')}`);
+      if (r.description) push(`    description: ${q(r.description)}`);
+    });
+    push('');
+  }
 
   // DATES
   push('dates:');
@@ -1486,6 +1597,8 @@ function buildYAML() {
 
   // FEATURES
   push('features:');
+  push(`  show_problem_statement: ${chk('feat-problem')}`);
+  push(`  show_rules: ${chk('feat-rules')}`);
   push(`  show_mentors: ${chk('feat-mentors')}`);
   push(`  show_sponsors: ${chk('feat-sponsors')}`);
   push(`  show_leaderboard: ${chk('feat-leaderboard')}`);
