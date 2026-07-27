@@ -541,7 +541,7 @@
     </div>
   </section>
 
-  <!-- JUDGES & MENTORS SECTION -->
+  <!-- JUDGES SECTION -->
   <section id="judges">
     <div class="wrap">
       <div class="section-head">
@@ -549,6 +549,17 @@
         <p>Evaluated by leaders in metabolic research, software engineering, and lived experience.</p>
       </div>
       <div class="grid3" id="judges-grid"></div>
+    </div>
+  </section>
+
+  <!-- MENTORS SECTION -->
+  <section id="mentors">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Mentors</h2>
+        <p>Experienced advisors available to guide teams during the hackathon.</p>
+      </div>
+      <div class="grid3" id="mentors-grid"></div>
     </div>
   </section>
 
@@ -716,7 +727,7 @@
         `).join('');
       }
 
-      // Judges & Mentors
+      // Judges
       if (c.judges && c.judges.length > 0) {
         const grid = document.getElementById('judges-grid');
         const judgesHTML = c.judges.map(j => `
@@ -730,6 +741,27 @@
           </div>
         `).join('');
         grid.innerHTML = judgesHTML;
+      }
+
+      // Mentors
+      const mentorList = (c.mentors && c.mentors.list) ? c.mentors.list : (Array.isArray(c.mentors) ? c.mentors : []);
+      if (mentorList.length > 0) {
+        const grid = document.getElementById('mentors-grid');
+        if (grid) {
+          grid.innerHTML = mentorList.map(m => `
+            <div class="card person-card">
+              <img src="${m.photo || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'}" class="person-avatar" alt="${m.name}" />
+              <div class="person-info">
+                <h4>${m.name}</h4>
+                <p>${m.expertise || m.title || ''}</p>
+                <div class="person-org">${m.contact || m.organization || ''}</div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } else {
+        const sec = document.getElementById('mentors');
+        if (sec) sec.style.display = 'none';
       }
 
       // Schedule
@@ -772,6 +804,10 @@
 
       // Feature Toggles (Hide disabled sections dynamically)
       if (c.features) {
+        if (c.features.show_mentors === false || (c.mentors && c.mentors.enabled === false)) {
+          const s = document.getElementById('mentors');
+          if (s) s.style.display = 'none';
+        }
         if (c.features.show_schedule === false) {
           const s = document.getElementById('schedule');
           if (s) s.style.display = 'none';
