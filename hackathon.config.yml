@@ -153,7 +153,7 @@ schedule:
       description: "Judges present awards and demo winning projects."
 
 registration:
-  form_url: "https://forms.gle/sample-msud-registration"
+  form_url: "https://forms.gle/C2eKPWZTw3XS23Wo8"
   team:
     min_size: 1
     max_size: 4
