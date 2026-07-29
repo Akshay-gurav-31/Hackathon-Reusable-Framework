@@ -913,6 +913,15 @@
 
       // Mentors
       const mentorList = (c.mentors && c.mentors.list) ? c.mentors.list : (Array.isArray(c.mentors) ? c.mentors : []);
+      const linkLabel = (value) => {
+        if (!value) return '';
+        try {
+          const url = new URL(value);
+          return url.hostname.replace(/^www\./, '');
+        } catch {
+          return value.replace(/^https?:\/\//i, '').replace(/\/$/, '');
+        }
+      };
       if (mentorList.length > 0) {
         const grid = document.getElementById('mentors-grid');
         if (grid) {
@@ -922,7 +931,9 @@
               <div class="person-info">
                 <h4>${m.name}</h4>
                 <p>${m.expertise || m.title || ''}</p>
-                <div class="person-org">${m.contact || m.organization || ''}</div>
+                <div class="person-org">${
+                  m.contact ? `<a href="${m.contact}" target="_blank" rel="noopener noreferrer">${linkLabel(m.contact)}</a>` : (m.organization || '')
+                }</div>
               </div>
             </div>
           `).join('');
