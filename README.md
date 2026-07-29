@@ -3,39 +3,21 @@
   Reusable Hackathon Framework
 </h1>
 
-Fork this repository to make and publish your own hackathon website. You do not need to write code.
+A simple starting point for a hackathon website. Fork it, set your details, and publish.
 
-## What you need
+## Quick start
 
-- A GitHub account
-- A Google account for registration and submission forms
-- Your event name, dates, tracks, prizes, and contact email
+- Fork this repository and keep it public.
+- Enable GitHub Pages with GitHub Actions.
+- Open the organizer setup guide when you want to edit the site.
 
-## Start in 4 simple steps
+[SETUP.md](SETUP.md) has the full setup steps.
 
-1. Open this repository on GitHub. Select the **Fork** button in the top-right corner, then select **Create fork**. Keep the new repository **Public**.
-
-2. Open **Settings** -> **Pages** and select **GitHub Actions**.
-
-3. Open the **Actions** tab. If this is a fork, enable workflows if GitHub asks. Then open **Deploy to GitHub Pages** and select **Run workflow** once.
-
-4. If you want to change the website content, open the organizer setup guide:
-
-   [SETUP.md](SETUP.md)
-
-   It shows the exact setup page link, what to fill in, and what to do after you save the file.
-
-Your website address is:
+Your website address will be:
 
 ```text
 https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/
 ```
-
-## Important
-
-For registration and submission, use the public Google Form link that participants fill in. It should end in `/viewform` or start with `forms.gle/`.
-
-Do not use a Google Docs link or a Google Form `/edit` link.
 
 ## Need help?
 
