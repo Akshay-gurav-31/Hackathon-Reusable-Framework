@@ -112,18 +112,9 @@
     <h1>Page not found</h1>
     <p>This link does not exist on this site. If you typed the address manually, please check it once again.</p>
     <div class="actions">
-      <a class="primary" id="homeLink" href="./">Go to home</a>
-      <a class="secondary" id="setupLink" href="./setup/">Open setup</a>
+      <a class="primary" id="homeLink" href="https://akshay-gurav-31.github.io/Hackathon-Reusable-Framework/">Go to home</a>
     </div>
     <p class="note">If the site was just deployed, wait a minute and refresh once more.</p>
   </main>
-  <script>
-    (function () {
-      var parts = window.location.pathname.split('/').filter(Boolean);
-      var base = parts.length ? '/' + parts[0] + '/' : '/';
-      document.getElementById('homeLink').setAttribute('href', base);
-      document.getElementById('setupLink').setAttribute('href', base + 'setup/');
-    })();
-  </script>
 </body>
 </html>
