@@ -1,4 +1,7 @@
-# Reusable Hackathon Framework
+<h1>
+  <img src="./rhf-logo.png" alt="Reusable Hackathon Framework logo" width="48" valign="middle" />
+  Reusable Hackathon Framework
+</h1>
 
 Fork this repository to make and publish your own hackathon website. You do not need to write code.
 
