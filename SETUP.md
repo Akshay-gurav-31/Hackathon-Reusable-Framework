@@ -1,197 +1,295 @@
-# Organizer Setup Guide
+# Simple Setup Guide for Organizers
 
-This guide takes you from a new GitHub repository to a live hackathon website. No coding is required.
+This guide shows how to create, publish, and update your hackathon website without writing code.
 
-## Before you begin
+You will do this once:
+
+1. Fork the repository
+2. Turn on GitHub Pages
+3. Create two Google Forms
+4. Fill in the website setup form
+5. Paste the generated configuration into GitHub
+6. Wait for the website to publish
+
+After this, changing the website is easy: update the configuration file, commit it, and wait for the website to refresh.
+
+## Before you start
 
 You need:
 
 - A GitHub account
-- A public GitHub repository created from this template
-- A Google account if you will use Google Forms
-- Your event details: name, dates, tracks, prizes, judges, and contact email
+- A Google account
+- Your event name, dates, tracks, prizes, and contact email
 
-The website has no backend and does not need an API key, database password, or payment setup.
+You do **not** need an API key, database, server, or coding knowledge.
 
-## 1. Create your repository
+---
 
-1. Open the template repository on GitHub.
-2. Select **Use this template** -> **Create a new repository**.
-3. Choose the account or organization that will own the event.
-4. Give the repository a short name, such as `ai-innovation-challenge-2026`.
-5. Select **Public**. This is the simplest free GitHub Pages setup.
-6. Select **Create repository**.
+## Part 1: Fork the repository
 
-Do not delete `index.html`, `setup/`, `.github/`, or `hackathon.config.yml`.
+1. Open the hackathon framework repository on GitHub.
+2. Select **Fork** in the top-right corner.
+3. Choose your GitHub account or organization.
+4. Keep the repository name or change it to your event name.
+5. Select **Create fork**.
 
-## 2. Turn on GitHub Pages
+Keep this repository **Public**. This is the easiest way to use free GitHub Pages hosting.
 
-This repository deploys with GitHub Actions. Do not select “Deploy from a branch”.
+---
 
-1. In your new GitHub repository, open **Settings**.
+## Part 2: Publish the first version of the website
+
+### Step 1: Turn on GitHub Pages
+
+1. In your forked repository, select **Settings**.
 2. In the left menu, select **Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Open the **Actions** tab in the repository.
-5. Forked repositories may show that workflows are disabled. If you see the prompt, select **I understand my workflows, go ahead and enable them**.
-6. Open **Deploy to GitHub Pages** in the left-hand workflow list.
-7. Select **Run workflow**, choose the `main` branch, then select the green **Run workflow** button.
-8. Wait for the workflow to finish with a green check mark.
+3. Under **Build and deployment**, choose **GitHub Actions** as the source.
+4. Leave **Custom domain** empty unless you already own a domain for the event.
 
-Your site address will be:
+Do not choose “Deploy from a branch”. This repository uses GitHub Actions.
+
+### Step 2: Enable and run the deployment workflow
+
+1. Select the **Actions** tab in the repository.
+2. If GitHub shows an enable button, select **I understand my workflows, go ahead and enable them**.
+3. In the left workflow list, select **Deploy to GitHub Pages**.
+4. Select **Run workflow**.
+5. Keep the branch as `main`.
+6. Select the green **Run workflow** button.
+
+GitHub will start the first deployment. Wait until the workflow has a green check mark.
+
+The first deployment can take a few minutes. After it succeeds, your website address is:
 
 ```text
-https://<your-github-username>.github.io/<your-repository-name>/
+https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/
 ```
 
-The first manual run is important for a fork. Enabling workflows does not automatically rerun the original fork event. The first deployment can take a few minutes. Every later change to the `main` branch starts a new deployment.
+Example:
 
-## 3. Create registration and submission forms
+```text
+https://elizabiopro.github.io/Hackathon-Reusable-Framework/
+```
 
-Google Forms is the simplest option because it stores responses in your private Google Sheets account.
+If the URL shows “There isn't a GitHub Pages site here”, wait for the workflow to finish and refresh the page.
 
-Create two separate Google Forms:
+---
 
-| Form | Suggested required fields |
-| --- | --- |
-| Registration | Full name, email, team name, team size, chosen track, age group, GitHub or LinkedIn URL (optional) |
-| Project submission | Team name, team lead email, project title, track, abstract, public GitHub repository URL, demo URL (optional), video or slides URL (optional) |
+## Part 3: Create Google Forms
 
-For each form:
+Create one form for registration and one form for project submissions.
 
-1. Select **Send**.
+[Open Google Forms](https://docs.google.com/forms/u/0/)
+
+### Form A: Participant registration
+
+Create a blank form with this title:
+
+```text
+YOUR HACKATHON NAME - Participant Registration
+```
+
+Suggested required questions:
+
+1. Full Name
+2. Email Address
+3. Are you participating solo or in a team?
+4. Team Name
+5. Team Size
+6. Challenge Track
+7. Age Group
+8. GitHub or LinkedIn URL (optional)
+
+Suggested description:
+
+```text
+Register to participate in our hackathon. Solo participants and teams are welcome.
+Each team member must register separately. Use the same team name for every member of a team.
+```
+
+### Form B: Project submission
+
+Create a second blank form with this title:
+
+```text
+YOUR HACKATHON NAME - Project Submission
+```
+
+Suggested required questions:
+
+1. Team Name
+2. Team Lead Email
+3. Project Title
+4. Challenge Track
+5. Project Summary
+6. Public GitHub Repository URL
+7. Live Demo URL (optional)
+8. Demo Video or Slides URL (optional)
+
+Suggested description:
+
+```text
+Submit one project per team. Your GitHub repository must be public so judges can review it.
+```
+
+### Copy the correct form links
+
+For each Google Form:
+
+1. Select **Send** in the top-right corner.
 2. Select the link icon.
 3. Select **Copy**.
-4. Save this link; it is the **responder link** that participants can open.
+4. Save the copied link.
 
-### Use the correct kind of link
+This is the public link participants use. It normally starts with `https://forms.gle/` or ends in `/viewform`.
 
-Paste only a Google Form responder link in the configuration. It normally ends with `/viewform`.
+Do **not** copy:
 
-Good example:
+- A link ending in `/edit`
+- A `docs.google.com/document/...` link
+- Your private Google Sheets response link
 
-```text
-https://docs.google.com/forms/d/e/FORM_ID/viewform
-```
+Before moving on, test both copied links in an incognito/private browser window. A participant should be able to open them without seeing an edit screen.
 
-Do **not** paste either of these:
+---
 
-- A link ending in `/edit` (it gives access to edit the form)
-- A `docs.google.com/document/...` link (it is a Google Doc, not a participant form)
+## Part 4: Fill in the website setup form
 
-Before publishing, open each responder link in an incognito/private browser window. It must load for a participant who is not signed in as you.
-
-## 4. Generate your website configuration
-
-The configuration generator creates the `hackathon.config.yml` file for you.
-
-### Option A: Use the live generator (recommended)
-
-After Step 2 is deployed, open:
+After the first website deployment succeeds, open this address:
 
 ```text
-https://<your-github-username>.github.io/<your-repository-name>/setup/
+https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY-NAME/setup/
 ```
 
-Fill in the fields for your event. At minimum, add:
+Example:
 
-- Event name, tagline, and short description
-- Registration, start, submission, and results dates
-- Tracks and prizes
-- Registration and submission **responder links**
-- Judges, mentors, sponsors, FAQ, and contact details as needed
+```text
+https://elizabiopro.github.io/Hackathon-Reusable-Framework/setup/
+```
 
-Select **Download hackathon.config.yml** when finished.
+This is the **Hackathon Config Generator**. Fill in the fields you want to show on the public website:
 
-### Option B: Use the generator before the site is published
+- Event name, tagline, and description
+- Dates and deadlines
+- Challenge tracks
+- Prizes
+- Judges, mentors, and sponsors
+- Rules, schedule, FAQ, and contact email
+- Registration Google Form link
+- Submission Google Form link
+- Colors and logo URL
 
-You may open `setup/index.html` directly in a browser and generate the file. The generator works on its own because it does not need to read another file.
+The setup page saves your work in the same browser automatically. If you refresh the page, your draft stays there. Select **Reset** only if you want to clear your saved draft and return to the example values.
 
-If you want to preview the public website on your computer, use the local-server steps in [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md); do not double-click `index.html`.
+The form checks your Google Form links. A Google Docs or `/edit` link will show an error and cannot be downloaded.
 
-## 5. Replace the configuration file in GitHub
+When you finish, select **Download Config**. Your browser downloads a file called:
 
-1. In your GitHub repository, open the root file named `hackathon.config.yml`.
-2. Select the pencil icon (**Edit this file**).
-3. Select all existing text and paste the contents of the downloaded `hackathon.config.yml` file.
-4. Confirm that the file name is exactly `hackathon.config.yml`.
-5. Select **Commit changes** and commit directly to the `main` branch.
+```text
+hackathon.config.yml
+```
 
-Do not upload a file named `hackathon.config.yml.txt`. It must keep the `.yml` extension.
+---
 
-## 6. Publish and check the update
+## Part 5: Put the configuration file into GitHub
 
-1. Open the **Actions** tab after committing your configuration.
-2. Wait for **Deploy to GitHub Pages** to finish with a green check mark.
-3. Visit your site address.
-4. Refresh the page. If it still looks old, do a hard refresh:
-   - Windows: `Ctrl + Shift + R`
-   - macOS: `Cmd + Shift + R`
+1. Return to the main page of your GitHub repository.
+2. Open the root file named `hackathon.config.yml`.
+3. Select the pencil icon: **Edit this file**.
+4. Select all existing content in the file.
+5. Open the downloaded `hackathon.config.yml` file and copy all its content.
+6. Paste it into GitHub, replacing the old content.
+7. Scroll down and select **Commit changes**.
+8. Commit directly to the `main` branch.
 
-The page adds a cache-busting value when it loads the configuration, so updates usually appear as soon as the deployment is complete.
+Do not rename the file. It must stay exactly:
 
-## 7. Test as a participant before sharing
+```text
+hackathon.config.yml
+```
 
-Open the website in an incognito/private browser window and check:
+Do not upload or save it as `hackathon.config.yml.txt`.
 
-- The event name, description, dates, tracks, prizes, and contact email are correct
-- The **Register** button opens the registration form
-- The **Submit Project** button opens the submission form
-- Both forms are responder forms, not owner/edit forms
-- Any judge, mentor, and sponsor links work
-- The website looks acceptable on a phone as well as on a computer
+---
 
-Do not publish participant names, emails, medical details, or private Google Sheet links in `hackathon.config.yml`; this file is public.
+## Part 6: Wait for the updated website
 
-## 8. Update the website later
+1. Open the **Actions** tab in your GitHub repository.
+2. A new **Deploy to GitHub Pages** workflow should be running automatically.
+3. Wait until it has a green check mark.
+4. Open your public website URL in a new browser tab or an incognito/private window.
+5. Refresh the page.
 
-To change content at any time:
+The update usually appears within a few minutes. Sometimes GitHub Pages needs a little longer after the workflow turns green. If you still see the old page, wait 2–3 minutes and refresh again.
 
-1. Open the generator again and create a new `hackathon.config.yml`, or edit the existing YAML carefully.
-2. Replace the root `hackathon.config.yml` in GitHub.
-3. Commit the change to `main`.
-4. Wait for the GitHub Actions deployment to succeed.
-5. Refresh the live website.
+Check these items before sharing the website:
 
-For winners, set `winners.announced` to `true` and add the winning teams in the `winners.list` section. The website will show the winners after deployment.
+- Event name, dates, tracks, prizes, and contact email are correct
+- **Register** opens the registration Google Form
+- **Submit Project** opens the submission Google Form
+- The forms are participant forms, not edit forms
+- The website looks good on a phone as well as on a computer
 
-## Local preview
+---
 
-For detailed local testing instructions, including the common “I changed YAML but nothing changed” problem, follow [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md).
+## How to change the website later
 
-## Troubleshooting
+You have three simple options.
 
-### I changed `hackathon.config.yml`, but the local website did not change
+### Option 1: Use the setup page again
 
-Do not open `index.html` by double-clicking it. When opened as `file:///...`, the browser blocks the page from loading `hackathon.config.yml`.
+Open your `/setup/` URL, edit the fields, download a new `hackathon.config.yml`, and replace the file in GitHub again.
 
-Run a local web server and open `http://localhost:8000/` instead. See [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md).
+### Option 2: Edit one small item directly in GitHub
 
-### I changed the config on GitHub, but the live website did not change
+For a small change, such as a date, prize amount, or email address:
 
-1. Open the **Actions** tab and wait for the new deployment to finish.
-2. Ensure the commit is on the `main` branch.
-3. Ensure the edited file is in the repository root and is named exactly `hackathon.config.yml`.
-4. Hard refresh the website.
+1. Open `hackathon.config.yml` in GitHub.
+2. Select the pencil icon.
+3. Change only the text you need.
+4. Select **Commit changes**.
+5. Wait for the new Actions workflow to finish with a green check mark.
 
-### GitHub Pages shows an error or no site URL
+Use spaces, not tabs, when editing YAML. Keep the same indentation as the lines around it.
 
-1. Go to **Settings** -> **Pages**.
-2. Ensure the source is **GitHub Actions**.
-3. Open **Actions** and select the failed workflow to see its error message.
-4. Confirm that `.github/workflows/deploy.yml` still exists and has not been changed or deleted.
+### Option 3: Ask an AI chat tool to update the YAML
 
-### Actions says “0 workflow runs” after I fork the repository
+You can copy your full current `hackathon.config.yml` file into ChatGPT, Claude, Gemini, Grok, or another AI chat tool.
 
-GitHub disables workflows in forks until you enable them. Open **Actions**, select **I understand my workflows, go ahead and enable them** if prompted, then open **Deploy to GitHub Pages** and select **Run workflow** for the `main` branch. Wait for the green check mark before opening the Pages URL.
+Use this prompt:
+
+```text
+This is my current hackathon.config.yml file.
+Make only this change: [DESCRIBE THE CHANGE].
+
+Keep every other value and the same YAML structure unchanged.
+Return the complete updated YAML file only. Do not add explanations or Markdown.
+```
+
+Copy the complete YAML response, replace the full content of `hackathon.config.yml` in GitHub, commit the change, and wait for the deployment to finish.
+
+Never paste passwords, API keys, private Google Sheet links, Google Form edit links, or participant data into an AI chat tool or this public repository.
+
+---
+
+## If something does not work
+
+### The website shows a 404 page
+
+Open **Settings** -> **Pages** and make sure the source is **GitHub Actions**. Then open **Actions**, run **Deploy to GitHub Pages**, wait for the green check mark, and refresh the website URL.
+
+### The website still shows old content
+
+Make sure your change was committed to `main`. Then wait for the newest Actions workflow to finish. Open the website in an incognito/private browser window and refresh after a few minutes.
 
 ### The Register or Submit button opens the wrong page
 
-Replace the URL with the Google Form responder link. The correct link is a Google Forms URL ending in `/viewform`, not an `/edit` link or a Google Docs link.
+Replace the link in the setup form with the public Google Form responder link. Do not use an `/edit` link or a Google Docs link.
 
-### The website stops updating after I edit YAML manually
+### I changed YAML and the website looks broken
 
-YAML is sensitive to indentation. Use spaces (not tabs), keep quoted text quoted, and keep child entries indented beneath their headings. The visual generator is the safest way to create the file.
+Go back to the setup page and create a new configuration file. It is safer than manually changing a large YAML file.
 
-## Security and privacy
+---
 
-This template does not need secrets. Keep all public website content in the configuration file, but never add API keys, passwords, private Google Sheets URLs, form edit links, participant data, or private documents. See [SECURITY.md](SECURITY.md) for details.
+Once you complete this workflow once, future updates are simple: change the configuration, commit it, wait for the green check mark, and refresh your website.

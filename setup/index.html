@@ -66,12 +66,13 @@
       font-size: 16px;
     }
     .logo-icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--accent), var(--cyan));
-      border-radius: 8px;
+      width: 34px; height: 34px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 12px rgba(37, 99, 235, 0.20);
     }
+    .logo-icon svg { display: block; width: 34px; height: 34px; }
 
     .header-actions { display: flex; gap: 10px; align-items: center; }
 
@@ -327,6 +328,26 @@
     }
     textarea { resize: vertical; min-height: 70px; }
     select { cursor: pointer; }
+    .form-url-message {
+      display: none;
+      margin: 7px 0 0;
+      padding: 8px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+    .form-url-message.show { display: block; }
+    .form-url-message.error {
+      color: #b42318;
+      background: #fef3f2;
+      border: 1px solid #fecdca;
+    }
+    .form-url-message.success {
+      color: #067647;
+      background: #ecfdf3;
+      border: 1px solid #abefc6;
+    }
     input[type="color"] {
       width: 44px; height: 36px;
       padding: 2px;
@@ -446,7 +467,22 @@
 <header>
   <div class="logo">
     <div class="logo-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <svg viewBox="0 0 34 34" role="img" aria-label="Hackathon configuration logo" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="generator-logo-gradient" x1="4" y1="3" x2="30" y2="32" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#4F46E5"/>
+            <stop offset="0.52" stop-color="#2563EB"/>
+            <stop offset="1" stop-color="#06B6D4"/>
+          </linearGradient>
+        </defs>
+        <rect width="34" height="34" rx="10" fill="url(#generator-logo-gradient)"/>
+        <path d="M10.25 7.75h8.2l4.3 4.3v13.2a1.5 1.5 0 0 1-1.5 1.5h-11a1.5 1.5 0 0 1-1.5-1.5v-16a1.5 1.5 0 0 1 1.5-1.5Z" fill="rgba(255,255,255,.18)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M18.45 7.8v4.25h4.25" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M12 15.1h7.8M12 19h7.8M12 22.9h7.8" stroke="white" stroke-width="1.35" stroke-linecap="round" opacity=".95"/>
+        <circle cx="14.55" cy="15.1" r="1.75" fill="#CFFAFE" stroke="white" stroke-width=".8"/>
+        <circle cx="17.2" cy="19" r="1.75" fill="#DBEAFE" stroke="white" stroke-width=".8"/>
+        <circle cx="13.25" cy="22.9" r="1.75" fill="#E0E7FF" stroke="white" stroke-width=".8"/>
+      </svg>
     </div>
     <span>Hackathon Config Generator</span>
   </div>
@@ -767,11 +803,13 @@
         <p class="section-intro">Add your custom Google Form links for registration and project submissions. Create forms on Google Forms and paste their links below.</p>
         <div class="field">
           <label>Registration Google Form URL <span class="req">*</span></label>
-          <input type="url" id="reg-form-url" placeholder="https://forms.gle/your-registration-link" oninput="update()">
+          <input type="url" id="reg-form-url" placeholder="https://forms.gle/your-registration-link" oninput="validateFormUrl('reg-form-url'); update()">
+          <p id="reg-form-url-message" class="form-url-message" role="status"></p>
         </div>
         <div class="field">
           <label>Submission Google Form URL <span class="req">*</span></label>
-          <input type="url" id="sub-form-url" placeholder="https://forms.gle/your-submission-link" oninput="update()">
+          <input type="url" id="sub-form-url" placeholder="https://forms.gle/your-submission-link" oninput="validateFormUrl('sub-form-url'); update()">
+          <p id="sub-form-url-message" class="form-url-message" role="status"></p>
         </div>
         <div class="field-row3">
           <div class="field">
@@ -1012,10 +1050,89 @@ let schedule = [];
 let rules    = [];
 let faqs     = [];
 
-// ============================================================
-// INIT
-// ============================================================
-window.onload = () => {
+// Keep an organizer's in-progress work in this browser until they choose Reset.
+// Nothing is sent to a server.
+const DRAFT_STORAGE_KEY = 'hackathon-config-generator-draft-v1';
+
+function getSavedDraft() {
+  try {
+    const draft = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY));
+    return draft && draft.version === 1 ? draft : null;
+  } catch (err) {
+    console.warn('Could not read the saved configuration draft:', err);
+    return null;
+  }
+}
+
+function saveDraft() {
+  try {
+    const fields = {};
+    document.querySelectorAll('input[id], textarea[id], select[id]').forEach(el => {
+      fields[el.id] = el.type === 'checkbox' ? { checked: el.checked } : { value: el.value };
+    });
+
+    localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({
+      version: 1,
+      fields,
+      collections: { tracks, prizes, winners, judges, mentors, sponsors, schedule, rules, faqs }
+    }));
+  } catch (err) {
+    console.warn('Could not save the configuration draft:', err);
+  }
+}
+
+function restoreDraft() {
+  const draft = getSavedDraft();
+  if (!draft) return false;
+
+  const savedLists = draft.collections || {};
+  const restoreList = name => Array.isArray(savedLists[name])
+    ? savedLists[name].map(item => ({ ...item }))
+    : [];
+
+  tracks   = restoreList('tracks');
+  prizes   = restoreList('prizes');
+  winners  = restoreList('winners');
+  judges   = restoreList('judges');
+  mentors  = restoreList('mentors');
+  sponsors = restoreList('sponsors');
+  schedule = restoreList('schedule');
+  rules    = restoreList('rules');
+  faqs     = restoreList('faqs');
+
+  Object.entries(draft.fields || {}).forEach(([id, saved]) => {
+    const el = document.getElementById(id);
+    if (!el || !saved) return;
+    if (el.type === 'checkbox') el.checked = Boolean(saved.checked);
+    else if (typeof saved.value === 'string') el.value = saved.value;
+  });
+
+  renderTracks();
+  renderPrizes();
+  renderWinners();
+  renderJudges();
+  renderMentors();
+  renderSponsors();
+  renderSchedule();
+  renderRules();
+  renderFaq();
+
+  document.querySelectorAll('input[id^="enable-"]').forEach(input => {
+    toggleOptional(input.id.replace('enable-', ''));
+  });
+
+  return true;
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+function loadDefaultContent() {
   addTrack('Dietary Management', 'Innovations in dietary approaches for managing this condition.');
   addTrack('Gene Therapy Research', 'Cutting-edge research into gene-level treatments and cures.');
   addPrize('1st Place', '$1,000', 'Grand prize winner');
@@ -1032,7 +1149,18 @@ window.onload = () => {
   addRule('Original Work', 'Projects must be built during the hackathon timeline.');
   addFaq('Who can participate?', 'Anyone passionate about rare disorders and science, regardless of background.');
   addFaq('Is there a registration fee?', 'No, participation is completely free.');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload = () => {
+  const restored = restoreDraft();
+  if (!restored) loadDefaultContent();
+  validateFormUrl('reg-form-url');
+  validateFormUrl('sub-form-url');
   update();
+  if (restored) setTimeout(() => showToast('Saved draft restored from this browser.'), 150);
 };
 
 // ============================================================
@@ -1140,6 +1268,70 @@ function renderPrizes() {
         <label>Description <span style="color:var(--text3)">(optional)</span></label>
         <input type="text" value="${esc(p.desc)}" placeholder="Brief description"
           oninput="prizes[${i}].desc=this.value;update()">
+      </div>
+  </div>`).join('');
+}
+
+// --- WINNERS ---
+function addWinner(place = '', team = '', project = '', track = '', prize = '', repo_url = '', demo_url = '') {
+  winners.push({ place, team, project, track, prize, repo_url, demo_url });
+  renderWinners();
+  update();
+}
+function removeWinner(i) {
+  winners.splice(i, 1);
+  renderWinners();
+  update();
+}
+function renderWinners() {
+  const el = document.getElementById('winners-list');
+  if (!el) return;
+  el.innerHTML = winners.map((w, i) => `
+    <div class="dyn-card">
+      <div class="dyn-card-header">
+        <span class="dyn-card-num">Winner ${i + 1}</span>
+        <button class="btn btn-danger btn-sm" onclick="removeWinner(${i})">âœ• Remove</button>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Place</label>
+          <input type="text" value="${esc(w.place)}" placeholder="1st Place"
+            oninput="winners[${i}].place=this.value;update()">
+        </div>
+        <div class="field">
+          <label>Prize</label>
+          <input type="text" value="${esc(w.prize)}" placeholder="$1,000"
+            oninput="winners[${i}].prize=this.value;update()">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Team Name</label>
+          <input type="text" value="${esc(w.team)}" placeholder="Team Name"
+            oninput="winners[${i}].team=this.value;update()">
+        </div>
+        <div class="field">
+          <label>Project Name</label>
+          <input type="text" value="${esc(w.project)}" placeholder="Project Name"
+            oninput="winners[${i}].project=this.value;update()">
+        </div>
+      </div>
+      <div class="field">
+        <label>Challenge Track <span style="color:var(--text3)">(optional)</span></label>
+        <input type="text" value="${esc(w.track)}" placeholder="Track name"
+          oninput="winners[${i}].track=this.value;update()">
+      </div>
+      <div class="field-row" style="margin-bottom:0">
+        <div class="field" style="margin-bottom:0">
+          <label>Public GitHub Repository URL <span style="color:var(--text3)">(optional)</span></label>
+          <input type="url" value="${esc(w.repo_url)}" placeholder="https://github.com/..."
+            oninput="winners[${i}].repo_url=this.value;update()">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Demo URL <span style="color:var(--text3)">(optional)</span></label>
+          <input type="url" value="${esc(w.demo_url)}" placeholder="https://..."
+            oninput="winners[${i}].demo_url=this.value;update()">
+        </div>
       </div>
     </div>`).join('');
 }
@@ -1412,10 +1604,73 @@ function q(s) { return s ? `"${s.replace(/"/g, '\\"')}"` : '""'; }
 function ind(n) { return ' '.repeat(n); }
 
 // ============================================================
+// GOOGLE FORM LINK VALIDATION
+// ============================================================
+function setFormUrlMessage(inputId, message, type = '') {
+  const messageEl = document.getElementById(inputId + '-message');
+  if (!messageEl) return;
+  messageEl.textContent = message;
+  messageEl.className = 'form-url-message' + (message ? ` show ${type}` : '');
+}
+
+function validateFormUrl(inputId, showRequiredMessage = false) {
+  const input = document.getElementById(inputId);
+  const value = input ? input.value.trim() : '';
+  const label = inputId === 'reg-form-url' ? 'registration' : 'submission';
+
+  if (!value) {
+    setFormUrlMessage(inputId, showRequiredMessage ? `Add a public ${label} Google Form responder link before downloading the YAML.` : '');
+    return false;
+  }
+
+  let url;
+  try {
+    url = new URL(value);
+  } catch (err) {
+    setFormUrlMessage(inputId, 'This is not a valid URL. Paste the public Google Form responder link.', 'error');
+    return false;
+  }
+
+  const host = url.hostname.toLowerCase();
+  const path = url.pathname.toLowerCase();
+  const isShortResponderLink = host === 'forms.gle';
+  const isGoogleFormResponderLink = host === 'docs.google.com' && path.includes('/forms/') && path.includes('/viewform');
+
+  if (isShortResponderLink || isGoogleFormResponderLink) {
+    setFormUrlMessage(inputId, 'Public Google Form responder link detected.', 'success');
+    return true;
+  }
+
+  const isGoogleDoc = host === 'docs.google.com' && path.includes('/document/');
+  const isEditLink = path.includes('/edit');
+  if (isGoogleDoc || isEditLink) {
+    setFormUrlMessage(inputId, 'This is an edit or Google Docs link. Use the participant responder link from Google Forms, ending in /viewform or forms.gle/....', 'error');
+    return false;
+  }
+
+  setFormUrlMessage(inputId, 'This does not look like a public Google Form responder link. Use a forms.gle/... link or a Google Forms URL ending in /viewform.', 'error');
+  return false;
+}
+
+function validateFormUrlsForExport() {
+  const registrationValid = validateFormUrl('reg-form-url', true);
+  const submissionValid = validateFormUrl('sub-form-url', true);
+  if (registrationValid && submissionValid) return true;
+
+  const registrationBody = document.getElementById('body-registration');
+  const registrationArrow = document.getElementById('arrow-registration');
+  if (registrationBody) registrationBody.classList.add('open');
+  if (registrationArrow) registrationArrow.classList.add('open');
+  showToast('Add valid public Google Form responder links before continuing.');
+  return false;
+}
+
+// ============================================================
 // YAML GENERATOR
 // ============================================================
 let debTimer;
 function update() {
+  saveDraft();
   clearTimeout(debTimer);
   debTimer = setTimeout(buildYAML, 80);
   updateProgress();
@@ -1715,6 +1970,7 @@ function getRawYAML() {
 }
 
 function copyYAML() {
+  if (!validateFormUrlsForExport()) return;
   const text = getRawYAML();
   navigator.clipboard.writeText(text).then(() => {
     const t = document.getElementById('toast');
@@ -1725,6 +1981,7 @@ function copyYAML() {
 }
 
 function downloadYAML() {
+  if (!validateFormUrlsForExport()) return;
   const text = getRawYAML();
   const blob = new Blob([text], { type: 'text/yaml;charset=utf-8' });
   const a = document.createElement('a');
@@ -1740,6 +1997,11 @@ function downloadYAML() {
 
 function resetAll() {
   if (!confirm('Reset all fields to defaults?')) return;
+  try {
+    localStorage.removeItem(DRAFT_STORAGE_KEY);
+  } catch (err) {
+    console.warn('Could not clear the saved configuration draft:', err);
+  }
   location.reload();
 }
 </script>

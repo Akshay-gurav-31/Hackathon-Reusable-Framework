@@ -1,50 +1,43 @@
-# Reusable Hackathon Framework
+# Create Your Hackathon Website
 
-Launch a professional, zero-cost hackathon website without writing code. This template is designed for science and rare-disease communities, but it can be used for any hackathon.
+Use this template to make and publish a hackathon website. You do not need to write code.
 
-The website is a static HTML site. All event content (name, dates, tracks, prizes, judges, forms, and more) is read from one file: `hackathon.config.yml`.
+## What you need
 
-## What this template includes
+- A GitHub account
+- A Google account for registration and submission forms
+- Your event name, dates, tracks, prizes, and contact email
 
-- A responsive public hackathon website (`index.html`)
-- A visual no-code configuration generator (`setup/index.html`)
-- Google Form links for registration and project submissions
-- A GitHub Issue submission template
-- Free deployment to GitHub Pages through GitHub Actions
-- Optional local secret scanning with Gitleaks
-
-No database, server, API key, or paid hosting is required.
-
-## Start here
-
-For the complete organizer journey, follow [SETUP.md](SETUP.md). It explains how to create your repository, configure the event, test it, publish it, and update it later.
-
-If you are working on your computer, read [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md) before opening the site. Opening `index.html` by double-clicking it will not load your YAML configuration.
-
-## The fastest no-code route
+## Start in 5 simple steps
 
 1. On GitHub, select **Use this template** and create a new **public** repository.
-2. In the repository, open **Settings** -> **Pages** and set **Source** to **GitHub Actions**.
-3. Open the **Actions** tab. In a fork, enable workflows if GitHub asks, then select **Deploy to GitHub Pages** -> **Run workflow** to create the first deployment.
-4. Open the site generator at `https://<your-github-username>.github.io/<your-repository-name>/setup/` after the first deployment finishes.
-5. Fill in the generator and download `hackathon.config.yml`.
-6. Replace the root `hackathon.config.yml` file in GitHub with the downloaded file and commit the change.
-7. Wait for the GitHub Actions deployment to finish, then visit `https://<your-github-username>.github.io/<your-repository-name>/`.
 
-Use the **responder links** from Google Forms (the links participants fill in), never a Google Form edit link or a Google Docs link.
+2. Open **Settings** -> **Pages** and select **GitHub Actions**.
 
-## Important files
+3. Open the **Actions** tab. If this is a fork, enable workflows if GitHub asks. Then open **Deploy to GitHub Pages** and select **Run workflow** once.
 
-| File or folder | Purpose |
-| --- | --- |
-| `index.html` | The public hackathon website |
-| `hackathon.config.yml` | All editable event content |
-| `setup/index.html` | Visual configuration generator |
-| `SETUP.md` | Complete organizer guide |
-| `LOCAL_PREVIEW.md` | How to test the site on a computer |
-| `SECURITY.md` | What is public and what must stay private |
-| `.github/workflows/deploy.yml` | GitHub Pages deployment workflow |
+4. When the workflow has a green check mark, open your setup page:
 
-## Help
+   ```text
+   https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/setup/
+   ```
 
-If the site does not show your new content, use the troubleshooting section in [SETUP.md](SETUP.md). The most common cause when working locally is opening `index.html` directly instead of through `http://localhost`.
+5. Fill in the form, download `hackathon.config.yml`, and replace the file with the same name in your GitHub repository. Commit the change. Your site will update automatically.
+
+Your website address is:
+
+```text
+https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/
+```
+
+## Important
+
+For registration and submission, use the public Google Form link that participants fill in. It should end in `/viewform` or start with `forms.gle/`.
+
+Do not use a Google Docs link or a Google Form `/edit` link.
+
+## Need help?
+
+- [Full setup guide](SETUP.md)
+- [How to test the site on your computer](LOCAL_PREVIEW.md)
+- [What is safe to publish](SECURITY.md)
