@@ -79,19 +79,16 @@ prizes:
   list:
     - place: "1st Place (Grand Winner)"
       amount: "$1,000"
+      color: "#D4AF37"   # Gold
       description: "Highest scoring project on the public benchmark & judge evaluation."
     - place: "2nd Place (Runner-up)"
       amount: "$500"
+      color: "#C0C0C0"   # Silver
       description: "Exceptional contribution to core infrastructure."
     - place: "3rd Place"
       amount: "$250"
+      color: "#CD7F32"   # Bronze
       description: "Strong overall project with notable community impact."
-    - place: "Community Choice Award"
-      amount: "$150"
-      description: "Voted by MSUD families and caregivers attending the closing stream."
-    - place: "Best First-Time Hacker Team"
-      amount: "$100"
-      description: "Awarded to the strongest project from a team hacking for the first time."
 
 winners:
   announced: true
@@ -117,20 +114,6 @@ winners:
       prize: "$250"
       repo_url: "https://github.com/MSUDBridge/msud-food-database"
       demo_url: "https://foods.msudbridge.org"
-    - place: "Community Choice Award"
-      team: "CrisisAlert"
-      project: "Real-Time Leucine Threshold Alert App"
-      track: "Caregiver Tools & Accessibility"
-      prize: "$150"
-      repo_url: "https://github.com/MSUDBridge/crisis-alert-app"
-      demo_url: "https://crisisalert.msudbridge.org"
-    - place: "Best First-Time Hacker Team"
-      team: "New Sprouts"
-      project: "Simple Meal Logger for Caregivers"
-      track: "Caregiver Tools & Accessibility"
-      prize: "$100"
-      repo_url: "https://github.com/MSUDBridge/simple-meal-logger"
-      demo_url: ""
 
 # ------------------------------------------------------------
 # JUDGES, MENTORS & SPONSORS CONFIGURATION
@@ -147,16 +130,11 @@ judges:
     organization: "PKU Commons / Reusable Framework Lead"
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&q=80"
     linkedin: "https://github.com/akshaygurav"
-  - name: "Dr. Priya Menon, MD"
-    title: "Pediatric Metabolic Specialist"
-    organization: "National Metabolic Disorders Clinic"
-    photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&q=80"
-    linkedin: "https://linkedin.com/in/priyamenonmd"
-  - name: "Marcus Chen"
-    title: "Data Scientist, Rare Disease Analytics"
+  - name: "Zach Nian"
+    title: "Rare Disease Research Lead | Bioinformatics Engineer"
     organization: "OpenRare Foundation"
     photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&q=80"
-    linkedin: "https://linkedin.com/in/marcuschen-data"
+    linkedin: "https://linkedin.com/in/zachnian"
 
 mentors:
   enabled: true
