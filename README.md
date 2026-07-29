@@ -1,6 +1,6 @@
 # Create Your Hackathon Website
 
-Use this template to make and publish a hackathon website. You do not need to write code.
+Fork this repository to make and publish your own hackathon website. You do not need to write code.
 
 ## What you need
 
@@ -10,7 +10,7 @@ Use this template to make and publish a hackathon website. You do not need to wr
 
 ## Start in 5 simple steps
 
-1. On GitHub, select **Use this template** and create a new **public** repository.
+1. Open this repository on GitHub. Select the **Fork** button in the top-right corner, then select **Create fork**. Keep the new repository **Public**.
 
 2. Open **Settings** -> **Pages** and select **GitHub Actions**.
 
