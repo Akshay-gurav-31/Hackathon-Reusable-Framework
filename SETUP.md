@@ -107,6 +107,19 @@ Register to participate in our hackathon. Solo participants and teams are welcom
 Each team member must register separately. Use the same team name for every member of a team.
 ```
 
+Suggested question types:
+
+| Question | Type | Required |
+| --- | --- | --- |
+| Full Name | Short answer | Yes |
+| Email Address | Short answer | Yes |
+| Are you participating solo or in a team? | Multiple choice | Yes |
+| Team Name | Short answer | Yes |
+| Team Size | Short answer | Yes |
+| Challenge Track | Dropdown | Yes |
+| Age Group | Dropdown | Yes |
+| GitHub or LinkedIn URL [optional] | Short answer | No |
+
 ### Form B: Project submission
 
 Create a second blank form with this title:
@@ -131,6 +144,19 @@ Suggested description:
 ```text
 Submit one project per team. Your GitHub repository must be public so judges can review it.
 ```
+
+Suggested question types:
+
+| Question | Type | Required |
+| --- | --- | --- |
+| Team Name | Short answer | Yes |
+| Team Lead Email | Short answer | Yes |
+| Project Title | Short answer | Yes |
+| Challenge Track | Dropdown | Yes |
+| Project Summary | Paragraph | Yes |
+| Public GitHub Repository URL | Short answer | Yes |
+| Live Demo URL [optional] | Short answer | No |
+| Demo Video or Slides URL [optional] | Short answer | No |
 
 ### Copy the correct form links
 
