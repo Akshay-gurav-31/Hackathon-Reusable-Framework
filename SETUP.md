@@ -81,6 +81,8 @@ Create one form for registration and one form for project submissions.
 
 [Open Google Forms](https://docs.google.com/forms/u/0/)
 
+Tip: open this link in a new tab so you can come back to the setup guide easily.
+
 ### Form A: Participant registration
 
 Create a blank form with this title:
