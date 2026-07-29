@@ -32,7 +32,10 @@ This repository deploys with GitHub Actions. Do not select “Deploy from a bran
 2. In the left menu, select **Pages**.
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
 4. Open the **Actions** tab in the repository.
-5. Wait for the workflow named **Deploy to GitHub Pages** to finish with a green check mark.
+5. Forked repositories may show that workflows are disabled. If you see the prompt, select **I understand my workflows, go ahead and enable them**.
+6. Open **Deploy to GitHub Pages** in the left-hand workflow list.
+7. Select **Run workflow**, choose the `main` branch, then select the green **Run workflow** button.
+8. Wait for the workflow to finish with a green check mark.
 
 Your site address will be:
 
@@ -40,7 +43,7 @@ Your site address will be:
 https://<your-github-username>.github.io/<your-repository-name>/
 ```
 
-The first deployment can take a few minutes. Every later change to the `main` branch starts a new deployment.
+The first manual run is important for a fork. Enabling workflows does not automatically rerun the original fork event. The first deployment can take a few minutes. Every later change to the `main` branch starts a new deployment.
 
 ## 3. Create registration and submission forms
 
@@ -176,6 +179,10 @@ Run a local web server and open `http://localhost:8000/` instead. See [LOCAL_PRE
 2. Ensure the source is **GitHub Actions**.
 3. Open **Actions** and select the failed workflow to see its error message.
 4. Confirm that `.github/workflows/deploy.yml` still exists and has not been changed or deleted.
+
+### Actions says “0 workflow runs” after I fork the repository
+
+GitHub disables workflows in forks until you enable them. Open **Actions**, select **I understand my workflows, go ahead and enable them** if prompted, then open **Deploy to GitHub Pages** and select **Run workflow** for the `main` branch. Wait for the green check mark before opening the Pages URL.
 
 ### The Register or Submit button opens the wrong page
 

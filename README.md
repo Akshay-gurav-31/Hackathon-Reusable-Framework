@@ -25,10 +25,11 @@ If you are working on your computer, read [LOCAL_PREVIEW.md](LOCAL_PREVIEW.md) b
 
 1. On GitHub, select **Use this template** and create a new **public** repository.
 2. In the repository, open **Settings** -> **Pages** and set **Source** to **GitHub Actions**.
-3. Open the site generator at `https://<your-github-username>.github.io/<your-repository-name>/setup/` after the first deployment finishes.
-4. Fill in the generator and download `hackathon.config.yml`.
-5. Replace the root `hackathon.config.yml` file in GitHub with the downloaded file and commit the change.
-6. Wait for the GitHub Actions deployment to finish, then visit `https://<your-github-username>.github.io/<your-repository-name>/`.
+3. Open the **Actions** tab. In a fork, enable workflows if GitHub asks, then select **Deploy to GitHub Pages** -> **Run workflow** to create the first deployment.
+4. Open the site generator at `https://<your-github-username>.github.io/<your-repository-name>/setup/` after the first deployment finishes.
+5. Fill in the generator and download `hackathon.config.yml`.
+6. Replace the root `hackathon.config.yml` file in GitHub with the downloaded file and commit the change.
+7. Wait for the GitHub Actions deployment to finish, then visit `https://<your-github-username>.github.io/<your-repository-name>/`.
 
 Use the **responder links** from Google Forms (the links participants fill in), never a Google Form edit link or a Google Docs link.
 
