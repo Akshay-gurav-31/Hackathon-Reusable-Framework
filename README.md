@@ -1,4 +1,4 @@
-# Create Your Hackathon Website
+# Reusable Hackathon Framework
 
 Fork this repository to make and publish your own hackathon website. You do not need to write code.
 
