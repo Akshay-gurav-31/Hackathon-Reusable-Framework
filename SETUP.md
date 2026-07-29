@@ -1,4 +1,7 @@
-# Simple Setup Guide for Organizers
+<h1>
+  <img src="./rhf-logo.png" alt="Reusable Hackathon Framework logo" width="48" valign="middle" />
+  Simple Setup Guide for Organizers
+</h1>
 
 This guide shows how to create, publish, and update your hackathon website without writing code.
 
