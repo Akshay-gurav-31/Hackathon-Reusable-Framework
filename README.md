@@ -11,7 +11,7 @@ Fork this repository to make and publish your own hackathon website. You do not 
 - A Google account for registration and submission forms
 - Your event name, dates, tracks, prizes, and contact email
 
-## Start in 5 simple steps
+## Start in 4 simple steps
 
 1. Open this repository on GitHub. Select the **Fork** button in the top-right corner, then select **Create fork**. Keep the new repository **Public**.
 
@@ -19,13 +19,11 @@ Fork this repository to make and publish your own hackathon website. You do not 
 
 3. Open the **Actions** tab. If this is a fork, enable workflows if GitHub asks. Then open **Deploy to GitHub Pages** and select **Run workflow** once.
 
-4. When the workflow has a green check mark, open your setup page:
+4. If you want to change the website content, open the organizer setup guide:
 
-   ```text
-   https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/setup/
-   ```
+   [SETUP.md](SETUP.md)
 
-5. Fill in the form, download `hackathon.config.yml`, and replace the file with the same name in your GitHub repository. Commit the change. Your site will update automatically.
+   It shows the exact setup page link, what to fill in, and what to do after you save the file.
 
 Your website address is:
 
