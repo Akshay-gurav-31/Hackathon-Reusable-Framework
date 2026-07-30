@@ -1,0 +1,180 @@
+# Complete example configuration for the Reusable Hackathon Framework.
+# Copy this file to hackathon.config.yml, then replace every example value.
+# Use public URLs only. Do not add API keys, passwords, form edit links, or private data.
+
+hackathon:
+  name: "Future Makers AI Hackathon 2026"
+  tagline: "Build practical AI tools for a better everyday life"
+  description: |
+    A two-day online hackathon for students, developers, designers, and researchers.
+    Teams build useful, open-source AI projects that solve real-world problems.
+  disorder: "Artificial Intelligence and Social Impact"
+  community:
+    name: "Future Makers Community"
+    url: "https://example.org"
+
+problem_statement:
+  title: "AI for Everyday Impact"
+  description: |
+    Build an ethical, practical, and accessible AI solution for education,
+    healthcare, sustainability, public services, or small businesses.
+  objectives:
+    - "Build a working prototype that solves a real problem."
+    - "Use responsible and transparent AI practices."
+    - "Publish the project under an open-source license."
+
+rules:
+  - title: "Team size"
+    description: "Teams may have one to four members."
+  - title: "Original work"
+    description: "Build the core project during the hackathon."
+  - title: "Open source"
+    description: "Submit a public repository with clear setup instructions."
+  - title: "Respectful participation"
+    description: "Follow the community code of conduct throughout the event."
+
+dates:
+  registration_open: "2026-09-01"
+  registration_close: "2026-09-20"
+  hackathon_start: "2026-10-03"
+  hackathon_end: "2026-10-04"
+  submission_deadline: "2026-10-04T20:00"
+  results_announced: "2026-10-10"
+
+tracks:
+  - name: "Education and Learning"
+    description: "AI tools that improve learning, teaching, or accessibility."
+  - name: "Health and Wellbeing"
+    description: "Responsible AI solutions that support health and wellbeing."
+  - name: "Climate and Sustainability"
+    description: "Projects that help people make more sustainable decisions."
+
+prizes:
+  mode: "overall"
+  list:
+    - place: "1st Place"
+      amount: "INR 100,000"
+      description: "Best overall project based on impact, quality, and presentation."
+    - place: "2nd Place"
+      amount: "INR 50,000"
+      description: "Strong project with a clear and useful solution."
+    - place: "3rd Place"
+      amount: "INR 25,000"
+      description: "Promising project with excellent execution."
+
+winners:
+  announced: false
+  # After judging, change announced to true and add entries like this:
+  # list:
+  #   - place: "1st Place"
+  #     team: "Example Team"
+  #     project: "Example Project"
+  #     track: "Education and Learning"
+  #     prize: "INR 100,000"
+  #     repo_url: "https://github.com/example/example-project"
+  #     demo_url: "https://example.org/demo"
+
+judges:
+  - name: "Dr. Asha Mehta"
+    title: "AI Research Lead"
+    organization: "Example Research Lab"
+    photo: "https://example.com/judges/asha-mehta.jpg"
+    linkedin: "https://www.linkedin.com/in/example"
+  - name: "Rohan Kapoor"
+    title: "Product and Engineering Leader"
+    organization: "Example Technology Company"
+    photo: "https://example.com/judges/rohan-kapoor.jpg"
+    linkedin: "https://www.linkedin.com/in/example"
+
+mentors:
+  enabled: true
+  list:
+    - name: "Maya Shah"
+      expertise: "Machine Learning and Responsible AI"
+      photo: "https://example.com/mentors/maya-shah.jpg"
+      contact: "https://www.linkedin.com/in/example"
+    - name: "Arjun Rao"
+      expertise: "Product Design and User Research"
+      photo: "https://example.com/mentors/arjun-rao.jpg"
+      contact: "https://www.linkedin.com/in/example"
+
+sponsors:
+  enabled: true
+  list:
+    - name: "Example Cloud"
+      tier: "Platinum"
+      url: "https://example.com"
+      logo: "https://example.com/logos/example-cloud.png"
+    - name: "Example University"
+      tier: "Community Partner"
+      url: "https://example.org"
+      logo: "https://example.com/logos/example-university.png"
+
+schedule:
+  enabled: true
+  events:
+    - title: "Opening Ceremony"
+      type: "Ceremony"
+      date: "2026-10-03"
+      time: "10:00 AM IST"
+      description: "Welcome, event overview, and challenge briefing."
+    - title: "Mentor Office Hours"
+      type: "Mentoring"
+      date: "2026-10-03"
+      time: "03:00 PM IST"
+      description: "Teams can ask mentors for technical and product guidance."
+    - title: "Project Submission Deadline"
+      type: "Deadline"
+      date: "2026-10-04"
+      time: "08:00 PM IST"
+      description: "Submit the public repository, project summary, and demo link."
+
+registration:
+  # Replace with the public Google Form responder URL, not an edit URL.
+  form_url: "https://forms.gle/REPLACE-WITH-REGISTRATION-FORM"
+  team:
+    min_size: 1
+    max_size: 4
+    solo_allowed: true
+    team_name_required: true
+  max_participants: 500
+
+submission:
+  # Replace with the public Google Form responder URL, not an edit URL.
+  form_url: "https://forms.gle/REPLACE-WITH-SUBMISSION-FORM"
+
+faq:
+  enabled: true
+  items:
+    - question: "Who can participate?"
+      answer: "Students, professionals, researchers, designers, and developers may participate."
+    - question: "Is there a registration fee?"
+      answer: "No. Participation is free."
+    - question: "Can I participate alone?"
+      answer: "Yes. Solo participants and teams of up to four members are welcome."
+
+contact:
+  email: "hello@example.org"
+  discord: "https://discord.gg/REPLACE-ME"
+  twitter: "https://x.com/REPLACE-ME"
+  website: "https://example.org"
+  github_org: "https://github.com/REPLACE-ME"
+
+branding:
+  primary_color: "#1B0245"
+  accent_color: "#24D9F9"
+  dark_mode: true
+  logo_url: "https://example.com/logo.png"
+
+features:
+  show_problem_statement: true
+  show_rules: true
+  show_winners: true
+  show_mentors: true
+  show_sponsors: true
+  show_leaderboard: false
+  show_faq: true
+  show_schedule: true
+  github_issues_submissions: true
+  google_form_backup: true
+  discord_widget: false
