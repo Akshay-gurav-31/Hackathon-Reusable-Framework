@@ -6,7 +6,7 @@
 hackathon:
   name: "PKU Commons Science Hackathon 2026"
   # Logo Image: Use local path like "./assets/logo.png" or online image URL
-  logo: "./assets/logo.png"
+  logo: "https://pku.community/logo.png"
   tagline: "Building Open Science & Metabolic Tools for the PKU Community"
   description: |
     A virtual science hackathon for Phenylketonuria (PKU). We bring together developers, researchers, dietitians, and families to improve open phenylalanine-estimation tools, living low-protein food databases, and home phenylalanine-monitoring scale integrations.
