@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hackathon Config Generator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #f4f6fb;
@@ -22,7 +31,7 @@
       --text3: #9ca3af;
       --accent: #7c3aed;
       --accent2: #6d28d9;
-      --glow: rgba(124,58,237,0.12);
+      --glow: rgba(124, 58, 237, 0.12);
       --ok: #059669;
       --err: #dc2626;
       --warn: #d97706;
@@ -31,7 +40,9 @@
       --rl: 12px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -47,7 +58,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 0 24px;
@@ -55,7 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     }
 
     .logo {
@@ -65,16 +76,29 @@
       font-weight: 700;
       font-size: 16px;
     }
+
     .logo-icon {
-      width: 34px; height: 34px;
+      width: 34px;
+      height: 34px;
       border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
       box-shadow: 0 5px 12px rgba(37, 99, 235, 0.20);
     }
-    .logo-icon svg { display: block; width: 34px; height: 34px; }
 
-    .header-actions { display: flex; gap: 10px; align-items: center; }
+    .logo-icon svg {
+      display: block;
+      width: 34px;
+      height: 34px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
     /* ---- MAIN LAYOUT ---- */
     .layout {
@@ -86,9 +110,19 @@
     .form-panel {
       width: 100%;
     }
-    .form-panel::-webkit-scrollbar { width: 4px; }
-    .form-panel::-webkit-scrollbar-track { background: transparent; }
-    .form-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .form-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .form-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .form-panel::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
 
     .preview-panel {
       position: sticky;
@@ -108,6 +142,7 @@
       justify-content: space-between;
       flex-shrink: 0;
     }
+
     .preview-title {
       font-size: 12px;
       font-weight: 600;
@@ -118,18 +153,31 @@
       align-items: center;
       gap: 8px;
     }
+
     .live-dot {
-      width: 7px; height: 7px;
+      width: 7px;
+      height: 7px;
       background: var(--ok);
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.4;
+      }
     }
 
-    .preview-actions { display: flex; gap: 8px; }
+    .preview-actions {
+      display: flex;
+      gap: 8px;
+    }
 
     .yaml-output {
       flex: 1;
@@ -140,18 +188,50 @@
       line-height: 1.8;
       white-space: pre;
     }
-    .yaml-output::-webkit-scrollbar { width: 4px; }
-    .yaml-output::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .yaml-output::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .yaml-output::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
 
     /* YAML Syntax Highlighting - Light Theme */
-    .y-comment { color: #6b7280; font-style: italic; }
-    .y-key     { color: #1d4ed8; font-weight: 500; }
-    .y-sep     { color: var(--text3); }
-    .y-str     { color: #b45309; }
-    .y-num     { color: #7c3aed; }
-    .y-bool    { color: #be185d; }
-    .y-dash    { color: #059669; }
-    .y-section { color: #64748b; }
+    .y-comment {
+      color: #6b7280;
+      font-style: italic;
+    }
+
+    .y-key {
+      color: #1d4ed8;
+      font-weight: 500;
+    }
+
+    .y-sep {
+      color: var(--text3);
+    }
+
+    .y-str {
+      color: #b45309;
+    }
+
+    .y-num {
+      color: #7c3aed;
+    }
+
+    .y-bool {
+      color: #be185d;
+    }
+
+    .y-dash {
+      color: #059669;
+    }
+
+    .y-section {
+      color: #64748b;
+    }
 
     /* ---- BUTTONS ---- */
     .btn {
@@ -167,29 +247,64 @@
       transition: all 0.15s;
       font-family: inherit;
     }
+
     .btn-primary {
       background: var(--accent);
       color: white;
     }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: translateY(-1px);
+    }
+
     .btn-ghost {
       background: var(--bg4);
       color: var(--text2);
       border: 1px solid var(--border);
     }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
     .btn-icon {
       padding: 7px 10px;
       background: var(--bg4);
       color: var(--text2);
       border: 1px solid var(--border);
     }
-    .btn-icon:hover { border-color: var(--accent); color: var(--text); }
-    .btn-sm { padding: 4px 10px; font-size: 12px; }
-    .btn-danger { background: rgba(239,68,68,0.12); color: var(--err); border: 1px solid rgba(239,68,68,0.25); }
-    .btn-danger:hover { background: rgba(239,68,68,0.2); }
-    .btn-add { background: rgba(16,185,129,0.1); color: var(--ok); border: 1px solid rgba(16,185,129,0.25); }
-    .btn-add:hover { background: rgba(16,185,129,0.18); }
+
+    .btn-icon:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .btn-sm {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--err);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-add {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--ok);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-add:hover {
+      background: rgba(16, 185, 129, 0.18);
+    }
 
     /* ---- SECTIONS ---- */
     .section {
@@ -205,24 +320,33 @@
       user-select: none;
       transition: background 0.15s;
     }
-    .section-header:hover { background: rgba(255,255,255,0.02); }
+
+    .section-header:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
 
     .section-title-row {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .section-icon { font-size: 18px; line-height: 1; }
+
+    .section-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+
     .section-title-row h3 {
       font-size: 14px;
       font-weight: 600;
       color: var(--text);
     }
+
     .badge-optional {
       font-size: 10px;
       padding: 2px 7px;
       border-radius: 20px;
-      background: rgba(124,58,237,0.15);
+      background: rgba(124, 58, 237, 0.15);
       color: var(--accent2);
       font-weight: 500;
       letter-spacing: 0.04em;
@@ -233,18 +357,25 @@
       align-items: center;
       gap: 12px;
     }
+
     .section-arrow {
       color: var(--text3);
       font-size: 11px;
       transition: transform 0.2s;
     }
-    .section-arrow.open { transform: rotate(180deg); }
+
+    .section-arrow.open {
+      transform: rotate(180deg);
+    }
 
     .section-body {
       padding: 4px 20px 20px;
       display: none;
     }
-    .section-body.open { display: block; }
+
+    .section-body.open {
+      display: block;
+    }
 
     /* ---- TOGGLE SWITCH ---- */
     .toggle-wrap {
@@ -252,13 +383,20 @@
       align-items: center;
       gap: 8px;
     }
+
     .toggle {
       position: relative;
       width: 36px;
       height: 20px;
       flex-shrink: 0;
     }
-    .toggle input { opacity: 0; width: 0; height: 0; }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
     .toggle-track {
       position: absolute;
       inset: 0;
@@ -268,27 +406,39 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .toggle-track::after {
       content: '';
       position: absolute;
-      left: 3px; top: 2px;
-      width: 14px; height: 14px;
+      left: 3px;
+      top: 2px;
+      width: 14px;
+      height: 14px;
       background: var(--text3);
       border-radius: 50%;
       transition: all 0.2s;
     }
-    .toggle input:checked ~ .toggle-track {
+
+    .toggle input:checked~.toggle-track {
       background: var(--accent);
       border-color: var(--accent);
     }
-    .toggle input:checked ~ .toggle-track::after {
+
+    .toggle input:checked~.toggle-track::after {
       left: 17px;
       background: white;
     }
-    .toggle-label-text { font-size: 12px; color: var(--text2); }
+
+    .toggle-label-text {
+      font-size: 12px;
+      color: var(--text2);
+    }
 
     /* ---- FORM FIELDS ---- */
-    .field { margin-bottom: 14px; }
+    .field {
+      margin-bottom: 14px;
+    }
+
     .field label {
       display: block;
       font-size: 12px;
@@ -296,7 +446,12 @@
       color: var(--text2);
       margin-bottom: 5px;
     }
-    .field label .req { color: var(--accent2); margin-left: 2px; }
+
+    .field label .req {
+      color: var(--accent2);
+      margin-left: 2px;
+    }
+
     .field label .hint {
       font-weight: 400;
       color: var(--text3);
@@ -322,12 +477,23 @@
       outline: none;
       transition: border 0.15s, box-shadow 0.15s;
     }
-    input:focus, select:focus, textarea:focus {
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       border-color: var(--bfocus);
       box-shadow: 0 0 0 3px var(--glow);
     }
-    textarea { resize: vertical; min-height: 70px; }
-    select { cursor: pointer; }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
     .form-url-message {
       display: none;
       margin: 7px 0 0;
@@ -337,19 +503,26 @@
       line-height: 1.45;
       font-weight: 500;
     }
-    .form-url-message.show { display: block; }
+
+    .form-url-message.show {
+      display: block;
+    }
+
     .form-url-message.error {
       color: #b42318;
       background: #fef3f2;
       border: 1px solid #fecdca;
     }
+
     .form-url-message.success {
       color: #067647;
       background: #ecfdf3;
       border: 1px solid #abefc6;
     }
+
     input[type="color"] {
-      width: 44px; height: 36px;
+      width: 44px;
+      height: 36px;
       padding: 2px;
       border-radius: var(--r);
       cursor: pointer;
@@ -357,21 +530,36 @@
       background: var(--inp);
     }
 
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .field-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field-row3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
 
     .color-row {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     .color-hex {
       flex: 1;
       font-family: 'JetBrains Mono', monospace;
     }
 
     /* ---- DYNAMIC CARDS ---- */
-    .card-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
 
     .dyn-card {
       background: var(--bg3);
@@ -380,12 +568,14 @@
       padding: 14px;
       position: relative;
     }
+
     .dyn-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 12px;
     }
+
     .dyn-card-num {
       font-size: 11px;
       font-weight: 600;
@@ -395,7 +585,11 @@
     }
 
     /* ---- DIVIDER ---- */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 14px 0;
+    }
 
     /* ---- TOAST ---- */
     .toast {
@@ -412,13 +606,20 @@
       z-index: 9999;
       transform: translateY(80px);
       opacity: 0;
-      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       pointer-events: none;
     }
-    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     /* ---- SECTION DISABLED OVERLAY ---- */
-    .section-body.disabled { opacity: 0.4; pointer-events: none; }
+    .section-body.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
 
     /* ---- SECTION INTRO TEXT ---- */
     .section-intro {
@@ -429,110 +630,12 @@
     }
 
     /* ---- FEATURE FLAGS GRID ---- */
-    .flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .flag-item {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .flag-label { font-size: 13px; font-weight: 500; }
-    .flag-desc { font-size: 11px; color: var(--text3); margin-top: 2px; }
-
-    /* ---- STEP INDICATOR ---- */
-    .progress-bar {
-      height: 3px;
-      background: var(--border);
-      position: relative;
-    }
-    .progress-fill {
-      height: 100%;
-    input[type="color"] {
-      width: 44px; height: 36px;
-      padding: 2px;
-      border-radius: var(--r);
-      cursor: pointer;
-      border: 1px solid var(--border);
-      background: var(--inp);
-    }
-
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .field-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-
-    .color-row {
-      display: flex;
-      align-items: center;
+    .flags-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .color-hex {
-      flex: 1;
-      font-family: 'JetBrains Mono', monospace;
-    }
 
-    /* ---- DYNAMIC CARDS ---- */
-    .card-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
-
-    .dyn-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--rl);
-      padding: 14px;
-      position: relative;
-    }
-    .dyn-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-    .dyn-card-num {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text3);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    /* ---- DIVIDER ---- */
-    .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
-
-    /* ---- TOAST ---- */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--bg3);
-      border: 1px solid var(--ok);
-      color: var(--ok);
-      padding: 10px 18px;
-      border-radius: var(--r);
-      font-size: 13px;
-      font-weight: 500;
-      z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
-      pointer-events: none;
-    }
-    .toast.show { transform: translateY(0); opacity: 1; }
-
-    /* ---- SECTION DISABLED OVERLAY ---- */
-    .section-body.disabled { opacity: 0.4; pointer-events: none; }
-
-    /* ---- SECTION INTRO TEXT ---- */
-    .section-intro {
-      font-size: 12px;
-      color: var(--text3);
-      margin-bottom: 14px;
-      line-height: 1.6;
-    }
-
-    /* ---- FEATURE FLAGS GRID ---- */
-    .flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .flag-item {
       background: var(--bg3);
       border: 1px solid var(--border);
@@ -543,8 +646,17 @@
       justify-content: space-between;
       gap: 8px;
     }
-    .flag-label { font-size: 13px; font-weight: 500; }
-    .flag-desc { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+    .flag-label {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .flag-desc {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
 
     /* ---- STEP INDICATOR ---- */
     .progress-bar {
@@ -552,6 +664,7 @@
       background: var(--border);
       position: relative;
     }
+
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--cyan));
@@ -559,864 +672,1088 @@
       border-radius: 2px;
     }
 
-    /* ---- RESPONSIVE MEDIA QUERIES ---- */
-    @media (max-width: 768px) {
-      header { padding: 0 16px; height: 56px; }
-      .logo span { font-size: 14px; }
-      .header-actions .btn span { display: none; }
-      .header-actions .btn { padding: 6px 10px; }
-      .layout { padding: 16px 12px 60px; }
-      .field-row, .field-row3, .flags-grid { grid-template-columns: 1fr; gap: 8px; }
-      .section-header { padding: 12px 14px; }
-      .section-body { padding: 4px 14px 14px; }
-    }
+      /* ---- RESPONSIVE MEDIA QUERIES ---- */
+      @media (max-width: 768px) {
+        header {
+          padding: 0 16px;
+          height: 56px;
+        }
 
-    @media (max-width: 480px) {
-      .logo span { display: none; }
-      .btn { font-size: 12px; padding: 6px 10px; }
-      .toast { left: 16px; right: 16px; bottom: 16px; text-align: center; }
-    }
+        .logo span {
+          font-size: 14px;
+        }
 
-    /* ---- SCROLLBAR ---- */
-    .preview-panel ::-webkit-scrollbar { width: 4px; }
-    .preview-panel ::-webkit-scrollbar-thumb { background: var(--border); }
+        .header-actions .btn span {
+          display: none;
+        }
+
+        .header-actions .btn {
+          padding: 6px 10px;
+        }
+
+        .layout {
+          padding: 16px 12px 60px;
+        }
+
+        .field-row,
+        .field-row3,
+        .flags-grid {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .section-header {
+          padding: 12px 14px;
+        }
+
+        .section-body {
+          padding: 4px 14px 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo span {
+          display: none;
+        }
+
+        .btn {
+          font-size: 12px;
+          padding: 6px 10px;
+        }
+
+        .toast {
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+          text-align: center;
+        }
+      }
+
+      /* ---- SCROLLBAR ---- */
+      .preview-panel ::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .preview-panel ::-webkit-scrollbar-thumb {
+        background: var(--border);
+      }
   </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 34 34" role="img" aria-label="Hackathon configuration logo" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="generator-logo-gradient" x1="4" y1="3" x2="30" y2="32" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#4F46E5"/>
-            <stop offset="0.52" stop-color="#2563EB"/>
-            <stop offset="1" stop-color="#06B6D4"/>
-          </linearGradient>
-        </defs>
-        <rect width="34" height="34" rx="10" fill="url(#generator-logo-gradient)"/>
-        <path d="M10.25 7.75h8.2l4.3 4.3v13.2a1.5 1.5 0 0 1-1.5 1.5h-11a1.5 1.5 0 0 1-1.5-1.5v-16a1.5 1.5 0 0 1 1.5-1.5Z" fill="rgba(255,255,255,.18)" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M18.45 7.8v4.25h4.25" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M12 15.1h7.8M12 19h7.8M12 22.9h7.8" stroke="white" stroke-width="1.35" stroke-linecap="round" opacity=".95"/>
-        <circle cx="14.55" cy="15.1" r="1.75" fill="#CFFAFE" stroke="white" stroke-width=".8"/>
-        <circle cx="17.2" cy="19" r="1.75" fill="#DBEAFE" stroke="white" stroke-width=".8"/>
-        <circle cx="13.25" cy="22.9" r="1.75" fill="#E0E7FF" stroke="white" stroke-width=".8"/>
-      </svg>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 34 34" role="img" aria-label="Hackathon configuration logo"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="generator-logo-gradient" x1="4" y1="3" x2="30" y2="32" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#4F46E5" />
+              <stop offset="0.52" stop-color="#2563EB" />
+              <stop offset="1" stop-color="#06B6D4" />
+            </linearGradient>
+          </defs>
+          <rect width="34" height="34" rx="10" fill="url(#generator-logo-gradient)" />
+          <path
+            d="M10.25 7.75h8.2l4.3 4.3v13.2a1.5 1.5 0 0 1-1.5 1.5h-11a1.5 1.5 0 0 1-1.5-1.5v-16a1.5 1.5 0 0 1 1.5-1.5Z"
+            fill="rgba(255,255,255,.18)" stroke="white" stroke-width="1.4" stroke-linejoin="round" />
+          <path d="M18.45 7.8v4.25h4.25" fill="none" stroke="white" stroke-width="1.4" stroke-linejoin="round" />
+          <path d="M12 15.1h7.8M12 19h7.8M12 22.9h7.8" stroke="white" stroke-width="1.35" stroke-linecap="round"
+            opacity=".95" />
+          <circle cx="14.55" cy="15.1" r="1.75" fill="#CFFAFE" stroke="white" stroke-width=".8" />
+          <circle cx="17.2" cy="19" r="1.75" fill="#DBEAFE" stroke="white" stroke-width=".8" />
+          <circle cx="13.25" cy="22.9" r="1.75" fill="#E0E7FF" stroke="white" stroke-width=".8" />
+        </svg>
+      </div>
+      <span>Hackathon Config Generator</span>
     </div>
-    <span>Hackathon Config Generator</span>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-sm" onclick="resetAll()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10" />
+          <path d="M3.51 15a9 9 0 1 0 .49-3.95" />
+        </svg>
+        Reset
+      </button>
+      <button class="btn btn-ghost btn-sm" onclick="copyYAML()" title="Copy to clipboard">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        Copy YAML
+      </button>
+      <button class="btn btn-primary btn-sm" onclick="downloadYAML()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Download Config
+      </button>
+    </div>
+  </header>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
   </div>
-  <div class="header-actions">
-    <button class="btn btn-ghost btn-sm" onclick="resetAll()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.95"/></svg>
-      Reset
-    </button>
-    <button class="btn btn-ghost btn-sm" onclick="copyYAML()" title="Copy to clipboard">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      Copy YAML
-    </button>
-    <button class="btn btn-primary btn-sm" onclick="downloadYAML()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Config
-    </button>
-  </div>
-</header>
 
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
 
-<!-- MAIN LAYOUT -->
-<div class="layout">
+    <!-- ======================== LEFT FORM PANEL ======================== -->
+    <div class="form-panel" id="formPanel">
 
-  <!-- ======================== LEFT FORM PANEL ======================== -->
-  <div class="form-panel" id="formPanel">
-
-    <!-- 1. EVENT BASICS -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('basics')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-          <h3>Event Basics</h3>
+      <!-- 1. EVENT BASICS -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('basics')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg></span>
+            <h3>Event Basics</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-basics">▼</span>
         </div>
-        <span class="section-arrow open" id="arrow-basics">▼</span>
-      </div>
-      <div class="section-body open" id="body-basics">
-        <p class="section-intro">Core information about your hackathon. This appears on the homepage and browser tab.</p>
-        <div class="field">
-          <label>Event Name <span class="req">*</span></label>
-          <input type="text" id="event-name" placeholder="PKU Commons Hackathon 2026" oninput="update()">
-        </div>
-        <div class="field">
-          <label>Tagline <span class="hint">(short, inspiring line)</span></label>
-          <input type="text" id="event-tagline" placeholder="Science for Rare Communities" oninput="update()">
-        </div>
-        <div class="field">
-          <label>About / Description</label>
-          <textarea id="event-desc" rows="3" placeholder="A brief description of what this hackathon is about..." oninput="update()"></textarea>
-        </div>
-        <div class="field-row">
+        <div class="section-body open" id="body-basics">
+          <p class="section-intro">Core information about your hackathon. This appears on the homepage and browser tab.
+          </p>
           <div class="field">
-            <label>Disorder / Focus Area</label>
-            <input type="text" id="event-disorder" placeholder="Phenylketonuria (PKU)" oninput="update()">
+            <label>Event Name <span class="req">*</span></label>
+            <input type="text" id="event-name" placeholder="PKU Commons Hackathon 2026" oninput="update()">
           </div>
           <div class="field">
-            <label>Community Name</label>
-            <input type="text" id="event-community" placeholder="PKU Commons" oninput="update()">
-          </div>
-        </div>
-        <div class="field">
-          <label>Community Website</label>
-          <input type="url" id="event-community-url" placeholder="https://pku.community" oninput="update()">
-        </div>
-      </div>
-    </div>
-
-    <!-- 1B. PROBLEM STATEMENT -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('problem')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
-          <h3>Problem Statement</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-problem">▼</span>
-      </div>
-      <div class="section-body open" id="body-problem">
-        <p class="section-intro">Define the core scientific or community challenge your hackathon aims to solve.</p>
-        <div class="field">
-          <label>Challenge Title</label>
-          <input type="text" id="prob-title" placeholder="The MSUD Dietary & Accuracy Challenge" oninput="update()">
-        </div>
-        <div class="field">
-          <label>Detailed Description / Problem Overview</label>
-          <textarea id="prob-desc" rows="3" placeholder="Explain the pain point or gap in current tools..." oninput="update()"></textarea>
-        </div>
-        <div class="field">
-          <label>Key Objectives &amp; Challenges <span class="hint">(one per line)</span></label>
-          <textarea id="prob-objectives" rows="3" placeholder="Build open-source leucine estimation algorithms...&#10;Create living low-protein food databases..." oninput="update()"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. DATES -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('dates')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-          <h3>Dates &amp; Deadlines</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-dates">▼</span>
-      </div>
-      <div class="section-body open" id="body-dates">
-        <div class="field-row">
-          <div class="field">
-            <label>Registration Opens</label>
-            <input type="date" id="date-reg-open" oninput="update()">
+            <label>Tagline <span class="hint">(short, inspiring line)</span></label>
+            <input type="text" id="event-tagline" placeholder="Science for Rare Communities" oninput="update()">
           </div>
           <div class="field">
-            <label>Registration Closes</label>
-            <input type="date" id="date-reg-close" oninput="update()">
+            <label>About / Description</label>
+            <textarea id="event-desc" rows="3" placeholder="A brief description of what this hackathon is about..."
+              oninput="update()"></textarea>
           </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Hackathon Starts</label>
-            <input type="date" id="date-start" oninput="update()">
-          </div>
-          <div class="field">
-            <label>Hackathon Ends</label>
-            <input type="date" id="date-end" oninput="update()">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Submission Deadline</label>
-            <input type="date" id="date-sub" oninput="update()">
+          <div class="field-row">
+            <div class="field">
+              <label>Disorder / Focus Area</label>
+              <input type="text" id="event-disorder" placeholder="Phenylketonuria (PKU)" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Community Name</label>
+              <input type="text" id="event-community" placeholder="PKU Commons" oninput="update()">
+            </div>
           </div>
           <div class="field">
-            <label>Submission Time</label>
-            <input type="time" id="time-sub" oninput="update()">
+            <label>Community Website</label>
+            <input type="url" id="event-community-url" placeholder="https://pku.community" oninput="update()">
           </div>
         </div>
-        <div class="field">
-          <label>Results Announced</label>
-          <input type="date" id="date-results" oninput="update()">
-        </div>
       </div>
-    </div>
 
-    <!-- 3. TRACKS -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('tracks')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg></span>
-          <h3>Challenge Tracks</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-tracks">▼</span>
-      </div>
-      <div class="section-body open" id="body-tracks">
-        <p class="section-intro">Define the challenge categories participants can submit to. Add as many as needed.</p>
-        <div class="card-list" id="tracks-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addTrack()">+ Add Track</button>
-      </div>
-    </div>
-
-    <!-- 4. PRIZES -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('prizes')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
-          <h3>Prizes</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-prizes">▼</span>
-      </div>
-      <div class="section-body open" id="body-prizes">
-        <div class="flag-item" style="margin-bottom:14px">
-          <div>
-            <div class="flag-label">Per-Track Prizes</div>
-            <div class="flag-desc">Give separate prizes for each track instead of overall</div>
+      <!-- 1B. PROBLEM STATEMENT -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('problem')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg></span>
+            <h3>Problem Statement</h3>
           </div>
-          <label class="toggle">
-            <input type="checkbox" id="prizes-per-track" onchange="update()">
-            <span class="toggle-track"></span>
-          </label>
+          <span class="section-arrow open" id="arrow-problem">▼</span>
         </div>
-        <div class="card-list" id="prizes-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addPrize()">+ Add Prize</button>
-      </div>
-    </div>
-
-    <!-- 4B. WINNERS & LEADERBOARD -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('winners')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
-          <h3>Winners Showcase &amp; Leaderboard</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-winners">▼</span>
-      </div>
-      <div class="section-body open" id="body-winners">
-        <p class="section-intro">Publish winning projects and leaderboard standings after judging completes.</p>
-        <div class="flag-item" style="margin-bottom:16px;">
-          <div>
-            <div class="flag-label">Publish Winners &amp; Leaderboard</div>
-            <div class="flag-desc">Turn ON when winners are decided to display cards</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" id="winners-announced" checked onchange="update()">
-            <span class="toggle-track"></span>
-          </label>
-        </div>
-        <div class="card-list" id="winners-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addWinner()">+ Add Winner Project</button>
-      </div>
-    </div>
-
-    <!-- 5. JUDGES -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('judges')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M16 16l3-8 3 8a3 3 0 0 1-6 0z"/><path d="M2 16l3-8 3 8a3 3 0 0 1-6 0z"/><path d="M7 21h10"/><path d="M12 3L5 8"/><path d="M12 3l7 5"/></svg></span>
-          <h3>Judges</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-judges">▼</span>
-      </div>
-      <div class="section-body open" id="body-judges">
-        <div class="card-list" id="judges-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addJudge()">+ Add Judge</button>
-      </div>
-    </div>
-
-    <!-- 6. MENTORS (toggleable) -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title-row" onclick="toggleSection('mentors')" style="cursor:pointer;flex:1">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <h3>Mentors</h3>
-          <span class="badge-optional">Optional</span>
-        </div>
-        <div class="section-right">
-          <label class="toggle" title="Enable Mentors section">
-            <input type="checkbox" id="enable-mentors" checked onchange="toggleOptional('mentors'); update()">
-            <span class="toggle-track"></span>
-          </label>
-          <span class="section-arrow open" id="arrow-mentors" onclick="toggleSection('mentors')" style="cursor:pointer">▼</span>
-        </div>
-      </div>
-      <div class="section-body open" id="body-mentors">
-        <p class="section-intro">Mentors guide participants during the event. Turn off if not applicable.</p>
-        <div class="card-list" id="mentors-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addMentor()">+ Add Mentor</button>
-      </div>
-    </div>
-
-    <!-- 7. SPONSORS (toggleable) -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title-row" onclick="toggleSection('sponsors')" style="cursor:pointer;flex:1">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg></span>
-          <h3>Sponsors</h3>
-          <span class="badge-optional">Optional</span>
-        </div>
-        <div class="section-right">
-          <label class="toggle" title="Enable Sponsors section">
-            <input type="checkbox" id="enable-sponsors" checked onchange="toggleOptional('sponsors'); update()">
-            <span class="toggle-track"></span>
-          </label>
-          <span class="section-arrow open" id="arrow-sponsors" onclick="toggleSection('sponsors')" style="cursor:pointer">▼</span>
-        </div>
-      </div>
-      <div class="section-body open" id="body-sponsors">
-        <p class="section-intro">Organizations supporting the hackathon with funding or resources.</p>
-        <div class="card-list" id="sponsors-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addSponsor()">+ Add Sponsor</button>
-      </div>
-    </div>
-
-    <!-- 8. SCHEDULE (toggleable) -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title-row" onclick="toggleSection('schedule')" style="cursor:pointer;flex:1">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>
-          <h3>Schedule</h3>
-          <span class="badge-optional">Optional</span>
-        </div>
-        <div class="section-right">
-          <label class="toggle" title="Enable Schedule section">
-            <input type="checkbox" id="enable-schedule" checked onchange="toggleOptional('schedule'); update()">
-            <span class="toggle-track"></span>
-          </label>
-          <span class="section-arrow open" id="arrow-schedule" onclick="toggleSection('schedule')" style="cursor:pointer">▼</span>
-        </div>
-      </div>
-      <div class="section-body open" id="body-schedule">
-        <p class="section-intro">Key events, workshops, deadlines, and milestones shown on the schedule page.</p>
-        <div class="card-list" id="schedule-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addScheduleItem()">+ Add Schedule Item</button>
-      </div>
-    </div>
-
-    <!-- 8B. RULES & GUIDELINES -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('rules')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
-          <h3>Rules &amp; Guidelines</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-rules">▼</span>
-      </div>
-      <div class="section-body open" id="body-rules">
-        <p class="section-intro">Participation rules, open-source licensing guidelines, and code of conduct.</p>
-        <div class="card-list" id="rules-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addRule()">+ Add Rule</button>
-      </div>
-    </div>
-
-    <!-- 9. REGISTRATION -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('registration')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
-          <h3>Registration</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-registration">▼</span>
-      </div>
-      <div class="section-body open" id="body-registration">
-        <p class="section-intro">Add your custom Google Form links for registration and project submissions. Create forms on Google Forms and paste their links below.</p>
-        <div class="field">
-          <label>Registration Google Form URL <span class="req">*</span></label>
-          <input type="url" id="reg-form-url" placeholder="https://forms.gle/your-registration-link" oninput="validateFormUrl('reg-form-url'); update()">
-          <p id="reg-form-url-message" class="form-url-message" role="status"></p>
-        </div>
-        <div class="field">
-          <label>Submission Google Form URL <span class="req">*</span></label>
-          <input type="url" id="sub-form-url" placeholder="https://forms.gle/your-submission-link" oninput="validateFormUrl('sub-form-url'); update()">
-          <p id="sub-form-url-message" class="form-url-message" role="status"></p>
-        </div>
-        <div class="field-row3">
+        <div class="section-body open" id="body-problem">
+          <p class="section-intro">Define the core scientific or community challenge your hackathon aims to solve.</p>
           <div class="field">
-            <label>Min Team Size</label>
-            <input type="number" id="team-min" value="1" min="1" oninput="update()">
+            <label>Challenge Title</label>
+            <input type="text" id="prob-title" placeholder="The MSUD Dietary & Accuracy Challenge" oninput="update()">
           </div>
           <div class="field">
-            <label>Max Team Size</label>
-            <input type="number" id="team-max" value="4" min="1" oninput="update()">
+            <label>Detailed Description / Problem Overview</label>
+            <textarea id="prob-desc" rows="3" placeholder="Explain the pain point or gap in current tools..."
+              oninput="update()"></textarea>
           </div>
           <div class="field">
-            <label>Max Participants</label>
-            <input type="number" id="reg-max" placeholder="200" oninput="update()">
+            <label>Key Objectives &amp; Challenges <span class="hint">(one per line)</span></label>
+            <textarea id="prob-objectives" rows="3"
+              placeholder="Build open-source leucine estimation algorithms...&#10;Create living low-protein food databases..."
+              oninput="update()"></textarea>
           </div>
         </div>
-        <div class="flags-grid">
-          <div class="flag-item">
+      </div>
+
+      <!-- 2. DATES -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('dates')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg></span>
+            <h3>Dates &amp; Deadlines</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-dates">▼</span>
+        </div>
+        <div class="section-body open" id="body-dates">
+          <div class="field-row">
+            <div class="field">
+              <label>Registration Opens</label>
+              <input type="date" id="date-reg-open" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Registration Closes</label>
+              <input type="date" id="date-reg-close" oninput="update()">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Hackathon Starts</label>
+              <input type="date" id="date-start" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Hackathon Ends</label>
+              <input type="date" id="date-end" oninput="update()">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Submission Deadline</label>
+              <input type="date" id="date-sub" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Submission Time</label>
+              <input type="time" id="time-sub" oninput="update()">
+            </div>
+          </div>
+          <div class="field">
+            <label>Results Announced</label>
+            <input type="date" id="date-results" oninput="update()">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. TRACKS -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('tracks')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" />
+              </svg></span>
+            <h3>Challenge Tracks</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-tracks">▼</span>
+        </div>
+        <div class="section-body open" id="body-tracks">
+          <p class="section-intro">Define the challenge categories participants can submit to. Add as many as needed.
+          </p>
+          <div class="card-list" id="tracks-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addTrack()">+ Add Track</button>
+        </div>
+      </div>
+
+      <!-- 4. PRIZES -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('prizes')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg></span>
+            <h3>Prizes</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-prizes">▼</span>
+        </div>
+        <div class="section-body open" id="body-prizes">
+          <div class="flag-item" style="margin-bottom:14px">
             <div>
-              <div class="flag-label">Solo Participation</div>
-              <div class="flag-desc">Allow individuals to join</div>
+              <div class="flag-label">Per-Track Prizes</div>
+              <div class="flag-desc">Give separate prizes for each track instead of overall</div>
             </div>
             <label class="toggle">
-              <input type="checkbox" id="reg-solo" checked onchange="update()">
+              <input type="checkbox" id="prizes-per-track" onchange="update()">
               <span class="toggle-track"></span>
             </label>
           </div>
-          <div class="flag-item">
+          <div class="card-list" id="prizes-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addPrize()">+ Add Prize</button>
+        </div>
+      </div>
+
+      <!-- 4B. WINNERS & LEADERBOARD -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('winners')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="7" />
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+              </svg></span>
+            <h3>Winners Showcase &amp; Leaderboard</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-winners">▼</span>
+        </div>
+        <div class="section-body open" id="body-winners">
+          <p class="section-intro">Publish winning projects and leaderboard standings after judging completes.</p>
+          <div class="flag-item" style="margin-bottom:16px;">
             <div>
-              <div class="flag-label">Team Name Required</div>
-              <div class="flag-desc">Participants must name their team</div>
+              <div class="flag-label">Publish Winners &amp; Leaderboard</div>
+              <div class="flag-desc">Turn ON when winners are decided to display cards</div>
             </div>
             <label class="toggle">
-              <input type="checkbox" id="reg-teamname" checked onchange="update()">
+              <input type="checkbox" id="winners-announced" checked onchange="update()">
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+          <div class="card-list" id="winners-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addWinner()">+ Add Winner Project</button>
+        </div>
+      </div>
+
+      <!-- 5. JUDGES -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('judges')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="3" x2="12" y2="21" />
+                <path d="M16 16l3-8 3 8a3 3 0 0 1-6 0z" />
+                <path d="M2 16l3-8 3 8a3 3 0 0 1-6 0z" />
+                <path d="M7 21h10" />
+                <path d="M12 3L5 8" />
+                <path d="M12 3l7 5" />
+              </svg></span>
+            <h3>Judges</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-judges">▼</span>
+        </div>
+        <div class="section-body open" id="body-judges">
+          <div class="card-list" id="judges-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addJudge()">+ Add Judge</button>
+        </div>
+      </div>
+
+      <!-- 6. MENTORS (toggleable) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row" onclick="toggleSection('mentors')" style="cursor:pointer;flex:1">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg></span>
+            <h3>Mentors</h3>
+            <span class="badge-optional">Optional</span>
+          </div>
+          <div class="section-right">
+            <label class="toggle" title="Enable Mentors section">
+              <input type="checkbox" id="enable-mentors" checked onchange="toggleOptional('mentors'); update()">
+              <span class="toggle-track"></span>
+            </label>
+            <span class="section-arrow open" id="arrow-mentors" onclick="toggleSection('mentors')"
+              style="cursor:pointer">▼</span>
+          </div>
+        </div>
+        <div class="section-body open" id="body-mentors">
+          <p class="section-intro">Mentors guide participants during the event. Turn off if not applicable.</p>
+          <div class="card-list" id="mentors-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addMentor()">+ Add Mentor</button>
+        </div>
+      </div>
+
+      <!-- 7. SPONSORS (toggleable) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row" onclick="toggleSection('sponsors')" style="cursor:pointer;flex:1">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z" />
+              </svg></span>
+            <h3>Sponsors</h3>
+            <span class="badge-optional">Optional</span>
+          </div>
+          <div class="section-right">
+            <label class="toggle" title="Enable Sponsors section">
+              <input type="checkbox" id="enable-sponsors" checked onchange="toggleOptional('sponsors'); update()">
+              <span class="toggle-track"></span>
+            </label>
+            <span class="section-arrow open" id="arrow-sponsors" onclick="toggleSection('sponsors')"
+              style="cursor:pointer">▼</span>
+          </div>
+        </div>
+        <div class="section-body open" id="body-sponsors">
+          <p class="section-intro">Organizations supporting the hackathon with funding or resources.</p>
+          <div class="card-list" id="sponsors-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addSponsor()">+ Add Sponsor</button>
+        </div>
+      </div>
+
+      <!-- 8. SCHEDULE (toggleable) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row" onclick="toggleSection('schedule')" style="cursor:pointer;flex:1">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                <path d="M12 11h4" />
+                <path d="M12 16h4" />
+                <path d="M8 11h.01" />
+                <path d="M8 16h.01" />
+              </svg></span>
+            <h3>Schedule</h3>
+            <span class="badge-optional">Optional</span>
+          </div>
+          <div class="section-right">
+            <label class="toggle" title="Enable Schedule section">
+              <input type="checkbox" id="enable-schedule" checked onchange="toggleOptional('schedule'); update()">
+              <span class="toggle-track"></span>
+            </label>
+            <span class="section-arrow open" id="arrow-schedule" onclick="toggleSection('schedule')"
+              style="cursor:pointer">▼</span>
+          </div>
+        </div>
+        <div class="section-body open" id="body-schedule">
+          <p class="section-intro">Key events, workshops, deadlines, and milestones shown on the schedule page.</p>
+          <div class="card-list" id="schedule-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addScheduleItem()">+ Add Schedule Item</button>
+        </div>
+      </div>
+
+      <!-- 8B. RULES & GUIDELINES -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('rules')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg></span>
+            <h3>Rules &amp; Guidelines</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-rules">▼</span>
+        </div>
+        <div class="section-body open" id="body-rules">
+          <p class="section-intro">Participation rules, open-source licensing guidelines, and code of conduct.</p>
+          <div class="card-list" id="rules-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addRule()">+ Add Rule</button>
+        </div>
+      </div>
+
+      <!-- 9. REGISTRATION -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('registration')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg></span>
+            <h3>Registration</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-registration">▼</span>
+        </div>
+        <div class="section-body open" id="body-registration">
+          <p class="section-intro">Add your custom Google Form links for registration and project submissions. Create
+            forms on Google Forms and paste their links below.</p>
+          <div class="field">
+            <label>Registration Google Form URL <span class="req">*</span></label>
+            <input type="url" id="reg-form-url" placeholder="https://forms.gle/your-registration-link"
+              oninput="validateFormUrl('reg-form-url'); update()">
+            <p id="reg-form-url-message" class="form-url-message" role="status"></p>
+          </div>
+          <div class="field">
+            <label>Submission Google Form URL <span class="req">*</span></label>
+            <input type="url" id="sub-form-url" placeholder="https://forms.gle/your-submission-link"
+              oninput="validateFormUrl('sub-form-url'); update()">
+            <p id="sub-form-url-message" class="form-url-message" role="status"></p>
+          </div>
+          <div class="field-row3">
+            <div class="field">
+              <label>Min Team Size</label>
+              <input type="number" id="team-min" value="1" min="1" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Max Team Size</label>
+              <input type="number" id="team-max" value="4" min="1" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Max Participants</label>
+              <input type="number" id="reg-max" placeholder="200" oninput="update()">
+            </div>
+          </div>
+          <div class="flags-grid">
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Solo Participation</div>
+                <div class="flag-desc">Allow individuals to join</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="reg-solo" checked onchange="update()">
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Team Name Required</div>
+                <div class="flag-desc">Participants must name their team</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="reg-teamname" checked onchange="update()">
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. FAQ (toggleable) -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title-row" onclick="toggleSection('faq')" style="cursor:pointer;flex:1">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg></span>
+            <h3>FAQ</h3>
+            <span class="badge-optional">Optional</span>
+          </div>
+          <div class="section-right">
+            <label class="toggle" title="Enable FAQ section">
+              <input type="checkbox" id="enable-faq" checked onchange="toggleOptional('faq'); update()">
+              <span class="toggle-track"></span>
+            </label>
+            <span class="section-arrow open" id="arrow-faq" onclick="toggleSection('faq')"
+              style="cursor:pointer">▼</span>
+          </div>
+        </div>
+        <div class="section-body open" id="body-faq">
+          <div class="card-list" id="faq-list"></div>
+          <button class="btn btn-add btn-sm" onclick="addFaq()">+ Add Question</button>
+        </div>
+      </div>
+
+      <!-- 11. CONTACT -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('contact')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg></span>
+            <h3>Contact &amp; Social</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-contact">▼</span>
+        </div>
+        <div class="section-body open" id="body-contact">
+          <div class="field">
+            <label>Contact Email <span class="req">*</span></label>
+            <input type="email" id="contact-email" placeholder="hackathon@example.com" oninput="update()">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Discord Invite URL</label>
+              <input type="url" id="contact-discord" placeholder="https://discord.gg/XXXXX" oninput="update()">
+            </div>
+            <div class="field">
+              <label>Twitter / X Handle</label>
+              <input type="text" id="contact-twitter" placeholder="@handle" oninput="update()">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Event Website</label>
+              <input type="url" id="contact-website" placeholder="https://hackathon.example.com" oninput="update()">
+            </div>
+            <div class="field">
+              <label>GitHub Org URL</label>
+              <input type="url" id="contact-github" placeholder="https://github.com/org" oninput="update()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. BRANDING -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('branding')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5" />
+                <circle cx="17.5" cy="10.5" r=".5" />
+                <circle cx="8.5" cy="7.5" r=".5" />
+                <circle cx="6.5" cy="12.5" r=".5" />
+                <path
+                  d="M12 2C6.477 2 2 6.477 2 12c0 4.418 3.582 8 8 8a3 3 0 0 0 3-3c0-.883.39-1.667 1.01-2.203.498-.432.99-.958.99-1.797 0-1.105.895-2 2-2h1c2.21 0 4-1.79 4-4 0-4.418-4.477-8-10-8z" />
+              </svg></span>
+            <h3>Branding &amp; Theme</h3>
+          </div>
+          <span class="section-arrow open" id="arrow-branding">▼</span>
+        </div>
+        <div class="section-body open" id="body-branding">
+          <div class="field-row">
+            <div class="field">
+              <label>Primary Color</label>
+              <div class="color-row">
+                <input type="color" id="color-primary" value="#7c3aed" oninput="syncColor('primary')">
+                <input type="text" class="color-hex" id="color-primary-hex" value="#7c3aed"
+                  oninput="syncColorHex('primary')" maxlength="7">
+              </div>
+            </div>
+            <div class="field">
+              <label>Accent Color</label>
+              <div class="color-row">
+                <input type="color" id="color-accent" value="#06b6d4" oninput="syncColor('accent')">
+                <input type="text" class="color-hex" id="color-accent-hex" value="#06b6d4"
+                  oninput="syncColorHex('accent')" maxlength="7">
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Logo URL <span class="hint">(leave blank if using text logo)</span></label>
+            <input type="url" id="brand-logo" placeholder="https://example.com/logo.png" oninput="update()">
+          </div>
+          <div class="flag-item">
+            <div>
+              <div class="flag-label">Dark Mode Default</div>
+              <div class="flag-desc">Site loads in dark mode by default</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="brand-dark" checked onchange="update()">
               <span class="toggle-track"></span>
             </label>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 10. FAQ (toggleable) -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-title-row" onclick="toggleSection('faq')" style="cursor:pointer;flex:1">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
-          <h3>FAQ</h3>
-          <span class="badge-optional">Optional</span>
-        </div>
-        <div class="section-right">
-          <label class="toggle" title="Enable FAQ section">
-            <input type="checkbox" id="enable-faq" checked onchange="toggleOptional('faq'); update()">
-            <span class="toggle-track"></span>
-          </label>
-          <span class="section-arrow open" id="arrow-faq" onclick="toggleSection('faq')" style="cursor:pointer">▼</span>
-        </div>
-      </div>
-      <div class="section-body open" id="body-faq">
-        <div class="card-list" id="faq-list"></div>
-        <button class="btn btn-add btn-sm" onclick="addFaq()">+ Add Question</button>
-      </div>
-    </div>
-
-    <!-- 11. CONTACT -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('contact')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-          <h3>Contact &amp; Social</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-contact">▼</span>
-      </div>
-      <div class="section-body open" id="body-contact">
-        <div class="field">
-          <label>Contact Email <span class="req">*</span></label>
-          <input type="email" id="contact-email" placeholder="hackathon@example.com" oninput="update()">
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Discord Invite URL</label>
-            <input type="url" id="contact-discord" placeholder="https://discord.gg/XXXXX" oninput="update()">
+      <!-- 13. FEATURE FLAGS -->
+      <div class="section">
+        <div class="section-header" onclick="toggleSection('features')">
+          <div class="section-title-row">
+            <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg></span>
+            <h3>Feature Flags</h3>
           </div>
-          <div class="field">
-            <label>Twitter / X Handle</label>
-            <input type="text" id="contact-twitter" placeholder="@handle" oninput="update()">
-          </div>
+          <span class="section-arrow open" id="arrow-features">▼</span>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Event Website</label>
-            <input type="url" id="contact-website" placeholder="https://hackathon.example.com" oninput="update()">
-          </div>
-          <div class="field">
-            <label>GitHub Org URL</label>
-            <input type="url" id="contact-github" placeholder="https://github.com/org" oninput="update()">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 12. BRANDING -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('branding')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 3.582 8 8 8a3 3 0 0 0 3-3c0-.883.39-1.667 1.01-2.203.498-.432.99-.958.99-1.797 0-1.105.895-2 2-2h1c2.21 0 4-1.79 4-4 0-4.418-4.477-8-10-8z"/></svg></span>
-          <h3>Branding &amp; Theme</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-branding">▼</span>
-      </div>
-      <div class="section-body open" id="body-branding">
-        <div class="field-row">
-          <div class="field">
-            <label>Primary Color</label>
-            <div class="color-row">
-              <input type="color" id="color-primary" value="#7c3aed" oninput="syncColor('primary')">
-              <input type="text" class="color-hex" id="color-primary-hex" value="#7c3aed" oninput="syncColorHex('primary')" maxlength="7">
+        <div class="section-body open" id="body-features">
+          <p class="section-intro">Toggle which pages and features are active on your hackathon site.</p>
+          <div class="flags-grid">
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Problem Statement</div>
+                <div class="flag-desc">Show problem challenge section</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-problem" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Rules &amp; Guidelines</div>
+                <div class="flag-desc">Show rules &amp; conduct section</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-rules" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Mentors Page</div>
+                <div class="flag-desc">Show a /mentors section</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-mentors" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Sponsors Page</div>
+                <div class="flag-desc">Show a /sponsors page</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-sponsors" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Leaderboard</div>
+                <div class="flag-desc">Live project leaderboard</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-leaderboard" onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">FAQ Page</div>
+                <div class="flag-desc">Show a /faq page</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-faq" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Schedule Page</div>
+                <div class="flag-desc">Show a /schedule page</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-schedule" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">GitHub Submissions</div>
+                <div class="flag-desc">Use GitHub Issues for submissions</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-github-sub" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Google Form Backup</div>
+                <div class="flag-desc">Alternative submission via form</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-form-backup" checked onchange="update()"><span
+                  class="toggle-track"></span></label>
+            </div>
+            <div class="flag-item">
+              <div>
+                <div class="flag-label">Discord Widget</div>
+                <div class="flag-desc">Embed Discord invite widget</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="feat-discord" onchange="update()"><span
+                  class="toggle-track"></span></label>
             </div>
           </div>
-          <div class="field">
-            <label>Accent Color</label>
-            <div class="color-row">
-              <input type="color" id="color-accent" value="#06b6d4" oninput="syncColor('accent')">
-              <input type="text" class="color-hex" id="color-accent-hex" value="#06b6d4" oninput="syncColorHex('accent')" maxlength="7">
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label>Logo URL <span class="hint">(leave blank if using text logo)</span></label>
-          <input type="url" id="brand-logo" placeholder="https://example.com/logo.png" oninput="update()">
-        </div>
-        <div class="flag-item">
-          <div>
-            <div class="flag-label">Dark Mode Default</div>
-            <div class="flag-desc">Site loads in dark mode by default</div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" id="brand-dark" checked onchange="update()">
-            <span class="toggle-track"></span>
-          </label>
         </div>
       </div>
-    </div>
 
-    <!-- 13. FEATURE FLAGS -->
-    <div class="section">
-      <div class="section-header" onclick="toggleSection('features')">
-        <div class="section-title-row">
-          <span class="section-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
-          <h3>Feature Flags</h3>
-        </div>
-        <span class="section-arrow open" id="arrow-features">▼</span>
-      </div>
-      <div class="section-body open" id="body-features">
-        <p class="section-intro">Toggle which pages and features are active on your hackathon site.</p>
-        <div class="flags-grid">
-          <div class="flag-item">
-            <div><div class="flag-label">Problem Statement</div><div class="flag-desc">Show problem challenge section</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-problem" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Rules &amp; Guidelines</div><div class="flag-desc">Show rules &amp; conduct section</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-rules" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Mentors Page</div><div class="flag-desc">Show a /mentors section</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-mentors" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Sponsors Page</div><div class="flag-desc">Show a /sponsors page</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-sponsors" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Leaderboard</div><div class="flag-desc">Live project leaderboard</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-leaderboard" onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">FAQ Page</div><div class="flag-desc">Show a /faq page</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-faq" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Schedule Page</div><div class="flag-desc">Show a /schedule page</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-schedule" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">GitHub Submissions</div><div class="flag-desc">Use GitHub Issues for submissions</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-github-sub" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Google Form Backup</div><div class="flag-desc">Alternative submission via form</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-form-backup" checked onchange="update()"><span class="toggle-track"></span></label>
-          </div>
-          <div class="flag-item">
-            <div><div class="flag-label">Discord Widget</div><div class="flag-desc">Embed Discord invite widget</div></div>
-            <label class="toggle"><input type="checkbox" id="feat-discord" onchange="update()"><span class="toggle-track"></span></label>
+      <!-- 13. GENERATE & DOWNLOAD CARD -->
+      <div class="section" style="border: 2px solid var(--accent); background: #ffffff; margin-top: 30px;">
+        <div style="padding: 30px 24px; text-align: center;">
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Ready to Save Your
+            Configuration?</h3>
+          <p
+            style="color: var(--text2); margin-bottom: 24px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            Download your generated <code>hackathon.config.yml</code> file or copy it to your clipboard. Replace this
+            file in your GitHub repository to update your live website.
+          </p>
+          <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-ghost btn-sm" onclick="copyYAML()"
+              style="padding: 12px 24px; font-size: 14px; font-weight: 600;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              Copy YAML
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="downloadYAML()"
+              style="padding: 12px 28px; font-size: 14px; font-weight: 700;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download hackathon.config.yml
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 13. GENERATE & DOWNLOAD CARD -->
-    <div class="section" style="border: 2px solid var(--accent); background: #ffffff; margin-top: 30px;">
-      <div style="padding: 30px 24px; text-align: center;">
-        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--text);">Ready to Save Your Configuration?</h3>
-        <p style="color: var(--text2); margin-bottom: 24px; max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-          Download your generated <code>hackathon.config.yml</code> file or copy it to your clipboard. Replace this file in your GitHub repository to update your live website.
-        </p>
-        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
-          <button class="btn btn-ghost btn-sm" onclick="copyYAML()" style="padding: 12px 24px; font-size: 14px; font-weight: 600;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Copy YAML
-          </button>
-          <button class="btn btn-primary btn-sm" onclick="downloadYAML()" style="padding: 12px 28px; font-size: 14px; font-weight: 700;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download hackathon.config.yml
-          </button>
-        </div>
-      </div>
-    </div>
+    </div><!-- end form-panel -->
 
-  </div><!-- end form-panel -->
+    <div class="yaml-output" id="yamlOutput" style="display:none"></div>
 
-  <div class="yaml-output" id="yamlOutput" style="display:none"></div>
+  </div><!-- end layout -->
 
-</div><!-- end layout -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
 
-<div class="toast" id="toast">Copied to clipboard!</div>
+  <script>
+    // ============================================================
+    // DATA STORES
+    // ============================================================
+    let tracks = [];
+    let prizes = [];
+    let winners = [];
+    let judges = [];
+    let mentors = [];
+    let sponsors = [];
+    let schedule = [];
+    let rules = [];
+    let faqs = [];
 
-<script>
-// ============================================================
-// DATA STORES
-// ============================================================
-let tracks   = [];
-let prizes   = [];
-let winners  = [];
-let judges   = [];
-let mentors  = [];
-let sponsors = [];
-let schedule = [];
-let rules    = [];
-let faqs     = [];
+    // Keep an organizer's in-progress work in this browser until they choose Reset.
+    // Nothing is sent to a server.
+    const DRAFT_STORAGE_KEY = 'hackathon-config-generator-draft-v1';
 
-// Keep an organizer's in-progress work in this browser until they choose Reset.
-// Nothing is sent to a server.
-const DRAFT_STORAGE_KEY = 'hackathon-config-generator-draft-v1';
-
-function getSavedDraft() {
-  try {
-    const draft = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY));
-    return draft && draft.version === 1 ? draft : null;
-  } catch (err) {
-    console.warn('Could not read the saved configuration draft:', err);
-    return null;
-  }
-}
-
-function saveDraft() {
-  try {
-    const fields = {};
-    document.querySelectorAll('input[id], textarea[id], select[id]').forEach(el => {
-      fields[el.id] = el.type === 'checkbox' ? { checked: el.checked } : { value: el.value };
-    });
-
-    localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({
-      version: 1,
-      fields,
-      collections: { tracks, prizes, winners, judges, mentors, sponsors, schedule, rules, faqs }
-    }));
-  } catch (err) {
-    console.warn('Could not save the configuration draft:', err);
-  }
-}
-
-function restoreDraft() {
-  const draft = getSavedDraft();
-  if (!draft) return false;
-
-  const savedLists = draft.collections || {};
-  const restoreList = name => Array.isArray(savedLists[name])
-    ? savedLists[name].map(item => ({ ...item }))
-    : [];
-
-  tracks   = restoreList('tracks');
-  prizes   = restoreList('prizes');
-  winners  = restoreList('winners');
-  judges   = restoreList('judges');
-  mentors  = restoreList('mentors');
-  sponsors = restoreList('sponsors');
-  schedule = restoreList('schedule');
-  rules    = restoreList('rules');
-  faqs     = restoreList('faqs');
-
-  Object.entries(draft.fields || {}).forEach(([id, saved]) => {
-    const el = document.getElementById(id);
-    if (!el || !saved) return;
-    if (el.type === 'checkbox') el.checked = Boolean(saved.checked);
-    else if (typeof saved.value === 'string') el.value = saved.value;
-  });
-
-  renderTracks();
-  renderPrizes();
-  renderWinners();
-  renderJudges();
-  renderMentors();
-  renderSponsors();
-  renderSchedule();
-  renderRules();
-  renderFaq();
-
-  document.querySelectorAll('input[id^="enable-"]').forEach(input => {
-    toggleOptional(input.id.replace('enable-', ''));
-  });
-
-  return true;
-}
-
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2400);
-}
-
-function loadDefaultContent() {
-  addTrack('Phenylalanine Estimation & Accuracy', 'Improve the accuracy of phenylalanine-estimator models and algorithms scored against public benchmarks.');
-  addTrack('Living Low-Protein Food Database', 'Expand cited, schema\'d food lists and clinician-verified nutritional data for PKU diets.');
-  addTrack('Hardware & Smart Scale Integrations', 'Connect smart kitchen scales directly to mobile devices and web apps for real-time protein tracking.');
-  addPrize('1st Place (Grand Winner)', '$1,000', 'Highest scoring project on the public benchmark & judge evaluation.');
-  addPrize('2nd Place (Runner-up)', '$500', 'Exceptional contribution to core infrastructure.');
-  addPrize('3rd Place', '$250', 'Strong overall project with notable community impact.');
-  addWinner('1st Place (Grand Winner)', 'Team PheOps', 'Open Phenylalanine Benchmarking Engine', 'Phenylalanine Estimation & Accuracy', '$1,000', 'https://github.com', 'https://example.com');
-  addWinner('2nd Place (Runner-up)', 'PheTrack Squad', 'Connected Scale WebBluetooth Driver', 'Hardware & Smart Scale Integrations', '$500', 'https://github.com', '');
-  addJudge('Nina Kilbride', 'Founder, Cureledger | Director, Phebe', 'Cureledger / Phebe', './assets/judges/nina.jpg', 'https://linkedin.com');
-  addJudge('Akshay Gurav', 'AI/ML & Full-Stack Developer', 'PKU Commons', './assets/judges/akshay.jpg', 'https://github.com');
-  addMentor('Dr. Elena Ruiz', 'Metabolic Genetics & PKU Nutrition', './assets/mentors/elena.jpg', 'https://linkedin.com');
-  addMentor('Sam Patel', 'Bluetooth Low Energy & Web Bluetooth', './assets/mentors/sam.jpg', 'https://github.com');
-  addSponsor('PKU Commons', './assets/sponsors/pku-commons.png', 'https://pku.community', 'Platinum');
-  addSponsor('National PKU Alliance', './assets/sponsors/npkua.png', 'https://npkua.org', 'Gold');
-  addScheduleItem('2026-10-15', '09:00', 'Virtual Kickoff & Table Stream', 'Welcome address, hackathon rules, and problem area walkthrough.', 'opening');
-  addScheduleItem('2026-10-16', '14:00', 'Benchmark & Skill Workshop', 'How to run the accuracy benchmark locally and test your model.', 'workshop');
-  addScheduleItem('2026-10-30', '23:59', 'Project Submission Deadline', 'All submissions must be finalized via the submission form.', 'deadline');
-  addScheduleItem('2026-11-05', '17:00', 'Winners Announcement Live Stream', 'Judges present awards and demo winning projects.', 'closing');
-  addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
-  addRule('Original Work', 'Projects must be built during the hackathon timeline.');
-  addFaq('Who can participate?', 'Anyone! Developers, researchers, dietitians, PKU patients, and family members are all welcome to join and build.');
-  addFaq('Is there a registration fee?', 'No, participation is completely free.');
-
-  // Set default values in basic fields
-  if (document.getElementById('event-name')) document.getElementById('event-name').value = "PKU Commons Science Hackathon 2026";
-  if (document.getElementById('event-tagline')) document.getElementById('event-tagline').value = "Building Open Science & Metabolic Tools for the PKU Community";
-  if (document.getElementById('event-desc')) document.getElementById('event-desc').value = "A virtual science hackathon for Phenylketonuria (PKU). We bring together developers, researchers, dietitians, and families to improve open phenylalanine-estimation tools, living low-protein food databases, and home phenylalanine-monitoring scale integrations.";
-  if (document.getElementById('event-disorder')) document.getElementById('event-disorder').value = "Phenylketonuria (PKU)";
-  if (document.getElementById('event-community')) document.getElementById('event-community').value = "PKU Commons";
-  if (document.getElementById('event-community-url')) document.getElementById('event-community-url').value = "https://pku.community";
-
-  if (document.getElementById('prob-title')) document.getElementById('prob-title').value = "The PKU Phenylalanine & Diet Accuracy Challenge";
-  if (document.getElementById('prob-desc')) document.getElementById('prob-desc').value = "People living with Phenylketonuria (PKU) must strictly restrict phenylalanine intake to prevent neurological complications. Current tools for tracking phenylalanine and protein levels are fragmented, lack clinician validation, or require manually searching multiple nutritional databases.";
-  if (document.getElementById('prob-objectives')) document.getElementById('prob-objectives').value = "Build open-source phenylalanine estimation algorithms benchmarked against validated clinical datasets.\nCreate living, schema-structured low-protein food databases with verified nutritional data.\nDevelop smart kitchen scale integrations to automate real-time protein weighing for PKU families.";
-
-  if (document.getElementById('date-reg-open')) document.getElementById('date-reg-open').value = "2026-09-01";
-  if (document.getElementById('date-reg-close')) document.getElementById('date-reg-close').value = "2026-10-01";
-  if (document.getElementById('date-start')) document.getElementById('date-start').value = "2026-10-15";
-  if (document.getElementById('date-end')) document.getElementById('date-end').value = "2026-10-30";
-  if (document.getElementById('date-sub')) document.getElementById('date-sub').value = "2026-10-30";
-  if (document.getElementById('time-sub')) document.getElementById('time-sub').value = "23:59";
-  if (document.getElementById('date-results')) document.getElementById('date-results').value = "2026-11-05";
-
-  if (document.getElementById('reg-form-url')) document.getElementById('reg-form-url').value = "https://forms.gle/sample-pku-registration";
-  if (document.getElementById('sub-form-url')) document.getElementById('sub-form-url').value = "https://forms.gle/sample-pku-submission";
-  if (document.getElementById('contact-email')) document.getElementById('contact-email').value = "hackathon@pku.community";
-  if (document.getElementById('contact-discord')) document.getElementById('contact-discord').value = "https://discord.gg/pku-commons";
-  if (document.getElementById('contact-twitter')) document.getElementById('contact-twitter').value = "@PKUCommons";
-  if (document.getElementById('contact-website')) document.getElementById('contact-website').value = "https://pku.community";
-  if (document.getElementById('contact-github')) document.getElementById('contact-github').value = "https://github.com/PKUCommons";
-
-  if (document.getElementById('color-primary')) document.getElementById('color-primary').value = "#4f46e5";
-  if (document.getElementById('color-primary-hex')) document.getElementById('color-primary-hex').value = "#4f46e5";
-  if (document.getElementById('color-accent')) document.getElementById('color-accent').value = "#0ea5e9";
-  if (document.getElementById('color-accent-hex')) document.getElementById('color-accent-hex').value = "#0ea5e9";
-  if (document.getElementById('brand-dark')) document.getElementById('brand-dark').checked = true;
-}
-
-// ============================================================
-// INIT
-// ============================================================
-window.onload = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const forceEmpty = urlParams.get('empty') === 'true';
-
-  if (forceEmpty) {
-    // Empty collections
-    tracks = [];
-    prizes = [];
-    winners = [];
-    judges = [];
-    mentors = [];
-    sponsors = [];
-    schedule = [];
-    rules = [];
-    faqs = [];
-    
-    // Render empty grids/lists
-    renderTracks();
-    renderPrizes();
-    renderWinners();
-    renderJudges();
-    renderMentors();
-    renderSponsors();
-    renderSchedule();
-    renderRules();
-    renderFaq();
-    
-    // Clear inputs in DOM
-    document.querySelectorAll('input[id], textarea[id]').forEach(el => {
-      if (el.type === 'checkbox') {
-        el.checked = false;
-      } else if (el.type === 'color') {
-        el.value = '#000000';
-      } else {
-        el.value = '';
+    function getSavedDraft() {
+      try {
+        const draft = JSON.parse(localStorage.getItem(DRAFT_STORAGE_KEY));
+        return draft && draft.version === 1 ? draft : null;
+      } catch (err) {
+        console.warn('Could not read the saved configuration draft:', err);
+        return null;
       }
-    });
-    
-    update();
-    setTimeout(() => showToast('All fields cleared!'), 150);
-  } else {
-    const restored = restoreDraft();
-    if (!restored) loadDefaultContent();
-    validateFormUrl('reg-form-url');
-    validateFormUrl('sub-form-url');
-    update();
-    if (restored) setTimeout(() => showToast('Saved draft restored from this browser.'), 150);
-  }
-};
+    }
 
-// ============================================================
-// SECTION COLLAPSE / EXPAND
-// ============================================================
-function toggleSection(id) {
-  const body  = document.getElementById('body-' + id);
-  const arrow = document.getElementById('arrow-' + id);
-  if (!body) return;
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  if (arrow) arrow.classList.toggle('open', !isOpen);
-}
+    function saveDraft() {
+      try {
+        const fields = {};
+        document.querySelectorAll('input[id], textarea[id], select[id]').forEach(el => {
+          fields[el.id] = el.type === 'checkbox' ? { checked: el.checked } : { value: el.value };
+        });
 
-function toggleOptional(id) {
-  const enabled = document.getElementById('enable-' + id).checked;
-  const body    = document.getElementById('body-' + id);
-  if (body) body.classList.toggle('disabled', !enabled);
-}
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({
+          version: 1,
+          fields,
+          collections: { tracks, prizes, winners, judges, mentors, sponsors, schedule, rules, faqs }
+        }));
+      } catch (err) {
+        console.warn('Could not save the configuration draft:', err);
+      }
+    }
 
-// ============================================================
-// COLOR SYNC
-// ============================================================
-function syncColor(name) {
-  const val = document.getElementById('color-' + name).value;
-  document.getElementById('color-' + name + '-hex').value = val;
-  update();
-}
-function syncColorHex(name) {
-  let val = document.getElementById('color-' + name + '-hex').value;
-  if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
-    document.getElementById('color-' + name).value = val;
-  }
-  update();
-}
+    function restoreDraft() {
+      const draft = getSavedDraft();
+      if (!draft) return false;
 
-// ============================================================
-// DYNAMIC CARD RENDERERS
-// ============================================================
+      const savedLists = draft.collections || {};
+      const restoreList = name => Array.isArray(savedLists[name])
+        ? savedLists[name].map(item => ({ ...item }))
+        : [];
 
-// --- TRACKS ---
-function addTrack(name = '', desc = '') {
-  tracks.push({ name, desc });
-  renderTracks();
-  update();
-}
-function removeTrack(i) {
-  tracks.splice(i, 1);
-  renderTracks();
-  update();
-}
-function renderTracks() {
-  const el = document.getElementById('tracks-list');
-  el.innerHTML = tracks.map((t, i) => `
+      tracks = restoreList('tracks');
+      prizes = restoreList('prizes');
+      winners = restoreList('winners');
+      judges = restoreList('judges');
+      mentors = restoreList('mentors');
+      sponsors = restoreList('sponsors');
+      schedule = restoreList('schedule');
+      rules = restoreList('rules');
+      faqs = restoreList('faqs');
+
+      Object.entries(draft.fields || {}).forEach(([id, saved]) => {
+        const el = document.getElementById(id);
+        if (!el || !saved) return;
+        if (el.type === 'checkbox') el.checked = Boolean(saved.checked);
+        else if (typeof saved.value === 'string') el.value = saved.value;
+      });
+
+      renderTracks();
+      renderPrizes();
+      renderWinners();
+      renderJudges();
+      renderMentors();
+      renderSponsors();
+      renderSchedule();
+      renderRules();
+      renderFaq();
+
+      document.querySelectorAll('input[id^="enable-"]').forEach(input => {
+        toggleOptional(input.id.replace('enable-', ''));
+      });
+
+      return true;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    function loadDefaultContent() {
+      addTrack('Phenylalanine Estimation & Accuracy', 'Improve the accuracy of phenylalanine-estimator models and algorithms scored against public benchmarks.');
+      addTrack('Living Low-Protein Food Database', 'Expand cited, schema\'d food lists and clinician-verified nutritional data for PKU diets.');
+      addTrack('Hardware & Smart Scale Integrations', 'Connect smart kitchen scales directly to mobile devices and web apps for real-time protein tracking.');
+      addPrize('1st Place (Grand Winner)', '$1,000', 'Highest scoring project on the public benchmark & judge evaluation.');
+      addPrize('2nd Place (Runner-up)', '$500', 'Exceptional contribution to core infrastructure.');
+      addPrize('3rd Place', '$250', 'Strong overall project with notable community impact.');
+      addWinner('1st Place (Grand Winner)', 'Team PheOps', 'Open Phenylalanine Benchmarking Engine', 'Phenylalanine Estimation & Accuracy', '$1,000', 'https://github.com', 'https://example.com');
+      addWinner('2nd Place (Runner-up)', 'PheTrack Squad', 'Connected Scale WebBluetooth Driver', 'Hardware & Smart Scale Integrations', '$500', 'https://github.com', '');
+      addJudge('Nina Kilbride', 'Founder, Cureledger | Director, Phebe', 'Cureledger / Phebe', './assets/judges/nina.jpg', 'https://linkedin.com');
+      addJudge('Akshay Gurav', 'AI/ML & Full-Stack Developer', 'PKU Commons', './assets/judges/akshay.jpg', 'https://github.com');
+      addMentor('Dr. Elena Ruiz', 'Metabolic Genetics & PKU Nutrition', './assets/mentors/elena.jpg', 'https://linkedin.com');
+      addMentor('Sam Patel', 'Bluetooth Low Energy & Web Bluetooth', './assets/mentors/sam.jpg', 'https://github.com');
+      addSponsor('PKU Commons', './assets/sponsors/pku-commons.png', 'https://pku.community', 'Platinum');
+      addSponsor('National PKU Alliance', './assets/sponsors/npkua.png', 'https://npkua.org', 'Gold');
+      addScheduleItem('2026-10-15', '09:00', 'Virtual Kickoff & Table Stream', 'Welcome address, hackathon rules, and problem area walkthrough.', 'opening');
+      addScheduleItem('2026-10-16', '14:00', 'Benchmark & Skill Workshop', 'How to run the accuracy benchmark locally and test your model.', 'workshop');
+      addScheduleItem('2026-10-30', '23:59', 'Project Submission Deadline', 'All submissions must be finalized via the submission form.', 'deadline');
+      addScheduleItem('2026-11-05', '17:00', 'Winners Announcement Live Stream', 'Judges present awards and demo winning projects.', 'closing');
+      addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
+      addRule('Original Work', 'Projects must be built during the hackathon timeline.');
+      addFaq('Who can participate?', 'Anyone! Developers, researchers, dietitians, PKU patients, and family members are all welcome to join and build.');
+      addFaq('Is there a registration fee?', 'No, participation is completely free.');
+
+      // Set default values in basic fields
+      if (document.getElementById('event-name')) document.getElementById('event-name').value = "PKU Commons Science Hackathon 2026";
+      if (document.getElementById('event-tagline')) document.getElementById('event-tagline').value = "Building Open Science & Metabolic Tools for the PKU Community";
+      if (document.getElementById('event-desc')) document.getElementById('event-desc').value = "A virtual science hackathon for Phenylketonuria (PKU). We bring together developers, researchers, dietitians, and families to improve open phenylalanine-estimation tools, living low-protein food databases, and home phenylalanine-monitoring scale integrations.";
+      if (document.getElementById('event-disorder')) document.getElementById('event-disorder').value = "Phenylketonuria (PKU)";
+      if (document.getElementById('event-community')) document.getElementById('event-community').value = "PKU Commons";
+      if (document.getElementById('event-community-url')) document.getElementById('event-community-url').value = "https://pku.community";
+
+      if (document.getElementById('prob-title')) document.getElementById('prob-title').value = "The PKU Phenylalanine & Diet Accuracy Challenge";
+      if (document.getElementById('prob-desc')) document.getElementById('prob-desc').value = "People living with Phenylketonuria (PKU) must strictly restrict phenylalanine intake to prevent neurological complications. Current tools for tracking phenylalanine and protein levels are fragmented, lack clinician validation, or require manually searching multiple nutritional databases.";
+      if (document.getElementById('prob-objectives')) document.getElementById('prob-objectives').value = "Build open-source phenylalanine estimation algorithms benchmarked against validated clinical datasets.\nCreate living, schema-structured low-protein food databases with verified nutritional data.\nDevelop smart kitchen scale integrations to automate real-time protein weighing for PKU families.";
+
+      if (document.getElementById('date-reg-open')) document.getElementById('date-reg-open').value = "2026-09-01";
+      if (document.getElementById('date-reg-close')) document.getElementById('date-reg-close').value = "2026-10-01";
+      if (document.getElementById('date-start')) document.getElementById('date-start').value = "2026-10-15";
+      if (document.getElementById('date-end')) document.getElementById('date-end').value = "2026-10-30";
+      if (document.getElementById('date-sub')) document.getElementById('date-sub').value = "2026-10-30";
+      if (document.getElementById('time-sub')) document.getElementById('time-sub').value = "23:59";
+      if (document.getElementById('date-results')) document.getElementById('date-results').value = "2026-11-05";
+
+      if (document.getElementById('reg-form-url')) document.getElementById('reg-form-url').value = "https://forms.gle/sample-pku-registration";
+      if (document.getElementById('sub-form-url')) document.getElementById('sub-form-url').value = "https://forms.gle/sample-pku-submission";
+      if (document.getElementById('contact-email')) document.getElementById('contact-email').value = "hackathon@pku.community";
+      if (document.getElementById('contact-discord')) document.getElementById('contact-discord').value = "https://discord.gg/pku-commons";
+      if (document.getElementById('contact-twitter')) document.getElementById('contact-twitter').value = "@PKUCommons";
+      if (document.getElementById('contact-website')) document.getElementById('contact-website').value = "https://pku.community";
+      if (document.getElementById('contact-github')) document.getElementById('contact-github').value = "https://github.com/PKUCommons";
+
+      if (document.getElementById('color-primary')) document.getElementById('color-primary').value = "#4f46e5";
+      if (document.getElementById('color-primary-hex')) document.getElementById('color-primary-hex').value = "#4f46e5";
+      if (document.getElementById('color-accent')) document.getElementById('color-accent').value = "#0ea5e9";
+      if (document.getElementById('color-accent-hex')) document.getElementById('color-accent-hex').value = "#0ea5e9";
+      if (document.getElementById('brand-dark')) document.getElementById('brand-dark').checked = true;
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceEmpty = urlParams.get('empty') === 'true';
+
+      if (forceEmpty) {
+        // Empty collections
+        tracks = [];
+        prizes = [];
+        winners = [];
+        judges = [];
+        mentors = [];
+        sponsors = [];
+        schedule = [];
+        rules = [];
+        faqs = [];
+
+        // Render empty grids/lists
+        renderTracks();
+        renderPrizes();
+        renderWinners();
+        renderJudges();
+        renderMentors();
+        renderSponsors();
+        renderSchedule();
+        renderRules();
+        renderFaq();
+
+        // Clear inputs in DOM
+        document.querySelectorAll('input[id], textarea[id]').forEach(el => {
+          if (el.type === 'checkbox') {
+            el.checked = false;
+          } else if (el.type === 'color') {
+            el.value = '#000000';
+          } else {
+            el.value = '';
+          }
+        });
+
+        update();
+        setTimeout(() => showToast('All fields cleared!'), 150);
+      } else {
+        const restored = restoreDraft();
+        if (!restored) loadDefaultContent();
+        validateFormUrl('reg-form-url');
+        validateFormUrl('sub-form-url');
+        update();
+        if (restored) setTimeout(() => showToast('Saved draft restored from this browser.'), 150);
+      }
+    };
+
+    // ============================================================
+    // SECTION COLLAPSE / EXPAND
+    // ============================================================
+    function toggleSection(id) {
+      const body = document.getElementById('body-' + id);
+      const arrow = document.getElementById('arrow-' + id);
+      if (!body) return;
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      if (arrow) arrow.classList.toggle('open', !isOpen);
+    }
+
+    function toggleOptional(id) {
+      const enabled = document.getElementById('enable-' + id).checked;
+      const body = document.getElementById('body-' + id);
+      if (body) body.classList.toggle('disabled', !enabled);
+    }
+
+    // ============================================================
+    // COLOR SYNC
+    // ============================================================
+    function syncColor(name) {
+      const val = document.getElementById('color-' + name).value;
+      document.getElementById('color-' + name + '-hex').value = val;
+      update();
+    }
+    function syncColorHex(name) {
+      let val = document.getElementById('color-' + name + '-hex').value;
+      if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+        document.getElementById('color-' + name).value = val;
+      }
+      update();
+    }
+
+    // ============================================================
+    // DYNAMIC CARD RENDERERS
+    // ============================================================
+
+    // --- TRACKS ---
+    function addTrack(name = '', desc = '') {
+      tracks.push({ name, desc });
+      renderTracks();
+      update();
+    }
+    function removeTrack(i) {
+      tracks.splice(i, 1);
+      renderTracks();
+      update();
+    }
+    function renderTracks() {
+      const el = document.getElementById('tracks-list');
+      el.innerHTML = tracks.map((t, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Track ${i + 1}</span>
@@ -1433,22 +1770,22 @@ function renderTracks() {
           oninput="tracks[${i}].desc=this.value;update()">${esc(t.desc)}</textarea>
       </div>
     </div>`).join('');
-}
+    }
 
-// --- PRIZES ---
-function addPrize(place = '', amount = '', desc = '') {
-  prizes.push({ place, amount, desc });
-  renderPrizes();
-  update();
-}
-function removePrize(i) {
-  prizes.splice(i, 1);
-  renderPrizes();
-  update();
-}
-function renderPrizes() {
-  const el = document.getElementById('prizes-list');
-  el.innerHTML = prizes.map((p, i) => `
+    // --- PRIZES ---
+    function addPrize(place = '', amount = '', desc = '') {
+      prizes.push({ place, amount, desc });
+      renderPrizes();
+      update();
+    }
+    function removePrize(i) {
+      prizes.splice(i, 1);
+      renderPrizes();
+      update();
+    }
+    function renderPrizes() {
+      const el = document.getElementById('prizes-list');
+      el.innerHTML = prizes.map((p, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Prize ${i + 1}</span>
@@ -1472,23 +1809,23 @@ function renderPrizes() {
           oninput="prizes[${i}].desc=this.value;update()">
       </div>
   </div>`).join('');
-}
+    }
 
-// --- WINNERS ---
-function addWinner(place = '', team = '', project = '', track = '', prize = '', repo_url = '', demo_url = '') {
-  winners.push({ place, team, project, track, prize, repo_url, demo_url });
-  renderWinners();
-  update();
-}
-function removeWinner(i) {
-  winners.splice(i, 1);
-  renderWinners();
-  update();
-}
-function renderWinners() {
-  const el = document.getElementById('winners-list');
-  if (!el) return;
-  el.innerHTML = winners.map((w, i) => `
+    // --- WINNERS ---
+    function addWinner(place = '', team = '', project = '', track = '', prize = '', repo_url = '', demo_url = '') {
+      winners.push({ place, team, project, track, prize, repo_url, demo_url });
+      renderWinners();
+      update();
+    }
+    function removeWinner(i) {
+      winners.splice(i, 1);
+      renderWinners();
+      update();
+    }
+    function renderWinners() {
+      const el = document.getElementById('winners-list');
+      if (!el) return;
+      el.innerHTML = winners.map((w, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Winner ${i + 1}</span>
@@ -1536,22 +1873,22 @@ function renderWinners() {
         </div>
       </div>
     </div>`).join('');
-}
+    }
 
-// --- JUDGES ---
-function addJudge(name = '', title = '', org = '', photo = '', linkedin = '') {
-  judges.push({ name, title, org, photo, linkedin });
-  renderJudges();
-  update();
-}
-function removeJudge(i) {
-  judges.splice(i, 1);
-  renderJudges();
-  update();
-}
-function renderJudges() {
-  const el = document.getElementById('judges-list');
-  el.innerHTML = judges.map((j, i) => `
+    // --- JUDGES ---
+    function addJudge(name = '', title = '', org = '', photo = '', linkedin = '') {
+      judges.push({ name, title, org, photo, linkedin });
+      renderJudges();
+      update();
+    }
+    function removeJudge(i) {
+      judges.splice(i, 1);
+      renderJudges();
+      update();
+    }
+    function renderJudges() {
+      const el = document.getElementById('judges-list');
+      el.innerHTML = judges.map((j, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Judge ${i + 1}</span>
@@ -1587,22 +1924,22 @@ function renderJudges() {
         </div>
       </div>
     </div>`).join('');
-}
+    }
 
-// --- MENTORS ---
-function addMentor(name = '', expertise = '', photo = '', contact = '') {
-  mentors.push({ name, expertise, photo, contact });
-  renderMentors();
-  update();
-}
-function removeMentor(i) {
-  mentors.splice(i, 1);
-  renderMentors();
-  update();
-}
-function renderMentors() {
-  const el = document.getElementById('mentors-list');
-  el.innerHTML = mentors.map((m, i) => `
+    // --- MENTORS ---
+    function addMentor(name = '', expertise = '', photo = '', contact = '') {
+      mentors.push({ name, expertise, photo, contact });
+      renderMentors();
+      update();
+    }
+    function removeMentor(i) {
+      mentors.splice(i, 1);
+      renderMentors();
+      update();
+    }
+    function renderMentors() {
+      const el = document.getElementById('mentors-list');
+      el.innerHTML = mentors.map((m, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Mentor ${i + 1}</span>
@@ -1633,22 +1970,22 @@ function renderMentors() {
         </div>
       </div>
     </div>`).join('');
-}
+    }
 
-// --- SPONSORS ---
-function addSponsor(name = '', logo = '', url = '', tier = 'Gold') {
-  sponsors.push({ name, logo, url, tier });
-  renderSponsors();
-  update();
-}
-function removeSponsor(i) {
-  sponsors.splice(i, 1);
-  renderSponsors();
-  update();
-}
-function renderSponsors() {
-  const el = document.getElementById('sponsors-list');
-  el.innerHTML = sponsors.map((s, i) => `
+    // --- SPONSORS ---
+    function addSponsor(name = '', logo = '', url = '', tier = 'Gold') {
+      sponsors.push({ name, logo, url, tier });
+      renderSponsors();
+      update();
+    }
+    function removeSponsor(i) {
+      sponsors.splice(i, 1);
+      renderSponsors();
+      update();
+    }
+    function renderSponsors() {
+      const el = document.getElementById('sponsors-list');
+      el.innerHTML = sponsors.map((s, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Sponsor ${i + 1}</span>
@@ -1663,8 +2000,8 @@ function renderSponsors() {
         <div class="field">
           <label>Tier</label>
           <select oninput="sponsors[${i}].tier=this.value;update()">
-            ${['Platinum','Gold','Silver','Bronze','Community','In-Kind'].map(t =>
-              `<option${s.tier===t?' selected':''}>${t}</option>`).join('')}
+            ${['Platinum', 'Gold', 'Silver', 'Bronze', 'Community', 'In-Kind'].map(t =>
+        `<option${s.tier === t ? ' selected' : ''}>${t}</option>`).join('')}
           </select>
         </div>
       </div>
@@ -1679,23 +2016,23 @@ function renderSponsors() {
           oninput="sponsors[${i}].logo=this.value;update()">
       </div>
     </div>`).join('');
-}
+    }
 
-// --- SCHEDULE ---
-function addScheduleItem(date = '', time = '', title = '', desc = '', type = 'milestone') {
-  schedule.push({ date, time, title, desc, type });
-  renderSchedule();
-  update();
-}
-function removeScheduleItem(i) {
-  schedule.splice(i, 1);
-  renderSchedule();
-  update();
-}
-function renderSchedule() {
-  const types = ['keynote','workshop','deadline','milestone','social','opening','closing','other'];
-  const el = document.getElementById('schedule-list');
-  el.innerHTML = schedule.map((s, i) => `
+    // --- SCHEDULE ---
+    function addScheduleItem(date = '', time = '', title = '', desc = '', type = 'milestone') {
+      schedule.push({ date, time, title, desc, type });
+      renderSchedule();
+      update();
+    }
+    function removeScheduleItem(i) {
+      schedule.splice(i, 1);
+      renderSchedule();
+      update();
+    }
+    function renderSchedule() {
+      const types = ['keynote', 'workshop', 'deadline', 'milestone', 'social', 'opening', 'closing', 'other'];
+      const el = document.getElementById('schedule-list');
+      el.innerHTML = schedule.map((s, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Event ${i + 1}</span>
@@ -1720,7 +2057,7 @@ function renderSchedule() {
         <div class="field">
           <label>Type</label>
           <select oninput="schedule[${i}].type=this.value;update()">
-            ${types.map(t => `<option${s.type===t?' selected':''}>${t}</option>`).join('')}
+            ${types.map(t => `<option${s.type === t ? ' selected' : ''}>${t}</option>`).join('')}
           </select>
         </div>
       </div>
@@ -1730,23 +2067,23 @@ function renderSchedule() {
           oninput="schedule[${i}].desc=this.value;update()">
       </div>
     </div>`).join('');
-}
+    }
 
-// --- RULES ---
-function addRule(title = '', description = '') {
-  rules.push({ title, description });
-  renderRules();
-  update();
-}
-function removeRule(i) {
-  rules.splice(i, 1);
-  renderRules();
-  update();
-}
-function renderRules() {
-  const el = document.getElementById('rules-list');
-  if (!el) return;
-  el.innerHTML = rules.map((r, i) => `
+    // --- RULES ---
+    function addRule(title = '', description = '') {
+      rules.push({ title, description });
+      renderRules();
+      update();
+    }
+    function removeRule(i) {
+      rules.splice(i, 1);
+      renderRules();
+      update();
+    }
+    function renderRules() {
+      const el = document.getElementById('rules-list');
+      if (!el) return;
+      el.innerHTML = rules.map((r, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Rule ${i + 1}</span>
@@ -1763,22 +2100,22 @@ function renderRules() {
           oninput="rules[${i}].description=this.value;update()">${esc(r.description)}</textarea>
       </div>
     </div>`).join('');
-}
+    }
 
-// --- FAQ ---
-function addFaq(q = '', a = '') {
-  faqs.push({ q, a });
-  renderFaq();
-  update();
-}
-function removeFaq(i) {
-  faqs.splice(i, 1);
-  renderFaq();
-  update();
-}
-function renderFaq() {
-  const el = document.getElementById('faq-list');
-  el.innerHTML = faqs.map((f, i) => `
+    // --- FAQ ---
+    function addFaq(q = '', a = '') {
+      faqs.push({ q, a });
+      renderFaq();
+      update();
+    }
+    function removeFaq(i) {
+      faqs.splice(i, 1);
+      renderFaq();
+      update();
+    }
+    function renderFaq() {
+      const el = document.getElementById('faq-list');
+      el.innerHTML = faqs.map((f, i) => `
     <div class="dyn-card">
       <div class="dyn-card-header">
         <span class="dyn-card-num">Q&amp;A ${i + 1}</span>
@@ -1794,419 +2131,420 @@ function renderFaq() {
         <textarea rows="2" oninput="faqs[${i}].a=this.value;update()">${esc(f.a)}</textarea>
       </div>
     </div>`).join('');
-}
-
-// ============================================================
-// HELPERS
-// ============================================================
-function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
-function chk(id) { const el = document.getElementById(id); return el ? el.checked : false; }
-function esc(s) { return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function q(s) { return s ? `"${s.replace(/"/g, '\\"')}"` : '""'; }
-function ind(n) { return ' '.repeat(n); }
-
-// ============================================================
-// GOOGLE FORM LINK VALIDATION
-// ============================================================
-function setFormUrlMessage(inputId, message, type = '') {
-  const messageEl = document.getElementById(inputId + '-message');
-  if (!messageEl) return;
-  messageEl.textContent = message;
-  messageEl.className = 'form-url-message' + (message ? ` show ${type}` : '');
-}
-
-function validateFormUrl(inputId, showRequiredMessage = false) {
-  const input = document.getElementById(inputId);
-  const value = input ? input.value.trim() : '';
-  const label = inputId === 'reg-form-url' ? 'registration' : 'submission';
-
-  if (!value) {
-    setFormUrlMessage(inputId, showRequiredMessage ? `Add a public ${label} Google Form responder link before downloading the YAML.` : '');
-    return false;
-  }
-
-  let url;
-  try {
-    url = new URL(value);
-  } catch (err) {
-    setFormUrlMessage(inputId, 'This is not a valid URL. Paste the public Google Form responder link.', 'error');
-    return false;
-  }
-
-  const host = url.hostname.toLowerCase();
-  const path = url.pathname.toLowerCase();
-  const isShortResponderLink = host === 'forms.gle';
-  const isGoogleFormResponderLink = host === 'docs.google.com' && path.includes('/forms/') && path.includes('/viewform');
-
-  if (isShortResponderLink || isGoogleFormResponderLink) {
-    setFormUrlMessage(inputId, 'Public Google Form responder link detected.', 'success');
-    return true;
-  }
-
-  const isGoogleDoc = host === 'docs.google.com' && path.includes('/document/');
-  const isEditLink = path.includes('/edit');
-  if (isGoogleDoc || isEditLink) {
-    setFormUrlMessage(inputId, 'This is an edit or Google Docs link. Use the participant responder link from Google Forms, ending in /viewform or forms.gle/....', 'error');
-    return false;
-  }
-
-  setFormUrlMessage(inputId, 'This does not look like a public Google Form responder link. Use a forms.gle/... link or a Google Forms URL ending in /viewform.', 'error');
-  return false;
-}
-
-function validateFormUrlsForExport() {
-  const registrationValid = validateFormUrl('reg-form-url', true);
-  const submissionValid = validateFormUrl('sub-form-url', true);
-  if (registrationValid && submissionValid) return true;
-
-  const registrationBody = document.getElementById('body-registration');
-  const registrationArrow = document.getElementById('arrow-registration');
-  if (registrationBody) registrationBody.classList.add('open');
-  if (registrationArrow) registrationArrow.classList.add('open');
-  showToast('Add valid public Google Form responder links before continuing.');
-  return false;
-}
-
-// ============================================================
-// YAML GENERATOR
-// ============================================================
-let debTimer;
-function update() {
-  saveDraft();
-  clearTimeout(debTimer);
-  debTimer = setTimeout(buildYAML, 80);
-  updateProgress();
-}
-
-function buildYAML() {
-  const L = [];
-  const push = (s) => L.push(s);
-
-  push('# ============================================================');
-  push('# Hackathon Configuration File');
-  push('# Generated by Hackathon Config Generator');
-  push('# ============================================================');
-  push('# HOW TO USE:');
-  push('#   1. Review all settings below');
-  push('#   2. Replace this file in your forked GitHub repository');
-  push('#   3. Push to GitHub - your site auto-deploys in 2-3 minutes');
-  push('# ============================================================');
-  push('');
-
-  // EVENT
-  push('hackathon:');
-  push(`  name: ${q(v('event-name') || 'My Hackathon 2026')}`);
-  if (v('event-tagline')) push(`  tagline: ${q(v('event-tagline'))}`);
-  if (v('event-desc')) {
-    push('  description: |');
-    v('event-desc').split('\n').forEach(line => push(`    ${line}`));
-  }
-  if (v('event-disorder')) push(`  disorder: ${q(v('event-disorder'))}`);
-  if (v('event-community') || v('event-community-url')) {
-    push('  community:');
-    if (v('event-community'))     push(`    name: ${q(v('event-community'))}`);
-    if (v('event-community-url')) push(`    url: ${q(v('event-community-url'))}`);
-  }
-  push('');
-
-  // PROBLEM STATEMENT
-  if (v('prob-title') || v('prob-desc') || v('prob-objectives')) {
-    push('problem_statement:');
-    if (v('prob-title')) push(`  title: ${q(v('prob-title'))}`);
-    if (v('prob-desc')) {
-      push('  description: |');
-      v('prob-desc').split('\n').forEach(line => push(`    ${line}`));
     }
-    if (v('prob-objectives')) {
-      push('  objectives:');
-      v('prob-objectives').split('\n').filter(Boolean).forEach(obj => push(`    - ${q(obj)}`));
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    function chk(id) { const el = document.getElementById(id); return el ? el.checked : false; }
+    function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function q(s) { return s ? `"${s.replace(/"/g, '\\"')}"` : '""'; }
+    function ind(n) { return ' '.repeat(n); }
+
+    // ============================================================
+    // GOOGLE FORM LINK VALIDATION
+    // ============================================================
+    function setFormUrlMessage(inputId, message, type = '') {
+      const messageEl = document.getElementById(inputId + '-message');
+      if (!messageEl) return;
+      messageEl.textContent = message;
+      messageEl.className = 'form-url-message' + (message ? ` show ${type}` : '');
     }
-    push('');
-  }
 
-  // RULES
-  if (rules.length > 0) {
-    push('rules:');
-    rules.forEach(r => {
-      push(`  - title: ${q(r.title || 'Untitled Rule')}`);
-      if (r.description) push(`    description: ${q(r.description)}`);
-    });
-    push('');
-  }
+    function validateFormUrl(inputId, showRequiredMessage = false) {
+      const input = document.getElementById(inputId);
+      const value = input ? input.value.trim() : '';
+      const label = inputId === 'reg-form-url' ? 'registration' : 'submission';
 
-  // DATES
-  push('dates:');
-  push(`  registration_open:  ${q(v('date-reg-open')  || 'TBD')}`);
-  push(`  registration_close: ${q(v('date-reg-close') || 'TBD')}`);
-  push(`  hackathon_start:    ${q(v('date-start')     || 'TBD')}`);
-  push(`  hackathon_end:      ${q(v('date-end')       || 'TBD')}`);
-  const subDate = v('date-sub');
-  const subTime = v('time-sub');
-  if (subDate || subTime) {
-    push(`  submission_deadline: ${q([subDate, subTime].filter(Boolean).join('T'))}`);
-  }
-  if (v('date-results')) push(`  results_announced: ${q(v('date-results'))}`);
-  push('');
-
-  // TRACKS
-  push('tracks:');
-  if (tracks.length === 0) {
-    push('  [] # Add at least one track');
-  } else {
-    tracks.forEach(t => {
-      push(`  - name: ${q(t.name || 'Unnamed Track')}`);
-      if (t.desc) push(`    description: ${q(t.desc)}`);
-    });
-  }
-  push('');
-
-  // PRIZES
-  const perTrack = chk('prizes-per-track');
-  push('prizes:');
-  push(`  mode: ${q(perTrack ? 'per_track' : 'overall')}`);
-  if (prizes.length > 0) {
-    push('  list:');
-    prizes.forEach(p => {
-      push(`    - place: ${q(p.place)}`);
-      push(`      amount: ${q(p.amount)}`);
-      if (p.desc) push(`      description: ${q(p.desc)}`);
-    });
-  }
-  push('');
-
-  // WINNERS
-  push('winners:');
-  push(`  announced: ${chk('winners-announced')}`);
-  if (winners.length > 0) {
-    push('  list:');
-    winners.forEach(w => {
-      push(`    - place: ${q(w.place)}`);
-      push(`      team: ${q(w.team)}`);
-      push(`      project: ${q(w.project)}`);
-      if (w.track)    push(`      track: ${q(w.track)}`);
-      if (w.prize)    push(`      prize: ${q(w.prize)}`);
-      if (w.repo_url) push(`      repo_url: ${q(w.repo_url)}`);
-      if (w.demo_url) push(`      demo_url: ${q(w.demo_url)}`);
-    });
-  }
-  push('');
-
-  // JUDGES
-  push('judges:');
-  if (judges.length === 0) {
-    push('  [] # Add at least one judge');
-  } else {
-    judges.forEach(j => {
-      push(`  - name: ${q(j.name)}`);
-      if (j.title)   push(`    title: ${q(j.title)}`);
-      if (j.org)     push(`    organization: ${q(j.org)}`);
-      if (j.photo)   push(`    photo: ${q(j.photo)}`);
-      if (j.linkedin)push(`    linkedin: ${q(j.linkedin)}`);
-    });
-  }
-  push('');
-
-  // MENTORS
-  const mentorsOn = chk('enable-mentors');
-  push('mentors:');
-  push(`  enabled: ${mentorsOn}`);
-  if (mentorsOn && mentors.length > 0) {
-    push('  list:');
-    mentors.forEach(m => {
-      push(`    - name: ${q(m.name)}`);
-      if (m.expertise) push(`      expertise: ${q(m.expertise)}`);
-      if (m.photo)     push(`      photo: ${q(m.photo)}`);
-      if (m.contact)   push(`      contact: ${q(m.contact)}`);
-    });
-  }
-  push('');
-
-  // SPONSORS
-  const sponsorsOn = chk('enable-sponsors');
-  push('sponsors:');
-  push(`  enabled: ${sponsorsOn}`);
-  if (sponsorsOn && sponsors.length > 0) {
-    push('  list:');
-    sponsors.forEach(s => {
-      push(`    - name: ${q(s.name)}`);
-      push(`      tier: ${q(s.tier)}`);
-      if (s.url)  push(`      url: ${q(s.url)}`);
-      if (s.logo) push(`      logo: ${q(s.logo)}`);
-    });
-  }
-  push('');
-
-  // SCHEDULE
-  const scheduleOn = chk('enable-schedule');
-  push('schedule:');
-  push(`  enabled: ${scheduleOn}`);
-  if (scheduleOn && schedule.length > 0) {
-    push('  events:');
-    schedule.forEach(s => {
-      push(`    - title: ${q(s.title || 'Untitled Event')}`);
-      push(`      type: ${q(s.type)}`);
-      if (s.date) push(`      date: ${q(s.date)}`);
-      if (s.time) push(`      time: ${q(s.time)}`);
-      if (s.desc) push(`      description: ${q(s.desc)}`);
-    });
-  }
-  push('');
-
-  // REGISTRATION
-  push('registration:');
-  push(`  form_url: ${q(v('reg-form-url') || 'https://forms.gle/REPLACE-ME')}`);
-  push('  team:');
-  push(`    min_size: ${v('team-min') || 1}`);
-  push(`    max_size: ${v('team-max') || 4}`);
-  push(`    solo_allowed: ${chk('reg-solo')}`);
-  push(`    team_name_required: ${chk('reg-teamname')}`);
-  if (v('reg-max')) push(`  max_participants: ${v('reg-max')}`);
-  push('');
-
-  // SUBMISSION FORM
-  push('submission:');
-  push(`  form_url: ${q(v('sub-form-url') || 'https://forms.gle/REPLACE-ME-SUBMISSION')}`);
-  push('');
-
-  // FAQ
-  const faqOn = chk('enable-faq');
-  push('faq:');
-  push(`  enabled: ${faqOn}`);
-  if (faqOn && faqs.length > 0) {
-    push('  items:');
-    faqs.forEach(f => {
-      push(`    - question: ${q(f.q)}`);
-      push(`      answer: ${q(f.a)}`);
-    });
-  }
-  push('');
-
-  // CONTACT
-  push('contact:');
-  push(`  email: ${q(v('contact-email') || 'hackathon@example.com')}`);
-  if (v('contact-discord')) push(`  discord: ${q(v('contact-discord'))}`);
-  if (v('contact-twitter')) push(`  twitter: ${q(v('contact-twitter'))}`);
-  if (v('contact-website')) push(`  website: ${q(v('contact-website'))}`);
-  if (v('contact-github'))  push(`  github_org: ${q(v('contact-github'))}`);
-  push('');
-
-  // BRANDING
-  push('branding:');
-  push(`  primary_color: ${q(v('color-primary-hex') || '#7c3aed')}`);
-  push(`  accent_color: ${q(v('color-accent-hex') || '#06b6d4')}`);
-  push(`  dark_mode: ${chk('brand-dark')}`);
-  if (v('brand-logo')) push(`  logo_url: ${q(v('brand-logo'))}`);
-  push('');
-
-  // FEATURES
-  push('features:');
-  push(`  show_problem_statement: ${chk('feat-problem')}`);
-  push(`  show_rules: ${chk('feat-rules')}`);
-  push(`  show_winners: true`);
-  push(`  show_mentors: ${chk('feat-mentors')}`);
-  push(`  show_sponsors: ${chk('feat-sponsors')}`);
-  push(`  show_leaderboard: ${chk('feat-leaderboard')}`);
-  push(`  show_faq: ${chk('feat-faq')}`);
-  push(`  show_schedule: ${chk('feat-schedule')}`);
-  push(`  github_issues_submissions: ${chk('feat-github-sub')}`);
-  push(`  google_form_backup: ${chk('feat-form-backup')}`);
-  push(`  discord_widget: ${chk('feat-discord')}`);
-
-  const raw = L.join('\n');
-  renderHighlightedYAML(raw);
-}
-
-// ============================================================
-// SYNTAX HIGHLIGHTING
-// ============================================================
-function renderHighlightedYAML(raw) {
-  const html = raw.split('\n').map(line => {
-    if (line.startsWith('#')) return `<span class="y-comment">${htmlEsc(line)}</span>`;
-    if (line.trim() === '') return '';
-    // list item
-    if (/^\s+- /.test(line)) {
-      const dash = line.match(/^(\s+)(- )(.*)/);
-      if (dash) {
-        return `${htmlEsc(dash[1])}<span class="y-dash">- </span>${colorValue(htmlEsc(dash[3]))}`;
+      if (!value) {
+        setFormUrlMessage(inputId, showRequiredMessage ? `Add a public ${label} Google Form responder link before downloading the YAML.` : '');
+        return false;
       }
+
+      let url;
+      try {
+        url = new URL(value);
+      } catch (err) {
+        setFormUrlMessage(inputId, 'This is not a valid URL. Paste the public Google Form responder link.', 'error');
+        return false;
+      }
+
+      const host = url.hostname.toLowerCase();
+      const path = url.pathname.toLowerCase();
+      const isShortResponderLink = host === 'forms.gle';
+      const isGoogleFormResponderLink = host === 'docs.google.com' && path.includes('/forms/') && path.includes('/viewform');
+
+      if (isShortResponderLink || isGoogleFormResponderLink) {
+        setFormUrlMessage(inputId, 'Public Google Form responder link detected.', 'success');
+        return true;
+      }
+
+      const isGoogleDoc = host === 'docs.google.com' && path.includes('/document/');
+      const isEditLink = path.includes('/edit');
+      if (isGoogleDoc || isEditLink) {
+        setFormUrlMessage(inputId, 'This is an edit or Google Docs link. Use the participant responder link from Google Forms, ending in /viewform or forms.gle/....', 'error');
+        return false;
+      }
+
+      setFormUrlMessage(inputId, 'This does not look like a public Google Form responder link. Use a forms.gle/... link or a Google Forms URL ending in /viewform.', 'error');
+      return false;
     }
-    // key: value
-    const kv = line.match(/^(\s*)([a-zA-Z0-9_]+)(:)(.*)/);
-    if (kv) {
-      return `${htmlEsc(kv[1])}<span class="y-key">${htmlEsc(kv[2])}</span><span class="y-sep">:</span>${colorValue(htmlEsc(kv[4]))}`;
+
+    function validateFormUrlsForExport() {
+      const registrationValid = validateFormUrl('reg-form-url', true);
+      const submissionValid = validateFormUrl('sub-form-url', true);
+      if (registrationValid && submissionValid) return true;
+
+      const registrationBody = document.getElementById('body-registration');
+      const registrationArrow = document.getElementById('arrow-registration');
+      if (registrationBody) registrationBody.classList.add('open');
+      if (registrationArrow) registrationArrow.classList.add('open');
+      showToast('Add valid public Google Form responder links before continuing.');
+      return false;
     }
-    // indented continuation (description |)
-    return `<span class="y-section">${htmlEsc(line)}</span>`;
-  }).join('\n');
-  document.getElementById('yamlOutput').innerHTML = html;
-}
 
-function colorValue(s) {
-  const t = s.trim();
-  if (!t) return s;
-  if (t === 'true' || t === 'false') return ` <span class="y-bool">${t}</span>`;
-  if (/^\d+$/.test(t)) return ` <span class="y-num">${t}</span>`;
-  if (t.startsWith('"')) return ` <span class="y-str">${s.trim()}</span>`;
-  return s;
-}
+    // ============================================================
+    // YAML GENERATOR
+    // ============================================================
+    let debTimer;
+    function update() {
+      saveDraft();
+      clearTimeout(debTimer);
+      debTimer = setTimeout(buildYAML, 80);
+      updateProgress();
+    }
 
-function htmlEsc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+    function buildYAML() {
+      const L = [];
+      const push = (s) => L.push(s);
 
-// ============================================================
-// PROGRESS
-// ============================================================
-function updateProgress() {
-  const fields = ['event-name','event-tagline','date-start','date-end','reg-form-url','contact-email'];
-  const filled = fields.filter(id => v(id)).length;
-  const pct = Math.round((filled / fields.length) * 100);
-  document.getElementById('progressFill').style.width = pct + '%';
-}
+      push('# ============================================================');
+      push('# Hackathon Configuration File');
+      push('# Generated by Hackathon Config Generator');
+      push('# ============================================================');
+      push('# HOW TO USE:');
+      push('#   1. Review all settings below');
+      push('#   2. Replace this file in your forked GitHub repository');
+      push('#   3. Push to GitHub - your site auto-deploys in 2-3 minutes');
+      push('# ============================================================');
+      push('');
 
-// ============================================================
-// COPY & DOWNLOAD
-// ============================================================
-function getRawYAML() {
-  return document.getElementById('yamlOutput').innerText;
-}
+      // EVENT
+      push('hackathon:');
+      push(`  name: ${q(v('event-name') || 'My Hackathon 2026')}`);
+      if (v('event-tagline')) push(`  tagline: ${q(v('event-tagline'))}`);
+      if (v('event-desc')) {
+        push('  description: |');
+        v('event-desc').split('\n').forEach(line => push(`    ${line}`));
+      }
+      if (v('event-disorder')) push(`  disorder: ${q(v('event-disorder'))}`);
+      if (v('event-community') || v('event-community-url')) {
+        push('  community:');
+        if (v('event-community')) push(`    name: ${q(v('event-community'))}`);
+        if (v('event-community-url')) push(`    url: ${q(v('event-community-url'))}`);
+      }
+      push('');
 
-function copyYAML() {
-  if (!validateFormUrlsForExport()) return;
-  const text = getRawYAML();
-  navigator.clipboard.writeText(text).then(() => {
-    const t = document.getElementById('toast');
-    t.textContent = 'Copied to clipboard!';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-  });
-}
+      // PROBLEM STATEMENT
+      if (v('prob-title') || v('prob-desc') || v('prob-objectives')) {
+        push('problem_statement:');
+        if (v('prob-title')) push(`  title: ${q(v('prob-title'))}`);
+        if (v('prob-desc')) {
+          push('  description: |');
+          v('prob-desc').split('\n').forEach(line => push(`    ${line}`));
+        }
+        if (v('prob-objectives')) {
+          push('  objectives:');
+          v('prob-objectives').split('\n').filter(Boolean).forEach(obj => push(`    - ${q(obj)}`));
+        }
+        push('');
+      }
 
-function downloadYAML() {
-  if (!validateFormUrlsForExport()) return;
-  const text = getRawYAML();
-  const blob = new Blob([text], { type: 'text/yaml;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'hackathon.config.yml';
-  a.click();
-  URL.revokeObjectURL(a.href);
-  const t = document.getElementById('toast');
-  t.textContent = 'hackathon.config.yml downloaded!';
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
-}
+      // RULES
+      if (rules.length > 0) {
+        push('rules:');
+        rules.forEach(r => {
+          push(`  - title: ${q(r.title || 'Untitled Rule')}`);
+          if (r.description) push(`    description: ${q(r.description)}`);
+        });
+        push('');
+      }
 
-function resetAll() {
-  if (!confirm('Clear all fields to start from scratch?')) return;
-  try {
-    localStorage.removeItem(DRAFT_STORAGE_KEY);
-  } catch (err) {
-    console.warn('Could not clear the saved configuration draft:', err);
-  }
-  // Redirect with a query parameter to tell onload NOT to load defaults, resulting in completely blank fields.
-  window.location.href = window.location.pathname + '?empty=true';
-}
-</script>
+      // DATES
+      push('dates:');
+      push(`  registration_open:  ${q(v('date-reg-open') || 'TBD')}`);
+      push(`  registration_close: ${q(v('date-reg-close') || 'TBD')}`);
+      push(`  hackathon_start:    ${q(v('date-start') || 'TBD')}`);
+      push(`  hackathon_end:      ${q(v('date-end') || 'TBD')}`);
+      const subDate = v('date-sub');
+      const subTime = v('time-sub');
+      if (subDate || subTime) {
+        push(`  submission_deadline: ${q([subDate, subTime].filter(Boolean).join('T'))}`);
+      }
+      if (v('date-results')) push(`  results_announced: ${q(v('date-results'))}`);
+      push('');
+
+      // TRACKS
+      push('tracks:');
+      if (tracks.length === 0) {
+        push('  [] # Add at least one track');
+      } else {
+        tracks.forEach(t => {
+          push(`  - name: ${q(t.name || 'Unnamed Track')}`);
+          if (t.desc) push(`    description: ${q(t.desc)}`);
+        });
+      }
+      push('');
+
+      // PRIZES
+      const perTrack = chk('prizes-per-track');
+      push('prizes:');
+      push(`  mode: ${q(perTrack ? 'per_track' : 'overall')}`);
+      if (prizes.length > 0) {
+        push('  list:');
+        prizes.forEach(p => {
+          push(`    - place: ${q(p.place)}`);
+          push(`      amount: ${q(p.amount)}`);
+          if (p.desc) push(`      description: ${q(p.desc)}`);
+        });
+      }
+      push('');
+
+      // WINNERS
+      push('winners:');
+      push(`  announced: ${chk('winners-announced')}`);
+      if (winners.length > 0) {
+        push('  list:');
+        winners.forEach(w => {
+          push(`    - place: ${q(w.place)}`);
+          push(`      team: ${q(w.team)}`);
+          push(`      project: ${q(w.project)}`);
+          if (w.track) push(`      track: ${q(w.track)}`);
+          if (w.prize) push(`      prize: ${q(w.prize)}`);
+          if (w.repo_url) push(`      repo_url: ${q(w.repo_url)}`);
+          if (w.demo_url) push(`      demo_url: ${q(w.demo_url)}`);
+        });
+      }
+      push('');
+
+      // JUDGES
+      push('judges:');
+      if (judges.length === 0) {
+        push('  [] # Add at least one judge');
+      } else {
+        judges.forEach(j => {
+          push(`  - name: ${q(j.name)}`);
+          if (j.title) push(`    title: ${q(j.title)}`);
+          if (j.org) push(`    organization: ${q(j.org)}`);
+          if (j.photo) push(`    photo: ${q(j.photo)}`);
+          if (j.linkedin) push(`    linkedin: ${q(j.linkedin)}`);
+        });
+      }
+      push('');
+
+      // MENTORS
+      const mentorsOn = chk('enable-mentors');
+      push('mentors:');
+      push(`  enabled: ${mentorsOn}`);
+      if (mentorsOn && mentors.length > 0) {
+        push('  list:');
+        mentors.forEach(m => {
+          push(`    - name: ${q(m.name)}`);
+          if (m.expertise) push(`      expertise: ${q(m.expertise)}`);
+          if (m.photo) push(`      photo: ${q(m.photo)}`);
+          if (m.contact) push(`      contact: ${q(m.contact)}`);
+        });
+      }
+      push('');
+
+      // SPONSORS
+      const sponsorsOn = chk('enable-sponsors');
+      push('sponsors:');
+      push(`  enabled: ${sponsorsOn}`);
+      if (sponsorsOn && sponsors.length > 0) {
+        push('  list:');
+        sponsors.forEach(s => {
+          push(`    - name: ${q(s.name)}`);
+          push(`      tier: ${q(s.tier)}`);
+          if (s.url) push(`      url: ${q(s.url)}`);
+          if (s.logo) push(`      logo: ${q(s.logo)}`);
+        });
+      }
+      push('');
+
+      // SCHEDULE
+      const scheduleOn = chk('enable-schedule');
+      push('schedule:');
+      push(`  enabled: ${scheduleOn}`);
+      if (scheduleOn && schedule.length > 0) {
+        push('  events:');
+        schedule.forEach(s => {
+          push(`    - title: ${q(s.title || 'Untitled Event')}`);
+          push(`      type: ${q(s.type)}`);
+          if (s.date) push(`      date: ${q(s.date)}`);
+          if (s.time) push(`      time: ${q(s.time)}`);
+          if (s.desc) push(`      description: ${q(s.desc)}`);
+        });
+      }
+      push('');
+
+      // REGISTRATION
+      push('registration:');
+      push(`  form_url: ${q(v('reg-form-url') || 'https://forms.gle/REPLACE-ME')}`);
+      push('  team:');
+      push(`    min_size: ${v('team-min') || 1}`);
+      push(`    max_size: ${v('team-max') || 4}`);
+      push(`    solo_allowed: ${chk('reg-solo')}`);
+      push(`    team_name_required: ${chk('reg-teamname')}`);
+      if (v('reg-max')) push(`  max_participants: ${v('reg-max')}`);
+      push('');
+
+      // SUBMISSION FORM
+      push('submission:');
+      push(`  form_url: ${q(v('sub-form-url') || 'https://forms.gle/REPLACE-ME-SUBMISSION')}`);
+      push('');
+
+      // FAQ
+      const faqOn = chk('enable-faq');
+      push('faq:');
+      push(`  enabled: ${faqOn}`);
+      if (faqOn && faqs.length > 0) {
+        push('  items:');
+        faqs.forEach(f => {
+          push(`    - question: ${q(f.q)}`);
+          push(`      answer: ${q(f.a)}`);
+        });
+      }
+      push('');
+
+      // CONTACT
+      push('contact:');
+      push(`  email: ${q(v('contact-email') || 'hackathon@example.com')}`);
+      if (v('contact-discord')) push(`  discord: ${q(v('contact-discord'))}`);
+      if (v('contact-twitter')) push(`  twitter: ${q(v('contact-twitter'))}`);
+      if (v('contact-website')) push(`  website: ${q(v('contact-website'))}`);
+      if (v('contact-github')) push(`  github_org: ${q(v('contact-github'))}`);
+      push('');
+
+      // BRANDING
+      push('branding:');
+      push(`  primary_color: ${q(v('color-primary-hex') || '#7c3aed')}`);
+      push(`  accent_color: ${q(v('color-accent-hex') || '#06b6d4')}`);
+      push(`  dark_mode: ${chk('brand-dark')}`);
+      if (v('brand-logo')) push(`  logo_url: ${q(v('brand-logo'))}`);
+      push('');
+
+      // FEATURES
+      push('features:');
+      push(`  show_problem_statement: ${chk('feat-problem')}`);
+      push(`  show_rules: ${chk('feat-rules')}`);
+      push(`  show_winners: true`);
+      push(`  show_mentors: ${chk('feat-mentors')}`);
+      push(`  show_sponsors: ${chk('feat-sponsors')}`);
+      push(`  show_leaderboard: ${chk('feat-leaderboard')}`);
+      push(`  show_faq: ${chk('feat-faq')}`);
+      push(`  show_schedule: ${chk('feat-schedule')}`);
+      push(`  github_issues_submissions: ${chk('feat-github-sub')}`);
+      push(`  google_form_backup: ${chk('feat-form-backup')}`);
+      push(`  discord_widget: ${chk('feat-discord')}`);
+
+      const raw = L.join('\n');
+      renderHighlightedYAML(raw);
+    }
+
+    // ============================================================
+    // SYNTAX HIGHLIGHTING
+    // ============================================================
+    function renderHighlightedYAML(raw) {
+      const html = raw.split('\n').map(line => {
+        if (line.startsWith('#')) return `<span class="y-comment">${htmlEsc(line)}</span>`;
+        if (line.trim() === '') return '';
+        // list item
+        if (/^\s+- /.test(line)) {
+          const dash = line.match(/^(\s+)(- )(.*)/);
+          if (dash) {
+            return `${htmlEsc(dash[1])}<span class="y-dash">- </span>${colorValue(htmlEsc(dash[3]))}`;
+          }
+        }
+        // key: value
+        const kv = line.match(/^(\s*)([a-zA-Z0-9_]+)(:)(.*)/);
+        if (kv) {
+          return `${htmlEsc(kv[1])}<span class="y-key">${htmlEsc(kv[2])}</span><span class="y-sep">:</span>${colorValue(htmlEsc(kv[4]))}`;
+        }
+        // indented continuation (description |)
+        return `<span class="y-section">${htmlEsc(line)}</span>`;
+      }).join('\n');
+      document.getElementById('yamlOutput').innerHTML = html;
+    }
+
+    function colorValue(s) {
+      const t = s.trim();
+      if (!t) return s;
+      if (t === 'true' || t === 'false') return ` <span class="y-bool">${t}</span>`;
+      if (/^\d+$/.test(t)) return ` <span class="y-num">${t}</span>`;
+      if (t.startsWith('"')) return ` <span class="y-str">${s.trim()}</span>`;
+      return s;
+    }
+
+    function htmlEsc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // ============================================================
+    // PROGRESS
+    // ============================================================
+    function updateProgress() {
+      const fields = ['event-name', 'event-tagline', 'date-start', 'date-end', 'reg-form-url', 'contact-email'];
+      const filled = fields.filter(id => v(id)).length;
+      const pct = Math.round((filled / fields.length) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+    }
+
+    // ============================================================
+    // COPY & DOWNLOAD
+    // ============================================================
+    function getRawYAML() {
+      return document.getElementById('yamlOutput').innerText;
+    }
+
+    function copyYAML() {
+      if (!validateFormUrlsForExport()) return;
+      const text = getRawYAML();
+      navigator.clipboard.writeText(text).then(() => {
+        const t = document.getElementById('toast');
+        t.textContent = 'Copied to clipboard!';
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2200);
+      });
+    }
+
+    function downloadYAML() {
+      if (!validateFormUrlsForExport()) return;
+      const text = getRawYAML();
+      const blob = new Blob([text], { type: 'text/yaml;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'hackathon.config.yml';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      const t = document.getElementById('toast');
+      t.textContent = 'hackathon.config.yml downloaded!';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function resetAll() {
+      if (!confirm('Clear all fields to start from scratch?')) return;
+      try {
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch (err) {
+        console.warn('Could not clear the saved configuration draft:', err);
+      }
+      // Redirect with a query parameter to tell onload NOT to load defaults, resulting in completely blank fields.
+      window.location.href = window.location.pathname + '?empty=true';
+    }
+  </script>
 </body>
+
 </html>
