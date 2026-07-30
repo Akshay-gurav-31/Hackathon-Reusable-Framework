@@ -5,6 +5,8 @@
 
 A flexible, configuration-driven web application framework designed to quickly launch hackathons for Phenylketonuria (PKU), Maple Syrup Urine Disease (MSUD), or any rare disease community.
 
+**What this repository does:** Fork this repo, edit one YAML configuration file with your hackathon details, enable GitHub Pages, and your full hackathon website — complete with tracks, prizes, judges, schedule, FAQ, and submission flow — is live in minutes, with no coding required.
+
 ---
 
 ## Getting Started & Deployment Guide
@@ -57,3 +59,17 @@ Push changes to GitHub to trigger automatic deployment.
 - [Full Organizer Setup Guide (SETUP.md)](SETUP.md)
 - [Local Preview Guide](LOCAL_PREVIEW.md)
 - [Security & Compliance](SECURITY.md)
+
+---
+
+## Contributing & Collaboration
+
+Contributions are welcome from developers, researchers, dietitians, and patient community members.
+
+To get started:
+
+1. Fork this repository and create a new branch for your changes.
+2. Make your improvements — whether to templates, configuration presets, documentation, or the visual setup generator.
+3. Open a Pull Request with a clear description of what you changed and why.
+
+For questions, ideas, or collaboration opportunities, open an [Issue](../../issues) or reach out via the contact details in `hackathon.config.yml`.
