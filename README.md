@@ -7,22 +7,14 @@ A flexible, configuration-driven web application framework designed to quickly l
 
 ---
 
-## Organizer Setup & Visual Generator
+## Getting Started & Deployment Guide
 
-The fastest way to configure and deploy a hackathon is using the **1-Click Visual Setup Generator**:
+To deploy your own rare disease hackathon site:
 
-- **Visual Setup Tool**: Open [Setup Generator](setup/index.html) in your browser to customize your hackathon name, disease focus, tracks, prizes, dates, judges, mentors, rules, and colors.
-- **Complete Setup Guide**: Read the [Full Setup Guide (SETUP.md)](SETUP.md) for step-by-step instructions on forking, configuring GitHub Actions, and launching your site.
+1. Follow the step-by-step instructions in the **[Full Setup Guide (SETUP.md)](SETUP.md)** to fork this repository and enable GitHub Pages.
+2. Customize your hackathon details via `hackathon.config.yml` or use the visual generator at `/setup` on your deployed site.
 
----
-
-## Quick Start
-
-1. **Fork this repository** and keep it public.
-2. Open [`/setup`](setup/index.html) to visually generate your configuration, or edit `hackathon.config.yml`.
-3. Enable **GitHub Pages** with **GitHub Actions**.
-
-Your website will automatically be live at:
+Your website address will be:
 ```text
 https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/
 ```
@@ -44,7 +36,7 @@ The repository includes pre-built disease configuration templates under the [`co
 ## How to Reuse for a New Disease
 
 ### Option A: Visual GUI Generator
-1. Open [`/setup`](setup/index.html) in your browser.
+1. Open `/setup` on your deployed site or locally.
 2. Enter your hackathon name, disease focus, tracks, prizes, and judges.
 3. Click **Download YAML** and replace `hackathon.config.yml` in your repository.
 
@@ -62,6 +54,6 @@ Push changes to GitHub to trigger automatic deployment.
 
 ## Documentation
 
-- [Full Organizer Setup Guide](SETUP.md)
+- [Full Organizer Setup Guide (SETUP.md)](SETUP.md)
 - [Local Preview Guide](LOCAL_PREVIEW.md)
 - [Security & Compliance](SECURITY.md)
