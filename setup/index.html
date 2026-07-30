@@ -1195,12 +1195,53 @@ function loadDefaultContent() {
 // INIT
 // ============================================================
 window.onload = () => {
-  const restored = restoreDraft();
-  if (!restored) loadDefaultContent();
-  validateFormUrl('reg-form-url');
-  validateFormUrl('sub-form-url');
-  update();
-  if (restored) setTimeout(() => showToast('Saved draft restored from this browser.'), 150);
+  const urlParams = new URLSearchParams(window.location.search);
+  const forceEmpty = urlParams.get('empty') === 'true';
+
+  if (forceEmpty) {
+    // Empty collections
+    tracks = [];
+    prizes = [];
+    winners = [];
+    judges = [];
+    mentors = [];
+    sponsors = [];
+    schedule = [];
+    rules = [];
+    faqs = [];
+    
+    // Render empty grids/lists
+    renderTracks();
+    renderPrizes();
+    renderWinners();
+    renderJudges();
+    renderMentors();
+    renderSponsors();
+    renderSchedule();
+    renderRules();
+    renderFaq();
+    
+    // Clear inputs in DOM
+    document.querySelectorAll('input[id], textarea[id]').forEach(el => {
+      if (el.type === 'checkbox') {
+        el.checked = false;
+      } else if (el.type === 'color') {
+        el.value = '#000000';
+      } else {
+        el.value = '';
+      }
+    });
+    
+    update();
+    setTimeout(() => showToast('All fields cleared!'), 150);
+  } else {
+    const restored = restoreDraft();
+    if (!restored) loadDefaultContent();
+    validateFormUrl('reg-form-url');
+    validateFormUrl('sub-form-url');
+    update();
+    if (restored) setTimeout(() => showToast('Saved draft restored from this browser.'), 150);
+  }
 };
 
 // ============================================================
@@ -2036,13 +2077,14 @@ function downloadYAML() {
 }
 
 function resetAll() {
-  if (!confirm('Reset all fields to defaults?')) return;
+  if (!confirm('Clear all fields to start from scratch?')) return;
   try {
     localStorage.removeItem(DRAFT_STORAGE_KEY);
   } catch (err) {
     console.warn('Could not clear the saved configuration draft:', err);
   }
-  location.reload();
+  // Redirect with a query parameter to tell onload NOT to load defaults, resulting in completely blank fields.
+  window.location.href = window.location.pathname + '?empty=true';
 }
 </script>
 </body>
