@@ -3,7 +3,7 @@
   Reusable Rare Disease Hackathon Framework
 </h1>
 
-A flexible, configuration-driven web application framework designed to quickly launch hackathons for Phenylketonuria (PKU), Maple Syrup Urine Disease (MSUD), or any rare disease community (**PKU First**).
+A flexible, configuration-driven web application framework designed to quickly launch hackathons for Phenylketonuria (PKU), Maple Syrup Urine Disease (MSUD), or any rare disease community.
 
 ---
 
@@ -27,7 +27,7 @@ The repository includes pre-built disease configuration templates under the [`co
 
 | Disease / Template | File Path | Description |
 | :--- | :--- | :--- |
-| **PKU (Phenylketonuria)** | [`configs/hackathon.config.pku.yml`](configs/hackathon.config.pku.yml) | Default live site baseline (phenylalanine accuracy, diet tracking) |
+| **PKU (Phenylketonuria)** | [`configs/hackathon.config.pku.yml`](configs/hackathon.config.pku.yml) | Default live site configuration (phenylalanine accuracy, diet tracking) |
 | **MSUD (Maple Syrup Urine Disease)** | [`configs/hackathon.config.msud.yml`](configs/hackathon.config.msud.yml) | MSUD science hackathon preset (BCAA, keto-acid tracking) |
 | **Generic Template** | [`configs/hackathon.config.generic.yml`](configs/hackathon.config.generic.yml) | Blank starting template for any rare disease community |
 
