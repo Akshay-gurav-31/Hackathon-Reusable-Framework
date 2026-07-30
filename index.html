@@ -73,6 +73,32 @@
       color: #f8fafc !important;
     }
 
+    /* Hide dynamic elements until data is populated to prevent FOUC content flash */
+    #tracks-grid:empty,
+    #prizes-grid:empty,
+    #winners-grid:empty,
+    #judges-grid:empty,
+    #mentors-grid:empty,
+    #schedule-timeline:empty,
+    #rules-grid:empty,
+    #faq-list:empty,
+    #sponsors-grid:empty {
+      opacity: 0;
+      min-height: 100px;
+    }
+
+    #tracks-grid,
+    #prizes-grid,
+    #winners-grid,
+    #judges-grid,
+    #mentors-grid,
+    #schedule-timeline,
+    #rules-grid,
+    #faq-list,
+    #sponsors-grid {
+      transition: opacity 0.25s ease-in-out;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       background: var(--bg);
