@@ -7,13 +7,25 @@ A flexible, configuration-driven web application framework designed to quickly l
 
 ---
 
-## Key Features
+## Organizer Setup & Visual Generator
 
-- **PKU First Baseline**: Pre-configured defaults tailored specifically for Phenylketonuria (PKU) science hackathons.
-- **Disease Agnostic & Multi-Disease Presets**: Easily switch between PKU, MSUD (Maple Syrup Urine Disease), or custom rare disease hackathons in seconds.
-- **Visual Setup Generator**: Built-in visual GUI tool at `/setup` to customize tracks, prizes, dates, judges, mentors, rules, and colors without modifying code.
-- **Cross-Device Responsive Layout**: Fully responsive layout optimized for Mobile, Tablet, and Desktop displays.
-- **Zero-Build GitHub Pages Deployment**: Direct static deployment powered by GitHub Actions.
+The fastest way to configure and deploy a hackathon is using the **1-Click Visual Setup Generator**:
+
+- **Visual Setup Tool**: Open [`/setup`](setup/index.html) in your browser to customize your hackathon name, disease focus, tracks, prizes, dates, judges, mentors, rules, and colors.
+- **Complete Setup Guide**: Read [`SETUP.md`](SETUP.md) for full step-by-step instructions on forking, configuring GitHub Actions, and launching your site.
+
+---
+
+## Quick Start
+
+1. **Fork this repository** and keep it public.
+2. Open [`/setup`](setup/index.html) to visually generate your configuration, or edit `hackathon.config.yml`.
+3. Enable **GitHub Pages** with **GitHub Actions**.
+
+Your website will automatically be live at:
+```text
+https://YOUR-USERNAME.github.io/YOUR-REPOSITORY-NAME/
+```
 
 ---
 
@@ -50,6 +62,6 @@ Push changes to GitHub to trigger automatic deployment.
 
 ## Documentation
 
-- [Full Setup & Customization Guide](SETUP.md)
+- [Full Organizer Setup Guide](SETUP.md)
 - [Local Preview Guide](LOCAL_PREVIEW.md)
 - [Security & Compliance](SECURITY.md)
