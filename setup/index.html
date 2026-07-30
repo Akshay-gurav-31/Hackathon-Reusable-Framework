@@ -451,9 +451,130 @@
     }
     .progress-fill {
       height: 100%;
+    input[type="color"] {
+      width: 44px; height: 36px;
+      padding: 2px;
+      border-radius: var(--r);
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--inp);
+    }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+    .color-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .color-hex {
+      flex: 1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ---- DYNAMIC CARDS ---- */
+    .card-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+
+    .dyn-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--rl);
+      padding: 14px;
+      position: relative;
+    }
+    .dyn-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .dyn-card-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ---- DIVIDER ---- */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+    /* ---- TOAST ---- */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg3);
+      border: 1px solid var(--ok);
+      color: var(--ok);
+      padding: 10px 18px;
+      border-radius: var(--r);
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ---- SECTION DISABLED OVERLAY ---- */
+    .section-body.disabled { opacity: 0.4; pointer-events: none; }
+
+    /* ---- SECTION INTRO TEXT ---- */
+    .section-intro {
+      font-size: 12px;
+      color: var(--text3);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    /* ---- FEATURE FLAGS GRID ---- */
+    .flags-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .flag-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .flag-label { font-size: 13px; font-weight: 500; }
+    .flag-desc { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+    /* ---- STEP INDICATOR ---- */
+    .progress-bar {
+      height: 3px;
+      background: var(--border);
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--cyan));
       transition: width 0.3s;
       border-radius: 2px;
+    }
+
+    /* ---- RESPONSIVE MEDIA QUERIES ---- */
+    @media (max-width: 768px) {
+      header { padding: 0 16px; height: 56px; }
+      .logo span { font-size: 14px; }
+      .header-actions .btn span { display: none; }
+      .header-actions .btn { padding: 6px 10px; }
+      .layout { padding: 16px 12px 60px; }
+      .field-row, .field-row3, .flags-grid { grid-template-columns: 1fr; gap: 8px; }
+      .section-header { padding: 12px 14px; }
+      .section-body { padding: 4px 14px 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .logo span { display: none; }
+      .btn { font-size: 12px; padding: 6px 10px; }
+      .toast { left: 16px; right: 16px; bottom: 16px; text-align: center; }
     }
 
     /* ---- SCROLLBAR ---- */
