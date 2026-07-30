@@ -1,5 +1,5 @@
 <h1>
-  <img src="./rhf-logo.png" alt="Reusable Hackathon Framework logo" width="48" align="center" />
+  <img src="./rhf-logo.png" alt="Reusable Hackathon Framework logo" width="38" valign="middle" style="vertical-align: middle; margin-right: 8px;" />
   Reusable Rare Disease Hackathon Framework
 </h1>
 
