@@ -1133,22 +1133,62 @@ function showToast(message) {
 }
 
 function loadDefaultContent() {
-  addTrack('Dietary Management', 'Innovations in dietary approaches for managing this condition.');
-  addTrack('Gene Therapy Research', 'Cutting-edge research into gene-level treatments and cures.');
-  addPrize('1st Place', '$1,000', 'Grand prize winner');
-  addPrize('2nd Place', '$500', '');
-  addPrize('3rd Place', '$250', '');
-  addWinner('1st Place (Grand Winner)', 'Team LeucineOps', 'Open Leucine Benchmarking Engine', 'Leucine Estimation & Accuracy', '$1,000', 'https://github.com', 'https://example.com');
-  addWinner('2nd Place (Runner-up)', 'MapleTrack Squad', 'Connected Scale WebBluetooth Driver', 'Hardware & Smart Scale Integrations', '$500', 'https://github.com', '');
-  addJudge('Dr. Jane Smith', 'Researcher', 'Example University', '', '');
-  addMentor('John Doe', 'Machine Learning & AI', '', '');
-  addSponsor('Example Foundation', '', 'https://example.org', 'Gold');
-  addScheduleItem('', '09:00', 'Opening Ceremony', 'Welcome and introduction', 'keynote');
-  addScheduleItem('', '10:00', 'Hacking Begins', 'Teams start working on their projects', 'milestone');
+  addTrack('Phenylalanine Estimation & Accuracy', 'Improve the accuracy of phenylalanine-estimator models and algorithms scored against public benchmarks.');
+  addTrack('Living Low-Protein Food Database', 'Expand cited, schema\'d food lists and clinician-verified nutritional data for PKU diets.');
+  addTrack('Hardware & Smart Scale Integrations', 'Connect smart kitchen scales directly to mobile devices and web apps for real-time protein tracking.');
+  addPrize('1st Place (Grand Winner)', '$1,000', 'Highest scoring project on the public benchmark & judge evaluation.');
+  addPrize('2nd Place (Runner-up)', '$500', 'Exceptional contribution to core infrastructure.');
+  addPrize('3rd Place', '$250', 'Strong overall project with notable community impact.');
+  addWinner('1st Place (Grand Winner)', 'Team PheOps', 'Open Phenylalanine Benchmarking Engine', 'Phenylalanine Estimation & Accuracy', '$1,000', 'https://github.com', 'https://example.com');
+  addWinner('2nd Place (Runner-up)', 'PheTrack Squad', 'Connected Scale WebBluetooth Driver', 'Hardware & Smart Scale Integrations', '$500', 'https://github.com', '');
+  addJudge('Nina Kilbride', 'Founder, Cureledger | Director, Phebe', 'Cureledger / Phebe', './assets/judges/nina.jpg', 'https://linkedin.com');
+  addJudge('Akshay Gurav', 'AI/ML & Full-Stack Developer', 'PKU Commons', './assets/judges/akshay.jpg', 'https://github.com');
+  addMentor('Dr. Elena Ruiz', 'Metabolic Genetics & PKU Nutrition', './assets/mentors/elena.jpg', 'https://linkedin.com');
+  addMentor('Sam Patel', 'Bluetooth Low Energy & Web Bluetooth', './assets/mentors/sam.jpg', 'https://github.com');
+  addSponsor('PKU Commons', './assets/sponsors/pku-commons.png', 'https://pku.community', 'Platinum');
+  addSponsor('National PKU Alliance', './assets/sponsors/npkua.png', 'https://npkua.org', 'Gold');
+  addScheduleItem('2026-10-15', '09:00', 'Virtual Kickoff & Table Stream', 'Welcome address, hackathon rules, and problem area walkthrough.', 'opening');
+  addScheduleItem('2026-10-16', '14:00', 'Benchmark & Skill Workshop', 'How to run the accuracy benchmark locally and test your model.', 'workshop');
+  addScheduleItem('2026-10-30', '23:59', 'Project Submission Deadline', 'All submissions must be finalized via the submission form.', 'deadline');
+  addScheduleItem('2026-11-05', '17:00', 'Winners Announcement Live Stream', 'Judges present awards and demo winning projects.', 'closing');
   addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
   addRule('Original Work', 'Projects must be built during the hackathon timeline.');
-  addFaq('Who can participate?', 'Anyone passionate about rare disorders and science, regardless of background.');
+  addFaq('Who can participate?', 'Anyone! Developers, researchers, dietitians, PKU patients, and family members are all welcome to join and build.');
   addFaq('Is there a registration fee?', 'No, participation is completely free.');
+
+  // Set default values in basic fields
+  if (document.getElementById('event-name')) document.getElementById('event-name').value = "PKU Commons Science Hackathon 2026";
+  if (document.getElementById('event-tagline')) document.getElementById('event-tagline').value = "Building Open Science & Metabolic Tools for the PKU Community";
+  if (document.getElementById('event-desc')) document.getElementById('event-desc').value = "A virtual science hackathon for Phenylketonuria (PKU). We bring together developers, researchers, dietitians, and families to improve open phenylalanine-estimation tools, living low-protein food databases, and home phenylalanine-monitoring scale integrations.";
+  if (document.getElementById('event-disorder')) document.getElementById('event-disorder').value = "Phenylketonuria (PKU)";
+  if (document.getElementById('event-community')) document.getElementById('event-community').value = "PKU Commons";
+  if (document.getElementById('event-community-url')) document.getElementById('event-community-url').value = "https://pku.community";
+
+  if (document.getElementById('prob-title')) document.getElementById('prob-title').value = "The PKU Phenylalanine & Diet Accuracy Challenge";
+  if (document.getElementById('prob-desc')) document.getElementById('prob-desc').value = "People living with Phenylketonuria (PKU) must strictly restrict phenylalanine intake to prevent neurological complications. Current tools for tracking phenylalanine and protein levels are fragmented, lack clinician validation, or require manually searching multiple nutritional databases.";
+  if (document.getElementById('prob-objectives')) document.getElementById('prob-objectives').value = "Build open-source phenylalanine estimation algorithms benchmarked against validated clinical datasets.\nCreate living, schema-structured low-protein food databases with verified nutritional data.\nDevelop smart kitchen scale integrations to automate real-time protein weighing for PKU families.";
+
+  if (document.getElementById('date-reg-open')) document.getElementById('date-reg-open').value = "2026-09-01";
+  if (document.getElementById('date-reg-close')) document.getElementById('date-reg-close').value = "2026-10-01";
+  if (document.getElementById('date-start')) document.getElementById('date-start').value = "2026-10-15";
+  if (document.getElementById('date-end')) document.getElementById('date-end').value = "2026-10-30";
+  if (document.getElementById('date-sub')) document.getElementById('date-sub').value = "2026-10-30";
+  if (document.getElementById('time-sub')) document.getElementById('time-sub').value = "23:59";
+  if (document.getElementById('date-results')) document.getElementById('date-results').value = "2026-11-05";
+
+  if (document.getElementById('reg-form-url')) document.getElementById('reg-form-url').value = "https://forms.gle/sample-pku-registration";
+  if (document.getElementById('sub-form-url')) document.getElementById('sub-form-url').value = "https://forms.gle/sample-pku-submission";
+  if (document.getElementById('contact-email')) document.getElementById('contact-email').value = "hackathon@pku.community";
+  if (document.getElementById('contact-discord')) document.getElementById('contact-discord').value = "https://discord.gg/pku-commons";
+  if (document.getElementById('contact-twitter')) document.getElementById('contact-twitter').value = "@PKUCommons";
+  if (document.getElementById('contact-website')) document.getElementById('contact-website').value = "https://pku.community";
+  if (document.getElementById('contact-github')) document.getElementById('contact-github').value = "https://github.com/PKUCommons";
+
+  if (document.getElementById('color-primary')) document.getElementById('color-primary').value = "#4f46e5";
+  if (document.getElementById('color-primary-hex')) document.getElementById('color-primary-hex').value = "#4f46e5";
+  if (document.getElementById('color-accent')) document.getElementById('color-accent').value = "#0ea5e9";
+  if (document.getElementById('color-accent-hex')) document.getElementById('color-accent-hex').value = "#0ea5e9";
+  if (document.getElementById('brand-dark')) document.getElementById('brand-dark').checked = true;
 }
 
 // ============================================================
