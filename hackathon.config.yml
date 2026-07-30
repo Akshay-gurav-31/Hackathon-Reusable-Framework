@@ -192,7 +192,7 @@ contact:
 branding:
   primary_color: "#4f46e5"
   accent_color: "#0ea5e9"
-  dark_mode: true
+  dark_mode: false
   logo_url: ""
 
 features:
