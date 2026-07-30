@@ -90,14 +90,21 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 17px;
       color: var(--text);
       text-decoration: none;
+      min-width: 0;
+      flex-shrink: 1;
+      flex: 1;
+    }
+    #brand-name {
       white-space: nowrap;
-      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
     }
     .brand-icon {
       width: 36px; height: 36px;
@@ -505,9 +512,10 @@
 
     @media (max-width: 768px) {
       nav { height: auto; min-height: 68px; }
-      .nav-wrap { gap: 12px; }
+      .nav-wrap { gap: 8px; }
       .nav-links { display: none; }
-      .brand { font-size: 16px; }
+      .brand { font-size: 14px; flex: 1; min-width: 0; }
+      #brand-name { max-width: calc(100vw - 160px); }
       .hero { padding: 72px 0 52px; text-align: left; }
       .hero-content { max-width: none; }
       .tag { margin-bottom: 18px; }
