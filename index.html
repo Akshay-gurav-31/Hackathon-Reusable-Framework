@@ -8,6 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <!-- FOUC Prevention: apply cached theme immediately before paint -->
+  <script>
+    (function() {
+      try {
+        var t = JSON.parse(localStorage.getItem('hf-theme'));
+        if (t) {
+          if (t.dark) document.documentElement.classList.add('dark-pre');
+          if (t.primary) document.documentElement.style.setProperty('--primary', t.primary);
+          if (t.accent)  document.documentElement.style.setProperty('--accent',  t.accent);
+        }
+      } catch(e) {}
+    })();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -51,6 +64,13 @@
       overflow-x: hidden;
       width: 100%;
       max-width: 100%;
+    }
+
+    /* Applied immediately by FOUC-prevention script before render */
+    html.dark-pre body,
+    body.dark { 
+      background: #0b0f19 !important;
+      color: #f8fafc !important;
     }
 
     body {
@@ -833,7 +853,18 @@
         if (c.branding.accent_color) {
           document.documentElement.style.setProperty('--accent', c.branding.accent_color);
         }
-        if (c.branding.dark_mode) document.body.classList.add('dark');
+        if (c.branding.dark_mode) {
+          document.body.classList.add('dark');
+          document.documentElement.classList.remove('dark-pre');
+        }
+        // Cache theme to localStorage to prevent FOUC on next load
+        try {
+          localStorage.setItem('hf-theme', JSON.stringify({
+            dark: !!c.branding.dark_mode,
+            primary: c.branding.primary_color || null,
+            accent:  c.branding.accent_color  || null
+          }));
+        } catch(e) {}
       }
 
       // Basics
