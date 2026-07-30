@@ -11,8 +11,8 @@ A flexible, configuration-driven web application framework designed to quickly l
 
 The fastest way to configure and deploy a hackathon is using the **1-Click Visual Setup Generator**:
 
-- **Visual Setup Tool**: Open [`/setup`](setup/index.html) in your browser to customize your hackathon name, disease focus, tracks, prizes, dates, judges, mentors, rules, and colors.
-- **Complete Setup Guide**: Read [`SETUP.md`](SETUP.md) for full step-by-step instructions on forking, configuring GitHub Actions, and launching your site.
+- **Visual Setup Tool**: Open [Setup Generator](setup/index.html) in your browser to customize your hackathon name, disease focus, tracks, prizes, dates, judges, mentors, rules, and colors.
+- **Complete Setup Guide**: Read the [Full Setup Guide (SETUP.md)](SETUP.md) for step-by-step instructions on forking, configuring GitHub Actions, and launching your site.
 
 ---
 
