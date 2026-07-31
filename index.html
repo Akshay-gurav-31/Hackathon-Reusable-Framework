@@ -236,6 +236,20 @@
     }
     .hero-content { position: relative; z-index: 1; max-width: 840px; margin: 0 auto; }
 
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(124, 58, 237, 0.14);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
     .tag {
       display: inline-flex;
       align-items: center;
@@ -287,6 +301,42 @@
       justify-content: center;
       gap: 16px;
       margin-bottom: 50px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0 auto;
+      max-width: 920px;
+    }
+    .hero-metric {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(8px);
+    }
+    body.dark .hero-metric {
+      background: rgba(19, 27, 46, 0.7);
+    }
+    .hero-metric-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+    .hero-metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
     }
 
     /* ---- COUNTDOWN & DATES STRIP ---- */
@@ -379,6 +429,20 @@
       letter-spacing: -0.02em;
     }
     .section-head p { color: var(--text-muted); font-size: 17px; }
+    .section-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
     /* ---- GRID CARDS ---- */
     .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
@@ -409,6 +473,17 @@
     }
     .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
     .card p { color: var(--text-muted); font-size: 15px; line-height: 1.65; }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .card-link:hover { text-decoration: underline; }
 
     /* ---- PRIZES ---- */
     .prize-card {
@@ -549,6 +624,7 @@
       .hero p { font-size: 18px; }
       .section-head h2 { font-size: 32px; }
       .card { padding: 28px; }
+      .hero-metrics { grid-template-columns: 1fr; max-width: 640px; }
     }
 
     @media (max-width: 768px) {
@@ -564,6 +640,7 @@
       .hero p { font-size: 16px; margin-bottom: 28px; max-width: none; }
       .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 36px; }
       .hero-ctas .btn { width: 100%; }
+      .hero-metrics { grid-template-columns: 1fr; gap: 12px; }
       .dates-strip { grid-template-columns: 1fr; gap: 12px; margin-bottom: 52px; }
       .date-box { padding: 20px 18px; }
       .date-value { font-size: 20px; }
@@ -589,6 +666,8 @@
       .hero p { font-size: 15px; }
       .btn-lg { width: 100%; padding: 14px 18px; font-size: 15px; }
       .section-head h2 { font-size: 26px; }
+      .hero-metric { padding: 16px 18px; }
+      .hero-metric-value { font-size: 15px; }
       .card { padding: 22px; border-radius: 20px; }
       .card h3 { font-size: 18px; }
       .prize-amount { font-size: 34px; }
@@ -640,6 +719,9 @@
   <header class="hero">
     <div class="hero-bg-glow"></div>
     <div class="wrap hero-content">
+      <div class="hero-kicker">
+        <span id="hero-kicker-text">PKU-first organizer toolkit</span>
+      </div>
       <div class="tag">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         <span id="hero-tagline-badge">Open Science Initiative</span>
@@ -655,6 +737,21 @@
         <a href="#submit" id="hero-sub-btn" class="btn btn-ghost btn-lg">
           Submit Project
         </a>
+      </div>
+
+      <div class="hero-metrics" aria-label="Quick summary">
+        <div class="hero-metric">
+          <span class="hero-metric-label">Primary default</span>
+          <div class="hero-metric-value">PKU-first content, setup, and examples</div>
+        </div>
+        <div class="hero-metric">
+          <span class="hero-metric-label">Secondary preset</span>
+          <div class="hero-metric-value">MSUD remains available as a useful example</div>
+        </div>
+        <div class="hero-metric">
+          <span class="hero-metric-label">Best for</span>
+          <div class="hero-metric-value">Organizers who want a clean no-code launch</div>
+        </div>
       </div>
 
       <!-- DATES STRIP -->
@@ -695,6 +792,7 @@
   <section id="problem">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Why this exists</div>
         <h2>Problem Statement</h2>
         <p id="problem-subhead">Understanding the core challenge and scientific impact area of this event.</p>
       </div>
@@ -713,6 +811,7 @@
   <section id="tracks">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Build paths</div>
         <h2>Challenge Tracks</h2>
         <p>Pick a challenge track and build solutions that directly impact the rare disease community.</p>
       </div>
@@ -724,6 +823,7 @@
   <section id="prizes">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Rewards</div>
         <h2>Prizes &amp; Awards</h2>
         <p>Recognizing outstanding contributions to open source rare disease tools.</p>
       </div>
@@ -746,6 +846,7 @@
   <section id="judges">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Trusted review</div>
         <h2>Judges &amp; Advisors</h2>
         <p>Evaluated by leaders in metabolic research, software engineering, and lived experience.</p>
       </div>
@@ -757,6 +858,7 @@
   <section id="mentors">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Guidance</div>
         <h2>Mentors</h2>
         <p>Experienced advisors available to guide teams during the hackathon.</p>
       </div>
@@ -768,6 +870,7 @@
   <section id="schedule">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Timeline</div>
         <h2>Event Schedule</h2>
         <p>Key dates, live workshops, and submission milestones.</p>
       </div>
@@ -779,6 +882,7 @@
   <section id="rules">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Guardrails</div>
         <h2>Rules &amp; Guidelines</h2>
         <p>Important guidelines to ensure fair participation, open collaboration, and community impact.</p>
       </div>
@@ -790,6 +894,7 @@
   <section id="submit">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Next step</div>
         <h2>Project Submission</h2>
         <p>Submit your project details and repository links before the submission deadline.</p>
       </div>
@@ -813,6 +918,7 @@
   <section id="sponsors">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Supporters</div>
         <h2>Sponsors &amp; Partners</h2>
       </div>
       <div class="grid3" id="sponsors-grid"></div>
@@ -823,6 +929,7 @@
   <section id="faq">
     <div class="wrap">
       <div class="section-head">
+        <div class="section-note">Help</div>
         <h2>Frequently Asked Questions</h2>
         <p>Everything you need to know about participating and rules.</p>
       </div>
