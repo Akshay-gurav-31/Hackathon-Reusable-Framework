@@ -3,15 +3,15 @@
   Reusable Rare Disease Hackathon Framework
 </h1>
 
-A flexible, configuration-driven web application framework designed to quickly launch hackathons for Phenylketonuria (PKU), Maple Syrup Urine Disease (MSUD), or any rare disease community.
+A flexible, configuration-driven web application framework designed to quickly launch PKU-first hackathon websites, with support for other rare disease communities too.
 
-**What this repository does:** Fork this repo, edit one YAML configuration file with your hackathon details, enable GitHub Pages, and your full hackathon website — complete with tracks, prizes, judges, schedule, FAQ, and submission flow — is live in minutes, with no coding required.
+**What this repository does:** Fork this repo, edit one YAML configuration file with your PKU hackathon details, enable GitHub Pages, and your full hackathon website — complete with tracks, prizes, judges, schedule, FAQ, and submission flow — is live in minutes, with no coding required.
 
 ---
 
 ## Getting Started & Deployment Guide
 
-To deploy your own rare disease hackathon site:
+To deploy your own PKU-first hackathon site:
 
 1. Follow the step-by-step instructions in the **[Full Setup Guide (SETUP.md)](SETUP.md)** to fork this repository and enable GitHub Pages.
 2. Customize your hackathon details via `hackathon.config.yml` or use the visual generator at `/setup` on your deployed site.
@@ -29,7 +29,7 @@ The repository includes pre-built disease configuration templates under the [`co
 
 | Disease / Template | File Path | Description |
 | :--- | :--- | :--- |
-| **PKU (Phenylketonuria)** | [`configs/hackathon.config.pku.yml`](configs/hackathon.config.pku.yml) | Default live site configuration (phenylalanine accuracy, diet tracking) |
+| **PKU (Phenylketonuria)** | [`configs/hackathon.config.pku.yml`](configs/hackathon.config.pku.yml) | Primary default configuration and recommended starting point |
 | **MSUD (Maple Syrup Urine Disease)** | [`configs/hackathon.config.msud.yml`](configs/hackathon.config.msud.yml) | MSUD science hackathon preset (BCAA, keto-acid tracking) |
 | **Generic Template** | [`configs/hackathon.config.generic.yml`](configs/hackathon.config.generic.yml) | Blank starting template for any rare disease community |
 
@@ -46,8 +46,8 @@ The repository includes pre-built disease configuration templates under the [`co
 Copy any preset from the `configs/` folder to the root `hackathon.config.yml`:
 
 ```bash
-# Example: Switch to MSUD Hackathon
-cp configs/hackathon.config.msud.yml hackathon.config.yml
+# Example: Switch to PKU Hackathon
+cp configs/hackathon.config.pku.yml hackathon.config.yml
 ```
 
 Push changes to GitHub to trigger automatic deployment.
@@ -73,3 +73,4 @@ To get started:
 3. Open a Pull Request with a clear description of what you changed and why.
 
 For questions, ideas, or collaboration opportunities, open an [Issue](../../issues) or reach out via the contact details in `hackathon.config.yml`.
+
