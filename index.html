@@ -1137,348 +1137,380 @@
 
   <script>
     async function initPage() {
-      let c = null;
       try {
-        const resp = await fetch('./hackathon.config.yml?t=' + Date.now());
-        if (resp.ok) {
-          const yamlText = await resp.text();
-          c = jsyaml.load(yamlText);
+        let c = null;
+        try {
+          const resp = await fetch('./hackathon.config.yml?t=' + Date.now());
+          if (resp.ok) {
+            const yamlText = await resp.text();
+            c = jsyaml.load(yamlText);
+          }
+        } catch (err) {
+          console.warn('Failed loading hackathon.config.yml:', err);
+        }
+
+        if (!c) return;
+
+        // Apply Branding
+        if (c.branding) {
+          if (c.branding.primary_color) {
+            document.documentElement.style.setProperty('--primary', c.branding.primary_color);
+          }
+          if (c.branding.accent_color) {
+            document.documentElement.style.setProperty('--accent', c.branding.accent_color);
+          }
+          if (c.branding.dark_mode === false) {
+            document.body.classList.add('light');
+            document.body.classList.remove('dark');
+          } else {
+            document.body.classList.add('dark');
+            document.body.classList.remove('light');
+          }
+          try {
+            localStorage.setItem('hf-theme', JSON.stringify({
+              dark: !!c.branding.dark_mode,
+              primary: c.branding.primary_color || null,
+              accent: c.branding.accent_color || null
+            }));
+          } catch (e) { }
+        }
+
+        // Basics
+        if (c.hackathon) {
+          const pageTitle = document.getElementById('page-title');
+          if (pageTitle) pageTitle.textContent = c.hackathon.name || 'Science Hackathon';
+
+          const brandName = document.getElementById('brand-name');
+          if (brandName) brandName.textContent = c.hackathon.name || 'Science Hackathon';
+
+          const heroTitle = document.getElementById('hero-title');
+          if (heroTitle) heroTitle.textContent = c.hackathon.name || 'Science Hackathon';
+
+          const brandDisorderEl = document.getElementById('brand-disorder');
+          if (brandDisorderEl && c.hackathon.disorder) brandDisorderEl.textContent = c.hackathon.disorder;
+
+          const taglineBadge = document.getElementById('hero-tagline-badge');
+          if (taglineBadge && c.hackathon.tagline) taglineBadge.textContent = c.hackathon.tagline;
+
+          const heroDesc = document.getElementById('hero-desc');
+          if (heroDesc && c.hackathon.description) heroDesc.textContent = c.hackathon.description;
+
+          const logoUrl = c.hackathon.logo || (c.community && c.community.logo);
+          if (logoUrl) {
+            const brandIconEl = document.querySelector('.brand-icon');
+            if (brandIconEl) {
+              brandIconEl.innerHTML = `<img src="${logoUrl}" alt="Logo" style="width:100%; height:100%; object-fit:contain; border-radius:6px;" />`;
+              brandIconEl.style.background = 'transparent';
+            }
+            const faviconEl = document.getElementById('dynamic-favicon');
+            if (faviconEl) faviconEl.href = logoUrl;
+          }
+        }
+
+        // Dates
+        if (c.dates) {
+          const regVal = document.getElementById('date-val-reg');
+          if (regVal && c.dates.registration_open) regVal.textContent = c.dates.registration_open;
+
+          const startVal = document.getElementById('date-val-start');
+          if (startVal && c.dates.hackathon_start) startVal.textContent = c.dates.hackathon_start;
+
+          const subVal = document.getElementById('date-val-sub');
+          if (subVal && c.dates.submission_deadline) subVal.textContent = c.dates.submission_deadline.split('T')[0];
+
+          const resVal = document.getElementById('date-val-results');
+          if (resVal && c.dates.results_announced) resVal.textContent = c.dates.results_announced;
+        }
+
+        // Registration link
+        if (c.registration && c.registration.form_url) {
+          const navReg = document.getElementById('nav-reg-btn');
+          if (navReg) navReg.href = c.registration.form_url;
+          const heroReg = document.getElementById('hero-reg-btn');
+          if (heroReg) heroReg.href = c.registration.form_url;
+        }
+
+        // Submission links
+        const googleSubBtn = document.getElementById('google-sub-btn');
+        if (googleSubBtn) {
+          if (c.submission && c.submission.form_url) {
+            googleSubBtn.href = c.submission.form_url;
+          } else if (c.registration && c.registration.form_url) {
+            googleSubBtn.href = c.registration.form_url;
+          }
+        }
+
+        // GitHub Issues Submission link
+        const ghSubBtn = document.getElementById('github-sub-btn');
+        if (ghSubBtn && c.contact && c.contact.github_org) {
+          ghSubBtn.href = c.contact.github_org + '/issues/new?template=project-submission.md';
+        }
+
+        // Problem Statement
+        if (c.problem_statement) {
+          const titleEl = document.getElementById('problem-title');
+          const descEl = document.getElementById('problem-desc');
+          if (titleEl) titleEl.textContent = c.problem_statement.title || 'The Core Challenge';
+          if (descEl) descEl.textContent = c.problem_statement.description || '';
+
+          if (c.problem_statement.objectives && c.problem_statement.objectives.length > 0) {
+            const wrap = document.getElementById('problem-objectives-wrap');
+            const list = document.getElementById('problem-objectives-list');
+            if (wrap && list) {
+              wrap.style.display = 'block';
+              list.innerHTML = c.problem_statement.objectives.map(obj => `
+                <li style="display:flex; gap:10px; align-items:flex-start; color:var(--text); font-size:15px; line-height:1.6;">
+                  <span style="color:var(--primary); font-weight:800;">✓</span>
+                  <span>${obj}</span>
+                </li>
+              `).join('');
+            }
+          }
+        } else {
+          const sec = document.getElementById('problem');
+          if (sec) sec.style.display = 'none';
+        }
+
+        // Tracks
+        if (c.tracks && c.tracks.length > 0) {
+          const grid = document.getElementById('tracks-grid');
+          if (grid) {
+            grid.innerHTML = c.tracks.map((t, i) => `
+              <div class="card">
+                <div class="card-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                <h3>${t.name}</h3>
+                <p>${t.description || ''}</p>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Prizes
+        if (c.prizes && c.prizes.list && c.prizes.list.length > 0) {
+          const grid = document.getElementById('prizes-grid');
+          if (grid) {
+            grid.innerHTML = c.prizes.list.map(p => `
+              <div class="card prize-card">
+                <span class="prize-badge">${p.place}</span>
+                <div class="prize-amount">${p.amount}</div>
+                <p>${p.description || ''}</p>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Winners & Leaderboard
+        if (c.winners) {
+          const grid = document.getElementById('winners-grid');
+          if (grid) {
+            if (c.winners.announced && c.winners.list && c.winners.list.length > 0) {
+              grid.innerHTML = c.winners.list.map(w => `
+                <div class="card" style="border: 2px solid var(--primary);">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                    <span class="prize-badge" style="font-size:12px; font-weight:800;">🏆 ${w.place}</span>
+                    <span style="font-size:15px; font-weight:800; color:var(--primary);">${w.prize || ''}</span>
+                  </div>
+                  <h3 style="font-size:19px; font-weight:700; margin-bottom:6px;">${w.project}</h3>
+                  <div style="font-size:13px; font-weight:700; color:var(--accent); margin-bottom:10px;">By ${w.team}</div>
+                  <div style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Track: ${w.track}</div>
+                  <div style="display:flex; gap:10px;">
+                    ${w.repo_url ? `<a href="${w.repo_url}" target="_blank" class="btn btn-ghost" style="height:34px; font-size:12px; padding:0 14px;">GitHub Code</a>` : ''}
+                    ${w.demo_url ? `<a href="${w.demo_url}" target="_blank" class="btn btn-primary" style="height:34px; font-size:12px; padding:0 14px;">Live Demo</a>` : ''}
+                  </div>
+                </div>
+              `).join('');
+            } else {
+              const resultsDate = (c.dates && c.dates.results_announced) ? c.dates.results_announced : 'soon';
+              grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align:center; padding: 48px 24px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius-lg);">
+                  <div style="font-size:36px; margin-bottom:12px;">⌛</div>
+                  <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Evaluation in Progress</h3>
+                  <p style="color:var(--text-muted); font-size:15px;">Winning projects and final scores will be published here on <strong>${resultsDate}</strong>.</p>
+                </div>
+              `;
+            }
+          }
+        } else {
+          const sec = document.getElementById('winners');
+          if (sec) sec.style.display = 'none';
+        }
+
+        // Judges
+        if (c.judges && c.judges.length > 0) {
+          const grid = document.getElementById('judges-grid');
+          if (grid) {
+            const judgesHTML = c.judges.map(j => `
+              <div class="card person-card">
+                <img src="${j.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60'}" class="person-avatar" alt="${j.name}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60';" />
+                <div class="person-info">
+                  <h4>${j.name}</h4>
+                  <p>${j.title || ''}</p>
+                  <div class="person-org">${j.organization || ''}</div>
+                </div>
+              </div>
+            `).join('');
+            grid.innerHTML = judgesHTML;
+          }
+        }
+
+        // Mentors
+        const mentorList = (c.mentors && c.mentors.list) ? c.mentors.list : (Array.isArray(c.mentors) ? c.mentors : []);
+        const linkLabel = (value) => {
+          if (!value) return '';
+          try {
+            const url = new URL(value);
+            return url.hostname.replace(/^www\./, '');
+          } catch (err) {
+            return 'link';
+          }
+        };
+        if (mentorList.length > 0) {
+          const grid = document.getElementById('mentors-grid');
+          if (grid) {
+            grid.innerHTML = mentorList.map(m => `
+              <div class="card person-card">
+                <img src="${m.photo || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=60'}" class="person-avatar" alt="${m.name}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=60';" />
+                <div class="person-info">
+                  <h4>${m.name}</h4>
+                  <p>${m.expertise || m.title || ''}</p>
+                  <div class="person-org">${m.contact ? `<a href="${m.contact}" target="_blank" rel="noopener noreferrer">${linkLabel(m.contact)}</a>` : (m.organization || '')
+              }</div>
+                </div>
+              </div>
+            `).join('');
+          }
+        } else {
+          const sec = document.getElementById('mentors');
+          if (sec) sec.style.display = 'none';
+        }
+
+        // Schedule
+        if (c.schedule && c.schedule.events && c.schedule.events.length > 0) {
+          const timeline = document.getElementById('schedule-timeline');
+          if (timeline) {
+            timeline.innerHTML = c.schedule.events.map(ev => `
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">${ev.date || ''} ${ev.time ? '• ' + ev.time : ''}</div>
+                <div class="timeline-title">${ev.title}</div>
+                <div class="timeline-desc">${ev.description || ''}</div>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Rules & Guidelines
+        if (c.rules && c.rules.length > 0) {
+          const grid = document.getElementById('rules-grid');
+          if (grid) {
+            grid.innerHTML = c.rules.map((r, i) => `
+              <div class="card" style="display:flex; gap:16px; align-items:flex-start;">
+                <div style="width:34px; height:34px; border-radius:10px; background:var(--primary-soft); color:var(--primary); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:14px;">
+                  ${i + 1}
+                </div>
+                <div>
+                  <h4 style="font-size:16px; font-weight:700; margin-bottom:5px;">${r.title}</h4>
+                  <p style="font-size:14px; color:var(--text-muted); line-height:1.6;">${r.description || ''}</p>
+                </div>
+              </div>
+            `).join('');
+          }
+        } else {
+          const sec = document.getElementById('rules');
+          if (sec) sec.style.display = 'none';
+        }
+
+        // FAQ
+        if (c.faq && c.faq.items && c.faq.items.length > 0) {
+          const faqList = document.getElementById('faq-list');
+          if (faqList) {
+            faqList.innerHTML = c.faq.items.map(f => `
+              <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-q">
+                  <span>${f.question}</span>
+                  <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-a">${f.answer}</div>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Sponsors
+        if (c.sponsors && c.sponsors.list && c.sponsors.list.length > 0) {
+          const grid = document.getElementById('sponsors-grid');
+          if (grid) {
+            grid.innerHTML = c.sponsors.list.map(s => `
+              <div class="card" style="text-align:center;">
+                <h3>${s.name}</h3>
+                <span class="prize-badge" style="margin-top:8px; display:inline-block;">${s.tier || 'Sponsor'}</span>
+              </div>
+            `).join('');
+          }
+        }
+
+        // Feature Toggles
+        if (c.features) {
+          if (c.features.show_winners === false && c.features.show_leaderboard === false) {
+            const s = document.getElementById('winners');
+            if (s) s.style.display = 'none';
+            const n = document.getElementById('nav-winners');
+            if (n && n.parentElement) n.parentElement.style.display = 'none';
+          }
+          if (c.features.show_problem_statement === false) {
+            const s = document.getElementById('problem');
+            if (s) s.style.display = 'none';
+            const n = document.getElementById('nav-problem');
+            if (n && n.parentElement) n.parentElement.style.display = 'none';
+          }
+          if (c.features.show_rules === false) {
+            const s = document.getElementById('rules');
+            if (s) s.style.display = 'none';
+            const n = document.getElementById('nav-rules');
+            if (n && n.parentElement) n.parentElement.style.display = 'none';
+          }
+          if (c.features.show_mentors === false || (c.mentors && c.mentors.enabled === false)) {
+            const s = document.getElementById('mentors');
+            if (s) s.style.display = 'none';
+          }
+          if (c.features.show_schedule === false) {
+            const s = document.getElementById('schedule');
+            if (s) s.style.display = 'none';
+            const n = document.getElementById('nav-schedule');
+            if (n && n.parentElement) n.parentElement.style.display = 'none';
+          }
+          if (c.features.show_faq === false) {
+            const s = document.getElementById('faq');
+            if (s) s.style.display = 'none';
+            const n = document.getElementById('nav-faq');
+            if (n && n.parentElement) n.parentElement.style.display = 'none';
+          }
+          if (c.features.show_sponsors === false) {
+            const s = document.getElementById('sponsors');
+            if (s) s.style.display = 'none';
+          }
+        }
+
+        // Footer & Contact
+        if (c.contact) {
+          const emailEl = document.getElementById('foot-email');
+          if (emailEl && c.contact.email) emailEl.href = 'mailto:' + c.contact.email;
+
+          const discordEl = document.getElementById('foot-discord');
+          if (discordEl && c.contact.discord) discordEl.href = c.contact.discord;
+
+          const ghEl = document.getElementById('foot-github');
+          if (ghEl && c.contact.github_org) ghEl.href = c.contact.github_org;
+        }
+
+        if (c.hackathon && c.hackathon.name) {
+          const footCopy = document.getElementById('foot-copy');
+          if (footCopy) footCopy.innerHTML = `&copy; 2026 ${c.hackathon.name}. Powered by Reusable Hackathon Framework.`;
         }
       } catch (err) {
-        console.warn('Failed loading hackathon.config.yml:', err);
-      }
-
-      if (!c) return;
-
-      // Apply Branding
-      if (c.branding) {
-        if (c.branding.primary_color) {
-          document.documentElement.style.setProperty('--primary', c.branding.primary_color);
-        }
-        if (c.branding.accent_color) {
-          document.documentElement.style.setProperty('--accent', c.branding.accent_color);
-        }
-        if (c.branding.dark_mode === false) {
-          document.body.classList.add('light');
-          document.body.classList.remove('dark');
-        } else {
-          document.body.classList.add('dark');
-          document.body.classList.remove('light');
-        }
-        try {
-          localStorage.setItem('hf-theme', JSON.stringify({
-            dark: !!c.branding.dark_mode,
-            primary: c.branding.primary_color || null,
-            accent: c.branding.accent_color || null
-          }));
-        } catch (e) { }
-      }
-
-      // Basics
-      if (c.hackathon) {
-        document.getElementById('page-title').textContent = c.hackathon.name || 'Science Hackathon';
-        document.getElementById('brand-name').textContent = c.hackathon.name || 'Science Hackathon';
-        document.getElementById('hero-title').textContent = c.hackathon.name || 'Science Hackathon';
-        const brandDisorderEl = document.getElementById('brand-disorder');
-        if (brandDisorderEl && c.hackathon.disorder) brandDisorderEl.textContent = c.hackathon.disorder;
-        const taglineBadge = document.getElementById('hero-tagline-badge');
-        if (taglineBadge && c.hackathon.tagline) {
-          taglineBadge.textContent = c.hackathon.tagline;
-        }
-        const heroDesc = document.getElementById('hero-desc');
-        if (heroDesc && c.hackathon.description) {
-          heroDesc.textContent = c.hackathon.description;
-        }
-
-        const logoUrl = c.hackathon.logo || (c.community && c.community.logo);
-        if (logoUrl) {
-          const brandIconEl = document.querySelector('.brand-icon');
-          if (brandIconEl) {
-            brandIconEl.innerHTML = `<img src="${logoUrl}" alt="Logo" style="width:100%; height:100%; object-fit:contain; border-radius:6px;" />`;
-            brandIconEl.style.background = 'transparent';
-          }
-          const faviconEl = document.getElementById('dynamic-favicon');
-          if (faviconEl) {
-            faviconEl.href = logoUrl;
-          }
-        }
-      }
-
-      // Dates
-      if (c.dates) {
-        if (c.dates.registration_open) document.getElementById('date-val-reg').textContent = c.dates.registration_open;
-        if (c.dates.hackathon_start) document.getElementById('date-val-start').textContent = c.dates.hackathon_start;
-        if (c.dates.submission_deadline) document.getElementById('date-val-sub').textContent = c.dates.submission_deadline.split('T')[0];
-        if (c.dates.results_announced) document.getElementById('date-val-results').textContent = c.dates.results_announced;
-      }
-
-      // Registration link
-      if (c.registration && c.registration.form_url) {
-        document.getElementById('nav-reg-btn').href = c.registration.form_url;
-        document.getElementById('hero-reg-btn').href = c.registration.form_url;
-      }
-
-      // Submission links
-      if (c.submission && c.submission.form_url) {
-        document.getElementById('google-sub-btn').href = c.submission.form_url;
-      } else if (c.registration && c.registration.form_url) {
-        document.getElementById('google-sub-btn').href = c.registration.form_url;
-      }
-
-      // GitHub Issues Submission link
-      const ghSubBtn = document.getElementById('github-sub-btn');
-      if (ghSubBtn && c.contact && c.contact.github_org) {
-        ghSubBtn.href = c.contact.github_org + '/issues/new?template=project-submission.md';
-      }
-
-      // Problem Statement
-      if (c.problem_statement) {
-        const titleEl = document.getElementById('problem-title');
-        const descEl = document.getElementById('problem-desc');
-        if (titleEl) titleEl.textContent = c.problem_statement.title || 'The Core Challenge';
-        if (descEl) descEl.textContent = c.problem_statement.description || '';
-
-        if (c.problem_statement.objectives && c.problem_statement.objectives.length > 0) {
-          const wrap = document.getElementById('problem-objectives-wrap');
-          const list = document.getElementById('problem-objectives-list');
-          if (wrap && list) {
-            wrap.style.display = 'block';
-            list.innerHTML = c.problem_statement.objectives.map(obj => `
-              <li style="display:flex; gap:10px; align-items:flex-start; color:var(--text); font-size:15px; line-height:1.6;">
-                <span style="color:var(--primary); font-weight:800;">✓</span>
-                <span>${obj}</span>
-              </li>
-            `).join('');
-          }
-        }
-      } else {
-        const sec = document.getElementById('problem');
-        if (sec) sec.style.display = 'none';
-      }
-
-      // Tracks
-      if (c.tracks && c.tracks.length > 0) {
-        const grid = document.getElementById('tracks-grid');
-        if (grid) {
-          grid.innerHTML = c.tracks.map((t, i) => `
-            <div class="card">
-              <div class="card-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-              <h3>${t.name}</h3>
-              <p>${t.description || ''}</p>
-            </div>
-          `).join('');
-        }
-      }
-
-      // Prizes
-      if (c.prizes && c.prizes.list && c.prizes.list.length > 0) {
-        const grid = document.getElementById('prizes-grid');
-        if (grid) {
-          grid.innerHTML = c.prizes.list.map(p => `
-            <div class="card prize-card">
-              <span class="prize-badge">${p.place}</span>
-              <div class="prize-amount">${p.amount}</div>
-              <p>${p.description || ''}</p>
-            </div>
-          `).join('');
-        }
-      }
-
-      // Winners & Leaderboard
-      if (c.winners) {
-        const grid = document.getElementById('winners-grid');
-        if (grid) {
-          if (c.winners.announced && c.winners.list && c.winners.list.length > 0) {
-            grid.innerHTML = c.winners.list.map(w => `
-              <div class="card" style="border: 2px solid var(--primary);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                  <span class="prize-badge" style="font-size:12px; font-weight:800;">🏆 ${w.place}</span>
-                  <span style="font-size:15px; font-weight:800; color:var(--primary);">${w.prize || ''}</span>
-                </div>
-                <h3 style="font-size:19px; font-weight:700; margin-bottom:6px;">${w.project}</h3>
-                <div style="font-size:13px; font-weight:700; color:var(--accent); margin-bottom:10px;">By ${w.team}</div>
-                <div style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Track: ${w.track}</div>
-                <div style="display:flex; gap:10px;">
-                  ${w.repo_url ? `<a href="${w.repo_url}" target="_blank" class="btn btn-ghost" style="height:34px; font-size:12px; padding:0 14px;">GitHub Code</a>` : ''}
-                  ${w.demo_url ? `<a href="${w.demo_url}" target="_blank" class="btn btn-primary" style="height:34px; font-size:12px; padding:0 14px;">Live Demo</a>` : ''}
-                </div>
-              </div>
-            `).join('');
-          } else {
-            const resultsDate = (c.dates && c.dates.results_announced) ? c.dates.results_announced : 'soon';
-            grid.innerHTML = `
-              <div style="grid-column: 1 / -1; text-align:center; padding: 48px 24px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius-lg);">
-                <div style="font-size:36px; margin-bottom:12px;">⌛</div>
-                <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Evaluation in Progress</h3>
-                <p style="color:var(--text-muted); font-size:15px;">Winning projects and final scores will be published here on <strong>${resultsDate}</strong>.</p>
-              </div>
-            `;
-          }
-        }
-      } else {
-        const sec = document.getElementById('winners');
-        if (sec) sec.style.display = 'none';
-      }
-
-      // Judges
-      if (c.judges && c.judges.length > 0) {
-        const grid = document.getElementById('judges-grid');
-        const judgesHTML = c.judges.map(j => `
-          <div class="card person-card">
-            <img src="${j.photo || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60'}" class="person-avatar" alt="${j.name}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=60';" />
-            <div class="person-info">
-              <h4>${j.name}</h4>
-              <p>${j.title || ''}</p>
-              <div class="person-org">${j.organization || ''}</div>
-            </div>
-          </div>
-        `).join('');
-        grid.innerHTML = judgesHTML;
-      }
-
-      // Mentors
-      const mentorList = (c.mentors && c.mentors.list) ? c.mentors.list : (Array.isArray(c.mentors) ? c.mentors : []);
-      const linkLabel = (value) => {
-        if (!value) return '';
-        try {
-          const url = new URL(value);
-          return url.hostname.replace(/^www\./, '');
-        } catch (err) {
-          return 'link';
-        }
-      };
-      if (mentorList.length > 0) {
-        const grid = document.getElementById('mentors-grid');
-        if (grid) {
-          grid.innerHTML = mentorList.map(m => `
-            <div class="card person-card">
-              <img src="${m.photo || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=60'}" class="person-avatar" alt="${m.name}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=60';" />
-              <div class="person-info">
-                <h4>${m.name}</h4>
-                <p>${m.expertise || m.title || ''}</p>
-                <div class="person-org">${m.contact ? `<a href="${m.contact}" target="_blank" rel="noopener noreferrer">${linkLabel(m.contact)}</a>` : (m.organization || '')
-            }</div>
-              </div>
-            </div>
-          `).join('');
-        }
-      } else {
-        const sec = document.getElementById('mentors');
-        if (sec) sec.style.display = 'none';
-      }
-
-      // Schedule
-      if (c.schedule && c.schedule.events && c.schedule.events.length > 0) {
-        const timeline = document.getElementById('schedule-timeline');
-        timeline.innerHTML = c.schedule.events.map(ev => `
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">${ev.date || ''} ${ev.time ? '• ' + ev.time : ''}</div>
-            <div class="timeline-title">${ev.title}</div>
-            <div class="timeline-desc">${ev.description || ''}</div>
-          </div>
-        `).join('');
-      }
-
-      // Rules & Guidelines
-      if (c.rules && c.rules.length > 0) {
-        const grid = document.getElementById('rules-grid');
-        if (grid) {
-          grid.innerHTML = c.rules.map((r, i) => `
-            <div class="card" style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:34px; height:34px; border-radius:10px; background:var(--primary-soft); color:var(--primary); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:14px;">
-                ${i + 1}
-              </div>
-              <div>
-                <h4 style="font-size:16px; font-weight:700; margin-bottom:5px;">${r.title}</h4>
-                <p style="font-size:14px; color:var(--text-muted); line-height:1.6;">${r.description || ''}</p>
-              </div>
-            </div>
-          `).join('');
-        }
-      } else {
-        const sec = document.getElementById('rules');
-        if (sec) sec.style.display = 'none';
-      }
-
-      // FAQ
-      if (c.faq && c.faq.items && c.faq.items.length > 0) {
-        const faqList = document.getElementById('faq-list');
-        faqList.innerHTML = c.faq.items.map(f => `
-          <div class="faq-item" onclick="this.classList.toggle('open')">
-            <div class="faq-q">
-              <span>${f.question}</span>
-              <span class="faq-arrow">▼</span>
-            </div>
-            <div class="faq-a">${f.answer}</div>
-          </div>
-        `).join('');
-      }
-
-      // Sponsors
-      if (c.sponsors && c.sponsors.list && c.sponsors.list.length > 0) {
-        const grid = document.getElementById('sponsors-grid');
-        grid.innerHTML = c.sponsors.list.map(s => `
-          <div class="card" style="text-align:center;">
-            <h3>${s.name}</h3>
-            <span class="prize-badge" style="margin-top:8px; display:inline-block;">${s.tier || 'Sponsor'}</span>
-          </div>
-        `).join('');
-      }
-
-      // Feature Toggles
-      if (c.features) {
-        if (c.features.show_winners === false && c.features.show_leaderboard === false) {
-          const s = document.getElementById('winners');
-          if (s) s.style.display = 'none';
-          const n = document.getElementById('nav-winners');
-          if (n && n.parentElement) n.parentElement.style.display = 'none';
-        }
-        if (c.features.show_problem_statement === false) {
-          const s = document.getElementById('problem');
-          if (s) s.style.display = 'none';
-          const n = document.getElementById('nav-problem');
-          if (n && n.parentElement) n.parentElement.style.display = 'none';
-        }
-        if (c.features.show_rules === false) {
-          const s = document.getElementById('rules');
-          if (s) s.style.display = 'none';
-          const n = document.getElementById('nav-rules');
-          if (n && n.parentElement) n.parentElement.style.display = 'none';
-        }
-        if (c.features.show_mentors === false || (c.mentors && c.mentors.enabled === false)) {
-          const s = document.getElementById('mentors');
-          if (s) s.style.display = 'none';
-        }
-        if (c.features.show_schedule === false) {
-          const s = document.getElementById('schedule');
-          if (s) s.style.display = 'none';
-          const n = document.getElementById('nav-schedule');
-          if (n && n.parentElement) n.parentElement.style.display = 'none';
-        }
-        if (c.features.show_faq === false) {
-          const s = document.getElementById('faq');
-          if (s) s.style.display = 'none';
-          const n = document.getElementById('nav-faq');
-          if (n && n.parentElement) n.parentElement.style.display = 'none';
-        }
-        if (c.features.show_sponsors === false) {
-          const s = document.getElementById('sponsors');
-          if (s) s.style.display = 'none';
-        }
-      }
-
-      // Footer & Contact
-      if (c.contact) {
-        if (c.contact.email) document.getElementById('foot-email').href = 'mailto:' + c.contact.email;
-        if (c.contact.discord) document.getElementById('foot-discord').href = c.contact.discord;
-        if (c.contact.github_org) document.getElementById('foot-github').href = c.contact.github_org;
-      }
-
-      if (c.hackathon && c.hackathon.name) {
-        document.getElementById('foot-copy').innerHTML = `&copy; 2026 ${c.hackathon.name}. Powered by Reusable Hackathon Framework.`;
+        console.error('Error rendering page:', err);
       }
     }
 
