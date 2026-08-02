@@ -6,7 +6,7 @@
 hackathon:
   name: "PKU Commons Science Hackathon 2026"
   # Logo Image: Use local path like "./assets/logo.png" or online image URL
-  logo: "./rhf-logo.png"
+  logo: "https://freedomconfectionery.com/wp-content/uploads/2021/06/pku.jpg"
   tagline: "Building Open Science & Metabolic Tools for the PKU Community"
   description: |
     A virtual science hackathon for Phenylketonuria (PKU). We bring together developers, researchers, dietitians, and families to improve open phenylalanine-estimation tools, living low-protein food databases, and home phenylalanine-monitoring scale integrations.
@@ -71,22 +71,22 @@ winners:
       project: "Open Phenylalanine Benchmarking Engine"
       track: "Phenylalanine Estimation & Accuracy"
       prize: "$1,000"
-      repo_url: "https://github.com/PKUCommons/phe-benchmark-engine"
-      demo_url: "https://pku.community/demo/pheops"
+      repo_url: "https://github.com"
+      demo_url: "https://example.com"
     - place: "2nd Place (Runner-up)"
       team: "PheTrack Squad"
       project: "Connected Scale WebBluetooth Driver"
       track: "Hardware & Smart Scale Integrations"
       prize: "$500"
-      repo_url: "https://github.com/PKUCommons/web-bluetooth-scale"
-      demo_url: "https://pku.community/demo/phetrack"
+      repo_url: "https://github.com"
+      demo_url: ""
     - place: "3rd Place"
       team: "Dietary AI"
       project: "Clinician-Verified PKU Food Database"
       track: "Living Low-Protein Food Database"
       prize: "$250"
-      repo_url: "https://github.com/PKUCommons/low-protein-db"
-      demo_url: "https://pku.community/demo/food-db"
+      repo_url: "https://github.com"
+      demo_url: ""
 
 # ------------------------------------------------------------
 # JUDGES, MENTORS & SPONSORS CONFIGURATION
@@ -96,12 +96,12 @@ judges:
   - name: "Nina Kilbride"
     title: "Founder, Cureledger | Director, Phebe | Attorney & Fintech Developer"
     organization: "Cureledger / Phebe"
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=60"
+    photo: "./assets/judges/nina.jpg"
     linkedin: "https://linkedin.com"
   - name: "Akshay Gurav"
     title: "AI/ML & Full-Stack Developer | Open Source Contributor"
     organization: "PKU Commons / Reusable Framework Lead"
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=60"
+    photo: "./assets/judges/akshay.jpg"
     linkedin: "https://github.com"
 
 mentors:
@@ -109,11 +109,11 @@ mentors:
   list:
     - name: "Dr. Elena Ruiz"
       expertise: "Metabolic Genetics & PKU Nutrition"
-      photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&auto=format&fit=crop&q=60"
+      photo: "./assets/mentors/elena.jpg"
       contact: "https://linkedin.com"
     - name: "Sam Patel"
       expertise: "Bluetooth Low Energy & Web Bluetooth"
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=60"
+      photo: "./assets/mentors/sam.jpg"
       contact: "https://github.com"
 
 sponsors:
@@ -122,11 +122,11 @@ sponsors:
     - name: "PKU Commons"
       tier: "Platinum"
       url: "https://pku.community"
-      logo: "./rhf-logo.png"
+      logo: "./assets/sponsors/pku-commons.png"
     - name: "National PKU Alliance"
       tier: "Gold"
       url: "https://npkua.org"
-      logo: "./rhf-logo.png"
+      logo: "./assets/sponsors/npkua.png"
 
 schedule:
   enabled: true
@@ -190,8 +190,10 @@ contact:
   github_org: "https://github.com/PKUCommons"
 
 branding:
-  primary_color: "#4f46e5"
-  accent_color: "#0ea5e9"
+  primary_color: "#0f766e"      # Deep teal – trust + health/metabolic feel, excellent contrast
+  accent_color: "#0ea5e9"       # Bright sky blue – modern tech highlight, high visibility
+  secondary_color: "#f0fdfa"    # Soft teal-50 background for cards/sections
+  text_color: "#134e4a"         # Dark teal for body text (great readability)
   dark_mode: false
   logo_url: ""
 
