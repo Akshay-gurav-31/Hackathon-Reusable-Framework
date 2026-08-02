@@ -513,6 +513,59 @@
       overflow: hidden;
     }
 
+    /* Prizes layout: 1st in center, others on sides */
+    .prizes-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prizes-layout .prize-card {
+      flex: 1 1 220px;
+      max-width: 260px;
+    }
+
+    .prizes-layout .prize-featured {
+      flex: 0 0 300px;
+      max-width: 320px;
+      order: -1;
+      position: relative;
+      background: linear-gradient(145deg, rgba(15,118,110,0.12), rgba(14,165,233,0.1));
+      border: 2px solid var(--primary) !important;
+      box-shadow: 0 8px 40px rgba(15,118,110,0.25), 0 2px 8px rgba(0,0,0,0.1);
+      transform: scale(1.06);
+    }
+
+    .prizes-layout .prize-featured .prize-amount {
+      font-size: 56px;
+    }
+
+    .prizes-layout .prize-featured .prize-badge {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #1c1917;
+      border-color: #f59e0b;
+      font-size: 13.5px;
+      padding: 6px 18px;
+    }
+
+    .prize-crown {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 4px;
+      filter: drop-shadow(0 2px 4px rgba(245,158,11,0.4));
+    }
+
+    @media (max-width: 768px) {
+      .prizes-layout .prize-featured {
+        flex: 1 1 100%;
+        max-width: 100%;
+        transform: scale(1);
+        order: -1;
+      }
+    }
+
     .prize-amount {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 40px;
@@ -1003,7 +1056,7 @@
         <h2>Prizes &amp; Awards</h2>
         <p>Recognizing outstanding contributions to open source rare disease tools.</p>
       </div>
-      <div class="grid3" id="prizes-grid"></div>
+      <div class="prizes-layout" id="prizes-grid"></div>
     </div>
   </section>
 
@@ -1291,13 +1344,19 @@
         if (c.prizes && c.prizes.list && c.prizes.list.length > 0) {
           const grid = document.getElementById('prizes-grid');
           if (grid) {
-            grid.innerHTML = c.prizes.list.map(p => `
-              <div class="card prize-card">
+            // Find index of 1st place (first item with '1st' in place string, or index 0)
+            const firstIdx = c.prizes.list.findIndex(p => /1st|first|grand/i.test(p.place || ''));
+            const featuredIdx = firstIdx >= 0 ? firstIdx : 0;
+            grid.innerHTML = c.prizes.list.map((p, i) => {
+              const isFeatured = i === featuredIdx;
+              return `
+              <div class="card prize-card${isFeatured ? ' prize-featured' : ''}">
+                ${isFeatured ? '<span class="prize-crown">🏆</span>' : ''}
                 <span class="prize-badge">${p.place}</span>
                 <div class="prize-amount">${p.amount}</div>
                 <p>${p.description || ''}</p>
-              </div>
-            `).join('');
+              </div>`;
+            }).join('');
           }
         }
 
