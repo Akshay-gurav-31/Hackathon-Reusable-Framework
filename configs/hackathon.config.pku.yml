@@ -151,7 +151,7 @@ schedule:
       description: "Judges present awards and demo winning projects."
 
 registration:
-  form_url: "https://forms.gle/sample-pku-registration"
+  form_url: "https://forms.gle/JhXMvbgEEGJLeRtX6"
   team:
     min_size: 1
     max_size: 4
