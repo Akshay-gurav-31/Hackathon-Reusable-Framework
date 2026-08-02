@@ -31,8 +31,6 @@ rules:
     description: "Teams may use open libraries, but all core hackathon code and submission progress must be created during the event."
   - title: "Team & Solo Structure"
     description: "Participate solo or in teams of up to 4 members. Every team member must register individually."
-  - title: "Community Code of Conduct"
-    description: "Maintain a respectful, collaborative, and inclusive environment for dietitians, patients, and developers alike."
 
 dates:
   registration_open: "2026-09-01"
@@ -96,24 +94,24 @@ judges:
   - name: "Nina Kilbride"
     title: "Founder, Cureledger | Director, Phebe | Attorney & Fintech Developer"
     organization: "Cureledger / Phebe"
-    photo: "./assets/judges/nina.jpg"
+    photo: "https://media.licdn.com/dms/image/v2/D4E03AQFyBYl6MoIiNQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715096677247?e=1787184000&v=beta&t=gAwxmFAAWT7Oqdai8pE4szErYzCNwfcvHnU8Y4jwkzs"
     linkedin: "https://linkedin.com"
-  - name: "Akshay Gurav"
+  - name: "Zach"
     title: "AI/ML & Full-Stack Developer | Open Source Contributor"
     organization: "PKU Commons / Reusable Framework Lead"
-    photo: "./assets/judges/akshay.jpg"
-    linkedin: "https://github.com"
+    photo: "https://cdn.phototourl.com/free/2026-08-02-c9a623e2-9714-46b4-ae93-89835441e865.jpg"
+    linkedin: "https://x.com/cerebralbosons"
 
 mentors:
   enabled: true
   list:
     - name: "Dr. Elena Ruiz"
       expertise: "Metabolic Genetics & PKU Nutrition"
-      photo: "./assets/mentors/elena.jpg"
+      photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&auto=format&fit=crop&q=80"
       contact: "https://linkedin.com"
     - name: "Sam Patel"
       expertise: "Bluetooth Low Energy & Web Bluetooth"
-      photo: "./assets/mentors/sam.jpg"
+      photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80"
       contact: "https://github.com"
 
 sponsors:
@@ -122,11 +120,11 @@ sponsors:
     - name: "PKU Commons"
       tier: "Platinum"
       url: "https://pku.community"
-      logo: "./assets/sponsors/pku-commons.png"
+      logo: "./rhf-logo.png"
     - name: "National PKU Alliance"
       tier: "Gold"
       url: "https://npkua.org"
-      logo: "./assets/sponsors/npkua.png"
+      logo: "./rhf-logo.png"
 
 schedule:
   enabled: true
@@ -190,8 +188,10 @@ contact:
   github_org: "https://github.com/PKUCommons"
 
 branding:
-  primary_color: "#4f46e5"
-  accent_color: "#0ea5e9"
+  primary_color: "#0f766e"      # Deep teal – trust + health/metabolic feel, excellent contrast
+  accent_color: "#0ea5e9"       # Bright sky blue – modern tech highlight, high visibility
+  secondary_color: "#f0fdfa"    # Soft teal-50 background for cards/sections
+  text_color: "#134e4a"         # Dark teal for body text (great readability)
   dark_mode: false
   logo_url: ""
 

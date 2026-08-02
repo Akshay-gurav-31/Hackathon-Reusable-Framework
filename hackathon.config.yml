@@ -121,11 +121,11 @@ sponsors:
     - name: "PKU Commons"
       tier: "Platinum"
       url: "https://pku.community"
-      logo: "./assets/sponsors/pku-commons.png"
+      logo: "./rhf-logo.png"
     - name: "National PKU Alliance"
       tier: "Gold"
       url: "https://npkua.org"
-      logo: "./assets/sponsors/npkua.png"
+      logo: "./rhf-logo.png"
 
 schedule:
   enabled: true
