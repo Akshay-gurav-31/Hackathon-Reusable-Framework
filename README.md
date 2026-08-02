@@ -7,6 +7,12 @@ A flexible, configuration-driven web application framework designed to quickly l
 
 **What this repository does:** Fork this repo, edit one YAML configuration file with your PKU hackathon details, enable GitHub Pages, and your full hackathon website — complete with tracks, prizes, judges, schedule, FAQ, and submission flow — is live in minutes, with no coding required.
 
+<div align="center">
+  <img src="./assets/Overview.png" alt="5-Step Zero-Code Organizer Workflow: Fork → Enable Pages → Create Forms → Configure GUI → Launch Live Site" width="100%" />
+  <br />
+  <sub><b>Launch a complete hackathon website in 15 minutes with zero coding.</b></sub>
+</div>
+
 ---
 
 ## Getting Started & Deployment Guide
