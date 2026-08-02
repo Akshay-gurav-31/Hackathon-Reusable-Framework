@@ -72,5 +72,5 @@ To get started:
 2. Make your improvements — whether to templates, configuration presets, documentation, or the visual setup generator.
 3. Open a Pull Request with a clear description of what you changed and why.
 
-For questions, ideas, or collaboration opportunities, open an [Issue](../../issues) or reach out via the contact details in `hackathon.config.yml`.
+For questions, ideas, or collaboration opportunities, open an [Issue](issues) or reach out via the contact details in `hackathon.config.yml`.
 
