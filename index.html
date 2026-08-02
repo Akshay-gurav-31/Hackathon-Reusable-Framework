@@ -1644,10 +1644,25 @@
           const footCopy = document.getElementById('foot-copy');
           if (footCopy) footCopy.innerHTML = `&copy; 2026 ${c.hackathon.name}. Powered by Reusable Hackathon Framework.`;
         }
+
+        // Restore scroll position after dynamic content finishes rendering
+        const savedScroll = sessionStorage.getItem('hackathonScrollPosition');
+        if (savedScroll) {
+          setTimeout(() => {
+            window.scrollTo({ top: parseInt(savedScroll, 10), behavior: 'instant' });
+            sessionStorage.removeItem('hackathonScrollPosition');
+          }, 50);
+        }
+
       } catch (err) {
         console.error('Error rendering page:', err);
       }
     }
+
+    // Save scroll position before the page unloads
+    window.addEventListener('beforeunload', () => {
+      sessionStorage.setItem('hackathonScrollPosition', window.scrollY);
+    });
 
     if (document.readyState === 'loading') {
       window.addEventListener('DOMContentLoaded', initPage);
