@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,16 +8,25 @@
   <meta id="page-desc" name="description" content="Science Hackathon for Rare Disorder Communities" />
   <link id="dynamic-favicon" rel="icon" href="./assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --accent: #0ea5e9;
-      --accent-hover: #0284c7;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-soft: rgba(99, 102, 241, 0.12);
+      --accent: #06b6d4;
+      --accent-soft: rgba(6, 182, 212, 0.12);
       --bg: #f8fafc;
       --surface: #ffffff;
       --surface-alt: #f1f5f9;
@@ -28,38 +38,47 @@
       --radius-sm: 12px;
       --radius: 18px;
       --radius-lg: 24px;
-      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
-      --shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.07);
-      --shadow-hover: 0 22px 48px -10px rgba(79, 70, 229, 0.22);
-      --glow-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(14, 165, 233, 0.12));
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.03);
+      --shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08), 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+      --shadow-hover: 0 20px 40px -12px rgba(99, 102, 241, 0.18), 0 8px 16px -6px rgba(15, 23, 42, 0.08);
+      --glow: 0 0 40px -8px rgba(99, 102, 241, 0.35);
     }
 
     body.dark {
-      --bg: #090d16;
-      --surface: #111827;
-      --surface-alt: #1f2937;
-      --border: #1f2937;
-      --text: #f9fafb;
-      --text-muted: #9ca3af;
-      --text-light: #6b7280;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-      --shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.6);
-      --shadow-hover: 0 22px 48px -10px rgba(79, 70, 229, 0.35);
+      --bg: #070b14;
+      --surface: #0f1629;
+      --surface-alt: #151e33;
+      --border: #1e2a42;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-light: #64748b;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+      --shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.45);
+      --shadow-hover: 0 20px 40px -12px rgba(99, 102, 241, 0.25);
+      --glow: 0 0 50px -10px rgba(99, 102, 241, 0.4);
     }
 
     html {
       scroll-behavior: smooth;
       overflow-x: hidden;
-      width: 100%;
-      max-width: 100%;
     }
 
-    body.dark { 
-      background: #090d16 !important;
-      color: #f9fafb !important;
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Hide dynamic elements until data is populated to prevent FOUC content flash */
+    body.dark {
+      background: #070b14 !important;
+      color: #f1f5f9 !important;
+    }
+
+    /* Prevent FOUC */
     #tracks-grid:empty,
     #prizes-grid:empty,
     #winners-grid:empty,
@@ -70,7 +89,7 @@
     #faq-list:empty,
     #sponsors-grid:empty {
       opacity: 0;
-      min-height: 100px;
+      min-height: 80px;
     }
 
     #tracks-grid,
@@ -82,97 +101,95 @@
     #rules-grid,
     #faq-list,
     #sponsors-grid {
-      transition: opacity 0.25s ease-in-out;
-    }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 15px;
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100%;
+      transition: opacity 0.3s ease;
     }
 
     .wrap {
-      max-width: 1180px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* ---- NAV ---- */
+    /* ========== NAV ========== */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      height: 72px;
-      width: 100%;
+      height: 70px;
       display: flex;
       align-items: center;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
       transition: all 0.3s ease;
     }
-    body.dark nav { background: rgba(9, 13, 22, 0.82); }
+
+    body.dark nav {
+      background: rgba(7, 11, 20, 0.82);
+    }
 
     .nav-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      gap: 20px;
+      gap: 16px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 17px;
       color: var(--text);
       text-decoration: none;
       min-width: 0;
-      flex-shrink: 1;
-      flex: 1;
     }
+
     #brand-name {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-width: 0;
     }
+
     .brand-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: var(--glow-gradient);
-      border: 1px solid rgba(79, 70, 229, 0.2);
-      display: flex; align-items: center; justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 6px;
       list-style: none;
-      white-space: nowrap;
     }
+
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
-      transition: all 0.2s;
-      position: relative;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
     }
-    .nav-links a:hover { color: var(--primary); }
 
-    /* ---- BUTTONS ---- */
+    .nav-links a:hover {
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    /* ========== BUTTONS ========== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -180,73 +197,100 @@
       gap: 8px;
       height: 42px;
       padding: 0 20px;
-      border-radius: 10px;
+      border-radius: 11px;
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
       border: none;
       white-space: nowrap;
-      flex-shrink: 0;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       font-family: inherit;
     }
+
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
     }
+
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45);
-      filter: brightness(1.05);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45);
+      filter: brightness(1.06);
     }
+
     .btn-ghost {
       background: var(--surface);
       color: var(--text);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
     }
+
     .btn-ghost:hover {
       border-color: var(--primary);
       color: var(--primary);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow);
     }
-    .btn-lg { height: auto; padding: 15px 30px; font-size: 16px; border-radius: var(--radius); }
 
-    /* ---- HERO ---- */
+    .btn-lg {
+      height: auto;
+      padding: 15px 28px;
+      font-size: 15.5px;
+      border-radius: 14px;
+    }
+
+    /* ========== HERO ========== */
     .hero {
-      padding: 100px 0 70px;
+      padding: 96px 0 72px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
+
     .hero-bg-glow {
       position: absolute;
-      top: -120px;
+      top: -160px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(800px, 150vw);
-      height: 500px;
-      background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, rgba(6, 182, 212, 0.08) 45%, transparent 70%);
+      width: min(900px, 160vw);
+      height: 520px;
+      background: radial-gradient(ellipse at center,
+          rgba(99, 102, 241, 0.18) 0%,
+          rgba(6, 182, 212, 0.08) 40%,
+          transparent 70%);
       pointer-events: none;
       z-index: 0;
-      filter: blur(40px);
+      filter: blur(50px);
     }
-    .hero-content { position: relative; z-index: 1; max-width: 840px; margin: 0 auto; }
+
+    body.dark .hero-bg-glow {
+      background: radial-gradient(ellipse at center,
+          rgba(99, 102, 241, 0.22) 0%,
+          rgba(6, 182, 212, 0.1) 40%,
+          transparent 70%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+    }
 
     .hero-kicker {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
+      gap: 8px;
+      padding: 7px 14px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.04);
-      border: 1px solid rgba(124, 58, 237, 0.14);
-      color: var(--text-muted);
-      font-size: 13px;
+      background: var(--primary-soft);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: var(--primary);
+      font-size: 12.5px;
       font-weight: 700;
+      letter-spacing: 0.02em;
       margin-bottom: 18px;
     }
 
@@ -255,441 +299,569 @@
       align-items: center;
       gap: 8px;
       padding: 7px 16px;
-      border-radius: 30px;
-      background: rgba(124, 58, 237, 0.08);
-      border: 1px solid rgba(124, 58, 237, 0.25);
-      color: var(--primary);
+      border-radius: 999px;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      color: var(--accent);
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.1);
+      margin-bottom: 22px;
     }
 
     .hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 56px;
+      font-size: clamp(36px, 6vw, 54px);
       font-weight: 700;
-      line-height: 1.12;
-      margin-bottom: 22px;
+      line-height: 1.1;
+      margin-bottom: 20px;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--text) 30%, var(--primary) 100%);
-      background-clip: text;
+      background: linear-gradient(135deg, var(--text) 25%, var(--primary) 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     body.dark .hero h1 {
-      background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 100%);
-      background-clip: text;
+      background: linear-gradient(135deg, #f8fafc 30%, #a5b4fc 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      font-size: 19px;
+      font-size: 18px;
       color: var(--text-muted);
       margin-bottom: 36px;
-      max-width: 720px;
+      max-width: 640px;
       margin-left: auto;
       margin-right: auto;
-      font-weight: 450;
       line-height: 1.65;
+      font-weight: 450;
     }
 
     .hero-ctas {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 50px;
+      gap: 14px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
     }
 
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: 0 auto;
-      max-width: 920px;
-    }
-    .hero-metric {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 20px;
-      text-align: left;
-      box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(8px);
-    }
-    body.dark .hero-metric {
-      background: rgba(19, 27, 46, 0.7);
-    }
-    .hero-metric-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-light);
-      margin-bottom: 6px;
-    }
-    .hero-metric-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.35;
-    }
-
-    /* ---- COUNTDOWN & DATES STRIP ---- */
+    /* Dates Strip */
     .dates-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 70px;
-      position: relative;
+      gap: 14px;
+      margin-bottom: 20px;
     }
-    @media (max-width: 900px) {
-      .dates-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 550px) {
-      .dates-strip {
-        grid-template-columns: 1fr;
-      }
-    }
+
     .date-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px 20px;
+      border-radius: var(--radius);
+      padding: 22px 16px;
       text-align: center;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
       position: relative;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      transition: all 0.3s ease;
     }
+
     .date-box::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 4px;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
-      opacity: 0.8;
-      transition: opacity 0.3s;
     }
+
     .date-box:hover {
+      transform: translateY(-3px);
       box-shadow: var(--shadow);
-      border-color: rgba(124, 58, 237, 0.3);
+      border-color: rgba(99, 102, 241, 0.3);
     }
-    .date-box:hover::before {
-      opacity: 1;
-    }
+
     .date-icon-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: rgba(124, 58, 237, 0.08);
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: var(--primary-soft);
       color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-    }
-    .date-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 6px;
-    }
-    .date-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
+      margin: 0 auto 12px;
     }
 
-    /* ---- SECTIONS ---- */
-    section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .date-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+    }
+
+    .date-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
     .section-head {
       text-align: center;
-      max-width: 640px;
-      margin: 0 auto 56px;
+      max-width: 600px;
+      margin: 0 auto 48px;
     }
+
     .section-head h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 36px;
+      font-size: clamp(28px, 4vw, 36px);
       font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      letter-spacing: -0.025em;
     }
-    .section-head p { color: var(--text-muted); font-size: 17px; }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 16.5px;
+    }
+
     .section-note {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 14px;
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(79, 70, 229, 0.08);
+      background: var(--primary-soft);
       color: var(--primary);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    /* ---- GRID CARDS ---- */
-    .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
-    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+    /* ========== CARDS ========== */
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 32px;
+      padding: 30px;
       box-shadow: var(--shadow-sm);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
+
     .card:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
-      border-color: rgba(124, 58, 237, 0.4);
+      border-color: rgba(99, 102, 241, 0.35);
     }
-    .card-icon {
-      width: 52px; height: 52px;
-      border-radius: var(--radius-sm);
-      background: var(--glow-gradient);
-      border: 1px solid rgba(124, 58, 237, 0.2);
-      color: var(--primary);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 22px;
-    }
-    .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
-    .card p { color: var(--text-muted); font-size: 15px; line-height: 1.65; }
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 18px;
-      color: var(--primary);
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .card-link:hover { text-decoration: underline; }
 
-    /* ---- PRIZES ---- */
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
+      border: 1px solid rgba(99, 102, 241, 0.18);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.015em;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    /* Prize cards */
     .prize-card {
       text-align: center;
-      position: relative;
       overflow: hidden;
     }
+
     .prize-amount {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 800;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      background-clip: text;
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 14px 0 10px;
+      margin: 12px 0 8px;
     }
+
     .prize-badge {
       display: inline-block;
-      padding: 6px 16px;
-      border-radius: 30px;
-      background: rgba(6, 182, 212, 0.1);
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
       border: 1px solid rgba(6, 182, 212, 0.25);
       color: var(--accent);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
     }
 
-    /* ---- JUDGES / MENTORS ---- */
+    /* Person cards */
     .person-card {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
+
     .person-avatar {
-      width: 68px; height: 68px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--surface);
       box-shadow: 0 0 0 2px var(--primary);
       flex-shrink: 0;
     }
-    .person-info h4 { font-size: 17px; font-weight: 700; }
-    .person-info p { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
-    .person-org { font-size: 12px; font-weight: 600; color: var(--text-light); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .person-info h4 {
+      font-size: 16.5px;
+      font-weight: 700;
+    }
+
+    .person-info p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .person-org {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     .person-org a {
       color: inherit;
       text-decoration: none;
-      word-break: break-word;
     }
+
     .person-org a:hover {
       color: var(--primary);
     }
 
-    /* ---- TIMELINE ---- */
+    /* Timeline */
     .timeline {
       position: relative;
-      max-width: 750px;
+      max-width: 720px;
       margin: 0 auto;
       padding-left: 36px;
     }
+
     .timeline::before {
       content: '';
       position: absolute;
-      left: 12px; top: 8px; bottom: 8px;
-      width: 3px;
+      left: 11px;
+      top: 10px;
+      bottom: 10px;
+      width: 2.5px;
       background: linear-gradient(180deg, var(--primary), var(--accent));
       border-radius: 2px;
+      opacity: 0.7;
     }
+
     .timeline-item {
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 24px 28px;
+      padding: 22px 26px;
       box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
     }
+
+    .timeline-item:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: var(--shadow);
+    }
+
     .timeline-dot {
       position: absolute;
-      left: -42px; top: 24px;
-      width: 20px; height: 20px;
+      left: -41px;
+      top: 26px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: var(--bg);
-      border: 4px solid var(--primary);
-      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+      border: 3.5px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
     }
-    .timeline-date { font-size: 13px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; }
-    .timeline-title { font-size: 18px; font-weight: 700; margin: 6px 0; }
-    .timeline-desc { font-size: 14px; color: var(--text-muted); }
 
-    /* ---- FAQ ACCORDION ---- */
+    .timeline-date {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 5px 0;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* FAQ */
     .faq-item {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
-      transition: all 0.2s;
+      transition: all 0.25s ease;
     }
+
     .faq-q {
-      padding: 22px 26px;
+      padding: 20px 24px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15.5px;
       cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
     }
+
     .faq-a {
-      padding: 0 26px 22px;
+      padding: 0 24px 20px;
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 14.5px;
       line-height: 1.65;
       display: none;
     }
-    .faq-item.open { border-color: var(--primary); box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1); }
-    .faq-item.open .faq-a { display: block; }
-    .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--primary); }
-    .faq-arrow { transition: transform 0.25s ease; color: var(--text-light); font-size: 14px; }
 
-    /* ---- FOOTER ---- */
+    .faq-item.open {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);
+    }
+
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .faq-arrow {
+      transition: transform 0.25s ease;
+      color: var(--text-light);
+      font-size: 13px;
+    }
+
+    /* Footer */
     footer {
-      padding: 50px 0;
+      padding: 48px 0;
       background: var(--surface);
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 13.5px;
     }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--primary); }
 
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 1024px) {
-      .wrap { padding: 0 20px; }
-      .hero { padding: 88px 0 62px; }
-      .hero h1 { font-size: 48px; }
-      .hero p { font-size: 18px; }
-      .section-head h2 { font-size: 32px; }
-      .card { padding: 28px; }
-      .hero-metrics { grid-template-columns: 1fr; max-width: 640px; }
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding: 80px 0 60px;
+      }
+
+      .dates-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      nav { height: auto; min-height: 68px; }
-      .nav-wrap { gap: 8px; }
-      .nav-links { display: none; }
-      .brand { font-size: 14px; flex: 1; min-width: 0; }
-      #brand-name { max-width: calc(100vw - 160px); }
-      .hero { padding: 72px 0 52px; text-align: left; }
-      .hero-content { max-width: none; }
-      .tag { margin-bottom: 18px; }
-      .hero h1 { font-size: 38px; line-height: 1.08; }
-      .hero p { font-size: 16px; margin-bottom: 28px; max-width: none; }
-      .hero-ctas { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 36px; }
-      .hero-ctas .btn { width: 100%; }
-      .hero-metrics { grid-template-columns: 1fr; gap: 12px; }
-      .dates-strip { grid-template-columns: 1fr; gap: 12px; margin-bottom: 52px; }
-      .date-box { padding: 20px 18px; }
-      .date-value { font-size: 20px; }
-      section { padding: 64px 0; }
-      .section-head { margin-bottom: 34px; text-align: left; }
-      .section-head h2 { font-size: 28px; }
-      .section-head p { font-size: 15px; }
-      .grid3, .grid2 { grid-template-columns: 1fr; gap: 18px; }
-      .card { padding: 24px; }
-      .person-card { align-items: flex-start; gap: 16px; }
-      .person-avatar { width: 58px; height: 58px; }
-      .timeline { padding-left: 28px; }
-      .timeline::before { left: 8px; }
-      .timeline-dot { left: -30px; top: 22px; width: 16px; height: 16px; }
-      .timeline-item { padding: 20px 20px; }
-      .footer-links { flex-wrap: wrap; gap: 14px; }
+      nav {
+        height: auto;
+        min-height: 64px;
+        padding: 10px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .hero {
+        padding: 64px 0 48px;
+        text-align: left;
+      }
+
+      .hero-content {
+        max-width: none;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 16px;
+        max-width: none;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+      }
+
+      .dates-strip {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .section-head {
+        text-align: left;
+        margin-bottom: 36px;
+      }
+
+      .grid3,
+      .grid2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .person-card {
+        align-items: flex-start;
+      }
+
+      .timeline {
+        padding-left: 28px;
+      }
+
+      .timeline::before {
+        left: 7px;
+      }
+
+      .timeline-dot {
+        left: -29px;
+        width: 16px;
+        height: 16px;
+      }
     }
 
-    @media (max-width: 520px) {
-      .wrap { padding: 0 16px; }
-      .hero { padding-top: 64px; }
-      .hero h1 { font-size: 32px; }
-      .hero p { font-size: 15px; }
-      .btn-lg { width: 100%; padding: 14px 18px; font-size: 15px; }
-      .section-head h2 { font-size: 26px; }
-      .hero-metric { padding: 16px 18px; }
-      .hero-metric-value { font-size: 15px; }
-      .card { padding: 22px; border-radius: 20px; }
-      .card h3 { font-size: 18px; }
-      .prize-amount { font-size: 34px; }
-      .person-card { flex-direction: column; align-items: flex-start; }
-      .person-info h4 { font-size: 16px; }
-      .timeline-item { padding: 18px 18px; }
-      .faq-q { padding: 18px 20px; font-size: 15px; }
-      .faq-a { padding: 0 20px 18px; font-size: 14px; }
-      footer { padding: 40px 0; }
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 0 16px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .btn-lg {
+        width: 100%;
+      }
+
+      .prize-amount {
+        font-size: 34px;
+      }
+
+      .person-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     @media (hover: none) {
+
       .card:hover,
       .btn-primary:hover,
       .btn-ghost:hover,
       .date-box:hover {
         transform: none;
-        box-shadow: var(--shadow-sm);
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVIGATION -->
@@ -697,7 +869,10 @@
     <div class="wrap nav-wrap">
       <a href="#" class="brand">
         <div class="brand-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
         </div>
         <span id="brand-name">Science Hackathon</span>
       </a>
@@ -723,16 +898,22 @@
         <span id="hero-kicker-text">PKU-first organizer toolkit</span>
       </div>
       <div class="tag">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        </svg>
         <span id="hero-tagline-badge">Open Science Initiative</span>
       </div>
       <h1 id="hero-title">PKU Commons Science Hackathon</h1>
-      <p id="hero-desc">Building reusable open infrastructure, accuracy standards, and dietary tools for rare disorder communities.</p>
-      
+      <p id="hero-desc">Building reusable open infrastructure, accuracy standards, and dietary tools for rare disorder
+        communities.</p>
+
       <div class="hero-ctas">
         <a href="#" id="hero-reg-btn" target="_blank" class="btn btn-primary btn-lg">
           Register to Participate
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </a>
         <a href="#submit" id="hero-sub-btn" class="btn btn-ghost btn-lg">
           Submit Project
@@ -743,28 +924,41 @@
       <div class="dates-strip" id="dates-strip">
         <div class="date-box">
           <div class="date-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <line x1="20" y1="8" x2="20" y2="14" />
+              <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
           </div>
           <div class="date-label">Registration</div>
           <div class="date-value" id="date-val-reg">Open Now</div>
         </div>
         <div class="date-box">
           <div class="date-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
           </div>
           <div class="date-label">Hackathon Starts</div>
           <div class="date-value" id="date-val-start">TBD</div>
         </div>
         <div class="date-box">
           <div class="date-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
           </div>
           <div class="date-label">Submissions Due</div>
           <div class="date-value" id="date-val-sub">TBD</div>
         </div>
         <div class="date-box">
           <div class="date-icon-wrap">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+            </svg>
           </div>
           <div class="date-label">Results</div>
           <div class="date-value" id="date-val-results">TBD</div>
@@ -773,7 +967,7 @@
     </div>
   </header>
 
-  <!-- PROBLEM STATEMENT SECTION -->
+  <!-- PROBLEM STATEMENT -->
   <section id="problem">
     <div class="wrap">
       <div class="section-head">
@@ -782,17 +976,23 @@
         <p id="problem-subhead">Understanding the core challenge and scientific impact area of this event.</p>
       </div>
       <div class="card" style="padding: 36px;">
-        <h3 id="problem-title" style="font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; margin-bottom:14px; color:var(--text);"></h3>
-        <p id="problem-desc" style="font-size:16px; color:var(--text-muted); line-height:1.75; margin-bottom:24px;"></p>
-        <div id="problem-objectives-wrap" style="display:none; background:var(--surface-alt); border-radius:var(--radius); padding:24px;">
-          <h4 style="font-size:15px; font-weight:700; margin-bottom:14px; color:var(--primary); text-transform:uppercase; letter-spacing:0.05em;">Key Objectives &amp; Challenges:</h4>
-          <ul id="problem-objectives-list" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px;"></ul>
+        <h3 id="problem-title"
+          style="font-family:'Space Grotesk',sans-serif; font-size:23px; font-weight:700; margin-bottom:14px;"></h3>
+        <p id="problem-desc" style="font-size:15.5px; color:var(--text-muted); line-height:1.75; margin-bottom:24px;">
+        </p>
+        <div id="problem-objectives-wrap"
+          style="display:none; background:var(--surface-alt); border-radius:var(--radius); padding:22px;">
+          <h4
+            style="font-size:14px; font-weight:700; margin-bottom:14px; color:var(--primary); text-transform:uppercase; letter-spacing:0.05em;">
+            Key Objectives &amp; Challenges:</h4>
+          <ul id="problem-objectives-list"
+            style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px;"></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRACKS SECTION -->
+  <!-- TRACKS -->
   <section id="tracks">
     <div class="wrap">
       <div class="section-head">
@@ -804,7 +1004,7 @@
     </div>
   </section>
 
-  <!-- PRIZES SECTION -->
+  <!-- PRIZES -->
   <section id="prizes">
     <div class="wrap">
       <div class="section-head">
@@ -816,7 +1016,7 @@
     </div>
   </section>
 
-  <!-- WINNERS & LEADERBOARD SECTION -->
+  <!-- WINNERS -->
   <section id="winners">
     <div class="wrap">
       <div class="section-head">
@@ -827,7 +1027,7 @@
     </div>
   </section>
 
-  <!-- JUDGES SECTION -->
+  <!-- JUDGES -->
   <section id="judges">
     <div class="wrap">
       <div class="section-head">
@@ -839,7 +1039,7 @@
     </div>
   </section>
 
-  <!-- MENTORS SECTION -->
+  <!-- MENTORS -->
   <section id="mentors">
     <div class="wrap">
       <div class="section-head">
@@ -851,7 +1051,7 @@
     </div>
   </section>
 
-  <!-- SCHEDULE SECTION -->
+  <!-- SCHEDULE -->
   <section id="schedule">
     <div class="wrap">
       <div class="section-head">
@@ -863,7 +1063,7 @@
     </div>
   </section>
 
-  <!-- RULES & GUIDELINES SECTION -->
+  <!-- RULES -->
   <section id="rules">
     <div class="wrap">
       <div class="section-head">
@@ -875,7 +1075,7 @@
     </div>
   </section>
 
-  <!-- SUBMISSION FLOW SECTION -->
+  <!-- SUBMISSION -->
   <section id="submit">
     <div class="wrap">
       <div class="section-head">
@@ -883,23 +1083,33 @@
         <h2>Project Submission</h2>
         <p>Submit your project details and repository links before the submission deadline.</p>
       </div>
-      <div style="max-width: 680px; margin: 0 auto;">
-        <div class="card" style="text-align:center; padding: 40px 32px;" id="google-form-card">
-          <div class="card-icon" style="margin: 0 auto 20px;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <div style="max-width: 640px; margin: 0 auto;">
+        <div class="card" style="text-align:center; padding: 42px 32px;" id="google-form-card">
+          <div class="card-icon" style="margin: 0 auto 18px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
           </div>
-          <h3 style="font-size:22px; font-weight:700; margin-bottom:10px;">Submit Project Entry</h3>
-          <p style="margin-bottom:28px; color:var(--text-muted); font-size:15px; line-height:1.6;">Click below to submit your project details, code repository link, video demo, and team details via our submission form.</p>
+          <h3 style="font-size:21px; font-weight:700; margin-bottom:10px;">Submit Project Entry</h3>
+          <p style="margin-bottom:26px; color:var(--text-muted); font-size:15px; line-height:1.6;">Click below to submit
+            your project details, code repository link, video demo, and team details via our submission form.</p>
           <a href="#" id="google-sub-btn" target="_blank" class="btn btn-primary btn-lg">
             Open Submission Form
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SPONSORS SECTION -->
+  <!-- SPONSORS -->
   <section id="sponsors">
     <div class="wrap">
       <div class="section-head">
@@ -910,7 +1120,7 @@
     </div>
   </section>
 
-  <!-- FAQ SECTION -->
+  <!-- FAQ -->
   <section id="faq">
     <div class="wrap">
       <div class="section-head">
@@ -918,7 +1128,7 @@
         <h2>Frequently Asked Questions</h2>
         <p>Everything you need to know about participating and rules.</p>
       </div>
-      <div style="max-width: 800px; margin: 0 auto;" id="faq-list"></div>
+      <div style="max-width: 760px; margin: 0 auto;" id="faq-list"></div>
     </div>
   </section>
 
@@ -964,14 +1174,13 @@
           document.body.classList.add('dark');
           document.body.classList.remove('light');
         }
-        // Cache theme to localStorage to prevent FOUC on next load
         try {
           localStorage.setItem('hf-theme', JSON.stringify({
             dark: !!c.branding.dark_mode,
             primary: c.branding.primary_color || null,
-            accent:  c.branding.accent_color  || null
+            accent: c.branding.accent_color || null
           }));
-        } catch(e) {}
+        } catch (e) { }
       }
 
       // Basics
@@ -1032,9 +1241,9 @@
       // Problem Statement
       if (c.problem_statement) {
         const titleEl = document.getElementById('problem-title');
-        const descEl  = document.getElementById('problem-desc');
+        const descEl = document.getElementById('problem-desc');
         if (titleEl) titleEl.textContent = c.problem_statement.title || 'The Core Challenge';
-        if (descEl)  descEl.textContent  = c.problem_statement.description || '';
+        if (descEl) descEl.textContent = c.problem_statement.description || '';
 
         if (c.problem_statement.objectives && c.problem_statement.objectives.length > 0) {
           const wrap = document.getElementById('problem-objectives-wrap');
@@ -1061,7 +1270,7 @@
           grid.innerHTML = c.tracks.map((t, i) => `
             <div class="card">
               <div class="card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
               </div>
               <h3>${t.name}</h3>
               <p>${t.description || ''}</p>
@@ -1090,25 +1299,25 @@
         if (grid) {
           if (c.winners.announced && c.winners.list && c.winners.list.length > 0) {
             grid.innerHTML = c.winners.list.map(w => `
-              <div class="card" style="border: 2px solid var(--primary); background:var(--surface);">
+              <div class="card" style="border: 2px solid var(--primary);">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                   <span class="prize-badge" style="font-size:12px; font-weight:800;">🏆 ${w.place}</span>
                   <span style="font-size:15px; font-weight:800; color:var(--primary);">${w.prize || ''}</span>
                 </div>
-                <h3 style="font-size:20px; font-weight:700; margin-bottom:6px;">${w.project}</h3>
+                <h3 style="font-size:19px; font-weight:700; margin-bottom:6px;">${w.project}</h3>
                 <div style="font-size:13px; font-weight:700; color:var(--accent); margin-bottom:10px;">By ${w.team}</div>
                 <div style="font-size:12px; color:var(--text-muted); margin-bottom:16px;">Track: ${w.track}</div>
                 <div style="display:flex; gap:10px;">
-                  ${w.repo_url ? `<a href="${w.repo_url}" target="_blank" class="btn btn-ghost btn-sm" style="font-size:12px;">GitHub Code</a>` : ''}
-                  ${w.demo_url ? `<a href="${w.demo_url}" target="_blank" class="btn btn-primary btn-sm" style="font-size:12px;">Live Demo</a>` : ''}
+                  ${w.repo_url ? `<a href="${w.repo_url}" target="_blank" class="btn btn-ghost" style="height:34px; font-size:12px; padding:0 14px;">GitHub Code</a>` : ''}
+                  ${w.demo_url ? `<a href="${w.demo_url}" target="_blank" class="btn btn-primary" style="height:34px; font-size:12px; padding:0 14px;">Live Demo</a>` : ''}
                 </div>
               </div>
             `).join('');
           } else {
             const resultsDate = (c.dates && c.dates.results_announced) ? c.dates.results_announced : 'soon';
             grid.innerHTML = `
-              <div style="grid-column: 1 / -1; text-align:center; padding: 40px 20px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius-lg);">
-                <div style="font-size:36px; margin-bottom:10px;">⌛</div>
+              <div style="grid-column: 1 / -1; text-align:center; padding: 48px 24px; background:var(--surface); border:1px dashed var(--border); border-radius:var(--radius-lg);">
+                <div style="font-size:36px; margin-bottom:12px;">⌛</div>
                 <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Evaluation in Progress</h3>
                 <p style="color:var(--text-muted); font-size:15px;">Winning projects and final scores will be published here on <strong>${resultsDate}</strong>.</p>
               </div>
@@ -1156,9 +1365,8 @@
               <div class="person-info">
                 <h4>${m.name}</h4>
                 <p>${m.expertise || m.title || ''}</p>
-                <div class="person-org">${
-                  m.contact ? `<a href="${m.contact}" target="_blank" rel="noopener noreferrer">${linkLabel(m.contact)}</a>` : (m.organization || '')
-                }</div>
+                <div class="person-org">${m.contact ? `<a href="${m.contact}" target="_blank" rel="noopener noreferrer">${linkLabel(m.contact)}</a>` : (m.organization || '')
+            }</div>
               </div>
             </div>
           `).join('');
@@ -1187,11 +1395,11 @@
         if (grid) {
           grid.innerHTML = c.rules.map((r, i) => `
             <div class="card" style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:36px; height:36px; border-radius:10px; background:rgba(124,58,237,0.08); color:var(--primary); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <div style="width:34px; height:34px; border-radius:10px; background:var(--primary-soft); color:var(--primary); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:14px;">
                 ${i + 1}
               </div>
               <div>
-                <h4 style="font-size:17px; font-weight:700; margin-bottom:6px; color:var(--text);">${r.title}</h4>
+                <h4 style="font-size:16px; font-weight:700; margin-bottom:5px;">${r.title}</h4>
                 <p style="font-size:14px; color:var(--text-muted); line-height:1.6;">${r.description || ''}</p>
               </div>
             </div>
@@ -1222,12 +1430,12 @@
         grid.innerHTML = c.sponsors.list.map(s => `
           <div class="card" style="text-align:center;">
             <h3>${s.name}</h3>
-            <span class="brand-badge">${s.tier || 'Sponsor'}</span>
+            <span class="prize-badge" style="margin-top:8px; display:inline-block;">${s.tier || 'Sponsor'}</span>
           </div>
         `).join('');
       }
 
-      // Feature Toggles (Hide disabled sections dynamically)
+      // Feature Toggles
       if (c.features) {
         if (c.features.show_winners === false && c.features.show_leaderboard === false) {
           const s = document.getElementById('winners');
@@ -1288,4 +1496,5 @@
     }
   </script>
 </body>
+
 </html>
