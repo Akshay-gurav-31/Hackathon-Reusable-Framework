@@ -71,22 +71,22 @@ winners:
       project: "Open Phenylalanine Benchmarking Engine"
       track: "Phenylalanine Estimation & Accuracy"
       prize: "$1,000"
-      repo_url: ""
-      demo_url: ""
+      repo_url: "https://github.com/PKUCommons/phe-benchmark-engine"
+      demo_url: "https://pku.community/demo/pheops"
     - place: "2nd Place (Runner-up)"
       team: "PheTrack Squad"
       project: "Connected Scale WebBluetooth Driver"
       track: "Hardware & Smart Scale Integrations"
       prize: "$500"
-      repo_url: ""
-      demo_url: ""
+      repo_url: "https://github.com/PKUCommons/web-bluetooth-scale"
+      demo_url: "https://pku.community/demo/phetrack"
     - place: "3rd Place"
       team: "Dietary AI"
       project: "Clinician-Verified PKU Food Database"
       track: "Living Low-Protein Food Database"
       prize: "$250"
-      repo_url: ""
-      demo_url: ""
+      repo_url: "https://github.com/PKUCommons/low-protein-db"
+      demo_url: "https://pku.community/demo/food-db"
 
 # ------------------------------------------------------------
 # JUDGES, MENTORS & SPONSORS CONFIGURATION
@@ -96,12 +96,12 @@ judges:
   - name: "Nina Kilbride"
     title: "Founder, Cureledger | Director, Phebe | Attorney & Fintech Developer"
     organization: "Cureledger / Phebe"
-    photo: ""
+    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=60"
     linkedin: "https://linkedin.com"
   - name: "Akshay Gurav"
     title: "AI/ML & Full-Stack Developer | Open Source Contributor"
     organization: "PKU Commons / Reusable Framework Lead"
-    photo: ""
+    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=60"
     linkedin: "https://github.com"
 
 mentors:
@@ -109,11 +109,11 @@ mentors:
   list:
     - name: "Dr. Elena Ruiz"
       expertise: "Metabolic Genetics & PKU Nutrition"
-      photo: "./assets/mentors/elena.jpg"
+      photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&auto=format&fit=crop&q=60"
       contact: "https://linkedin.com"
     - name: "Sam Patel"
       expertise: "Bluetooth Low Energy & Web Bluetooth"
-      photo: "./assets/mentors/sam.jpg"
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=60"
       contact: "https://github.com"
 
 sponsors:
@@ -122,11 +122,11 @@ sponsors:
     - name: "PKU Commons"
       tier: "Platinum"
       url: "https://pku.community"
-      logo: "./assets/sponsors/pku-commons.png"
+      logo: "./rhf-logo.png"
     - name: "National PKU Alliance"
       tier: "Gold"
       url: "https://npkua.org"
-      logo: "./assets/sponsors/npkua.png"
+      logo: "./rhf-logo.png"
 
 schedule:
   enabled: true
