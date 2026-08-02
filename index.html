@@ -1181,11 +1181,13 @@
         document.getElementById('hero-title').textContent = c.hackathon.name || 'Science Hackathon';
         const brandDisorderEl = document.getElementById('brand-disorder');
         if (brandDisorderEl && c.hackathon.disorder) brandDisorderEl.textContent = c.hackathon.disorder;
-        if (c.hackathon.tagline) {
-          document.getElementById('hero-tagline-badge').textContent = c.hackathon.tagline;
+        const taglineBadge = document.getElementById('hero-tagline-badge');
+        if (taglineBadge && c.hackathon.tagline) {
+          taglineBadge.textContent = c.hackathon.tagline;
         }
-        if (c.hackathon.description) {
-          document.getElementById('hero-desc').textContent = c.hackathon.description;
+        const heroDesc = document.getElementById('hero-desc');
+        if (heroDesc && c.hackathon.description) {
+          heroDesc.textContent = c.hackathon.description;
         }
 
         const logoUrl = c.hackathon.logo || (c.community && c.community.logo);
