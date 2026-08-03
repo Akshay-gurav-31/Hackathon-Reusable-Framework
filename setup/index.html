@@ -831,6 +831,7 @@
               <option value="pku">PKU (Recommended)</option>
               <option value="msud">MSUD</option>
               <option value="generic">Generic / Blank</option>
+              <option value="custom">Custom (Start from Scratch)</option>
             </select>
           </div>
           <div class="field">
@@ -1725,6 +1726,31 @@
             website: 'https://example.org',
             github: 'https://github.com/REPLACE-ME'
           }
+        },
+        custom: {
+          tracks: [],
+          prizes: [],
+          judges: [],
+          mentors: [],
+          sponsors: [],
+          defaults: {
+            name: '',
+            tagline: '',
+            desc: '',
+            disorder: '',
+            community: '',
+            communityUrl: '',
+            probTitle: '',
+            probDesc: '',
+            probObjectives: '',
+            regForm: '',
+            subForm: '',
+            email: '',
+            discord: '',
+            twitter: '',
+            website: '',
+            github: ''
+          }
         }
       };
 
@@ -1735,14 +1761,17 @@
       data.judges.forEach(j => addJudge(j[0], j[1], j[2], j[3], j[4]));
       data.mentors.forEach(m => addMentor(m[0], m[1], m[2], m[3]));
       data.sponsors.forEach(s => addSponsor(s[0], s[1], s[2], s[3]));
-      addScheduleItem('2026-10-15', '09:00', 'Virtual Kickoff & Table Stream', 'Welcome address, hackathon rules, and problem area walkthrough.', 'opening');
-      addScheduleItem('2026-10-16', '14:00', 'Benchmark & Skill Workshop', 'How to run the accuracy benchmark locally and test your model.', 'workshop');
-      addScheduleItem('2026-10-30', '23:59', 'Project Submission Deadline', 'All submissions must be finalized via the submission form.', 'deadline');
-      addScheduleItem('2026-11-05', '17:00', 'Winners Announcement Live Stream', 'Judges present awards and demo winning projects.', 'closing');
-      addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
-      addRule('Original Work', 'Projects must be built during the hackathon timeline.');
-      addFaq('Who can participate?', 'Anyone! Developers, researchers, dietitians, and family members are all welcome to join and build.');
-      addFaq('Is there a registration fee?', 'No, participation is completely free.');
+      
+      if (preset !== 'custom') {
+        addScheduleItem('2026-10-15', '09:00', 'Virtual Kickoff & Table Stream', 'Welcome address, hackathon rules, and problem area walkthrough.', 'opening');
+        addScheduleItem('2026-10-16', '14:00', 'Benchmark & Skill Workshop', 'How to run the accuracy benchmark locally and test your model.', 'workshop');
+        addScheduleItem('2026-10-30', '23:59', 'Project Submission Deadline', 'All submissions must be finalized via the submission form.', 'deadline');
+        addScheduleItem('2026-11-05', '17:00', 'Winners Announcement Live Stream', 'Judges present awards and demo winning projects.', 'closing');
+        addRule('Open Source Licensing', 'All submitted code must be under an OSI-approved license (MIT, Apache 2.0).');
+        addRule('Original Work', 'Projects must be built during the hackathon timeline.');
+        addFaq('Who can participate?', 'Anyone! Developers, researchers, dietitians, and family members are all welcome to join and build.');
+        addFaq('Is there a registration fee?', 'No, participation is completely free.');
+      }
 
       const d = data.defaults;
       if (document.getElementById('preset-select')) document.getElementById('preset-select').value = preset;
